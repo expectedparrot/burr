@@ -1,0 +1,97 @@
+entity: starbucks
+template: coffee_chain
+base_year: 2025
+periods: 2026..2030
+bindings:
+  company_revenue0:
+    value: 30744.8
+    source: https://investor.starbucks.com/news/financial-releases/news-details/2025/Starbucks-Reports-Q4-and-Full-Fiscal-Year-2025-Results/
+    rationale: FY2025 consolidated company-operated store revenue, USD millions.
+    as_of: '2025-09-28'
+  licensed_revenue0:
+    value: 4350.4
+    source: sources/reported.csv; FY2025 consolidated licensed-store revenue
+    rationale: Revenue recognized by Starbucks; excludes licensees' retail sales.
+    as_of: '2025-09-28'
+  other_revenue0:
+    value: 2089.2
+    source: sources/reported.csv; FY2025 consolidated other revenue
+    rationale: Consolidated revenue category, not the Channel Development segment total.
+    as_of: '2025-09-28'
+  revenue0:
+    value: 37184.4
+    source: sources/reported.csv; FY2025 consolidated total net revenue
+    rationale: Starting point for incremental working-capital investment.
+    as_of: '2025-09-28'
+  footprint_growth:
+    value: 0.02
+    source: tutorial assumption
+    rationale: Annual revenue contribution from net capacity growth and store maturation; not a reported store-count forecast.
+  traffic_growth:
+    start: 0.01
+    end: 0.03
+    source: tutorial assumption
+    rationale: Improving customer visits; applied as a simplified company-operated revenue driver.
+  ticket_growth:
+    value: 0.02
+    source: tutorial assumption
+    rationale: Annual average-ticket growth from price and mix, with no automatic demand elasticity.
+  licensed_growth:
+    value: 0.04
+    source: tutorial assumption
+    rationale: Growth in product sales and royalties recognized from licensees.
+  other_growth:
+    value: 0.04
+    source: tutorial assumption
+    rationale: Growth in the consolidated other-revenue category.
+  operating_margin:
+    start: 0.10
+    end: 0.14
+    source: tutorial assumption
+    rationale: Hypothetical margin recovery after store labor, rent, ingredients, overhead, depreciation, and equity compensation.
+  tax_rate:
+    value: 0.25
+    source: tutorial assumption
+    rationale: Normalized tax on positive operating income.
+  da_pct:
+    value: 0.047
+    source: tutorial assumption; sources/reported.csv for historical cash-flow D&A
+    rationale: Depreciation and amortization addback as a share of revenue; excludes equity compensation and lease addbacks.
+  capex_pct:
+    start: 0.065
+    end: 0.06
+    source: tutorial assumption
+    rationale: Store investment and refurbishment as a share of revenue.
+  incremental_nwc_pct:
+    value: 0.02
+    source: tutorial assumption
+    rationale: Incremental working capital consumes 2% of the change in revenue; simplified aggregate cash-flow adjustment.
+valuation:
+  fcf: fcff
+  wacc:
+    value: 0.09
+    source: tutorial assumption
+    rationale: Annual discount rate; full forecast years discounted from FY2025 year-end.
+  terminal_growth:
+    value: 0.025
+    source: tutorial assumption
+    rationale: Perpetual FCFF growth after FY2030.
+  net_cash:
+    value: -12615.2
+    source: sources/reported.csv; FY2025 balance sheet
+    rationale: Cash 3219.8 + short-term investments 247.2 - current debt 1498.9 - long-term debt 14575.9 - noncontrolling interests 7.4; USD millions. Lease costs remain operating expenses, so lease liabilities are not subtracted again.
+  shares:
+    value: 1136.9
+    source: sources/reported.csv; FY2025 balance sheet common stock disclosure
+    rationale: FY2025 year-end common shares outstanding, millions; held fixed without future buybacks or incremental award dilution.
+scenarios:
+  bear:
+    thesis: Customer visits stagnate and investment fails to restore margins.
+    bindings:
+      traffic_growth: {value: 0.0, source: tutorial assumption, rationale: No annual visit growth.}
+      operating_margin: {start: 0.08, end: 0.10, source: tutorial assumption, rationale: Limited margin recovery.}
+  bull:
+    thesis: Better service restores visits and supports higher margins.
+    bindings:
+      traffic_growth: {start: 0.03, end: 0.04, source: tutorial assumption, rationale: Faster annual visit growth.}
+      operating_margin: {start: 0.12, end: 0.16, source: tutorial assumption, rationale: Stronger operating recovery.}

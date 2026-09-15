@@ -1,0 +1,9 @@
+op: add_scenario
+name: premium
+thesis: Customers accept a premium price while volume growth and the cost ratio hold.
+bindings:
+  price:
+    value: 3.0
+    rationale: A modest premium for fresh ingredients and a convenient location.
+    source: illustrative customer interviews
+    confidence: medium

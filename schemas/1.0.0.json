@@ -1,0 +1,623 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:burr:schema:1.0.0",
+  "title": "burr 1.0.0 JSON contracts",
+  "description": "Reference a command-specific definition via #/$defs/name. Additional fields are permitted for forward compatibility.",
+  "$defs": {
+    "diagnostic": {
+      "type": "object",
+      "required": [
+        "severity",
+        "code",
+        "where",
+        "message",
+        "fix_hint"
+      ],
+      "properties": {
+        "severity": {
+          "enum": [
+            "error",
+            "warning"
+          ]
+        },
+        "code": {
+          "type": "string"
+        },
+        "where": {
+          "type": "object",
+          "properties": {
+            "file": {
+              "type": "string"
+            },
+            "key": {
+              "type": "string"
+            }
+          }
+        },
+        "message": {
+          "type": "string"
+        },
+        "fix_hint": {
+          "type": "string"
+        }
+      }
+    },
+    "failure": {
+      "type": "object",
+      "required": [
+        "ok",
+        "diagnostics"
+      ],
+      "properties": {
+        "ok": {
+          "const": false
+        },
+        "diagnostics": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/diagnostic"
+          }
+        }
+      }
+    },
+    "row": {
+      "type": "object",
+      "required": [
+        "entity",
+        "scenario",
+        "period",
+        "line",
+        "value",
+        "provenance"
+      ],
+      "properties": {
+        "entity": {
+          "type": "string"
+        },
+        "scenario": {
+          "type": "string"
+        },
+        "period": {
+          "type": "integer"
+        },
+        "line": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        },
+        "provenance": {
+          "type": "string"
+        }
+      }
+    },
+    "run": {
+      "type": "object",
+      "required": [
+        "ok",
+        "rows"
+      ],
+      "properties": {
+        "ok": {
+          "const": true
+        },
+        "rows": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/row"
+          }
+        }
+      }
+    },
+    "value": {
+      "type": "object",
+      "required": [
+        "ok",
+        "ev",
+        "equity",
+        "per_share",
+        "terminal_weight"
+      ],
+      "properties": {
+        "ok": {
+          "const": true
+        },
+        "ev": {
+          "type": "number"
+        },
+        "equity": {
+          "type": "number"
+        },
+        "per_share": {
+          "type": "number"
+        },
+        "terminal_weight": {
+          "type": "number"
+        }
+      }
+    },
+    "attribution": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "key",
+          "delta"
+        ],
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "delta": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "explain": {
+      "type": "object",
+      "required": [
+        "ok",
+        "from",
+        "to",
+        "gap",
+        "attribution",
+        "interactions"
+      ],
+      "properties": {
+        "ok": {
+          "const": true
+        },
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "gap": {
+          "type": "number"
+        },
+        "attribution": {
+          "$ref": "#/$defs/attribution"
+        },
+        "interactions": {
+          "type": "number"
+        }
+      }
+    },
+    "try": {
+      "type": "object",
+      "required": [
+        "ok",
+        "base_per_share",
+        "trial_per_share",
+        "gap",
+        "attribution"
+      ],
+      "properties": {
+        "ok": {
+          "const": true
+        },
+        "base_per_share": {
+          "type": "number"
+        },
+        "trial_per_share": {
+          "type": "number"
+        },
+        "gap": {
+          "type": "number"
+        },
+        "attribution": {
+          "$ref": "#/$defs/attribution"
+        },
+        "interactions": {
+          "type": "number"
+        }
+      }
+    },
+    "mc": {
+      "type": "object",
+      "required": [
+        "ok",
+        "percentiles"
+      ],
+      "properties": {
+        "ok": {
+          "const": true
+        },
+        "percentiles": {
+          "type": "object",
+          "required": [
+            "p5",
+            "p25",
+            "p50",
+            "p75",
+            "p95"
+          ],
+          "properties": {
+            "p5": {
+              "type": "number"
+            },
+            "p25": {
+              "type": "number"
+            },
+            "p50": {
+              "type": "number"
+            },
+            "p75": {
+              "type": "number"
+            },
+            "p95": {
+              "type": "number"
+            }
+          }
+        },
+        "draws": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "plot": {
+      "type": "object",
+      "required": [
+        "ok",
+        "output",
+        "kind",
+        "entity",
+        "title",
+        "note",
+        "fingerprints",
+        "scenario_theses",
+        "panels"
+      ],
+      "properties": {
+        "ok": {
+          "const": true
+        },
+        "output": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "series",
+            "scenarios",
+            "drivers"
+          ]
+        },
+        "entity": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        },
+        "fingerprints": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "scenario_theses": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "panels": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "line"
+            ],
+            "properties": {
+              "line": {
+                "type": "string"
+              },
+              "unit": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "rows": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "period",
+                    "line",
+                    "value",
+                    "scenario",
+                    "kind",
+                    "provenance"
+                  ],
+                  "properties": {
+                    "period": {
+                      "type": "integer"
+                    },
+                    "line": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "number"
+                    },
+                    "scenario": {
+                      "type": "string"
+                    },
+                    "kind": {
+                      "enum": [
+                        "reported",
+                        "forecast"
+                      ]
+                    },
+                    "provenance": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "nodes": {
+                "type": "array"
+              },
+              "edges": {
+                "type": "array"
+              },
+              "period": {
+                "type": "integer"
+              },
+              "scenario": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "agent_action": {
+      "type": "object",
+      "required": [
+        "command",
+        "argv",
+        "shell",
+        "cwd",
+        "reason",
+        "mutates",
+        "writes",
+        "expected",
+        "requires_network"
+      ],
+      "properties": {
+        "command": {
+          "type": "string"
+        },
+        "argv": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "shell": {
+          "type": "string"
+        },
+        "cwd": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "mutates": {
+          "type": "boolean"
+        },
+        "writes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "expected": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "requires_network": {
+          "const": false
+        }
+      }
+    },
+    "guide": {
+      "type": "object",
+      "required": [
+        "ok",
+        "protocol_version",
+        "guide"
+      ],
+      "properties": {
+        "ok": {
+          "const": true
+        },
+        "protocol_version": {
+          "const": "1"
+        },
+        "guide": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "next": {
+      "type": "object",
+      "required": [
+        "ok",
+        "protocol_version",
+        "company",
+        "workspace",
+        "scenario",
+        "deliverable",
+        "resume_argv",
+        "state",
+        "complete",
+        "action",
+        "next_steps",
+        "required_inputs",
+        "diagnostics",
+        "warnings",
+        "evidence",
+        "message"
+      ],
+      "properties": {
+        "ok": {
+          "const": true
+        },
+        "protocol_version": {
+          "const": "1"
+        },
+        "company": {
+          "type": "string"
+        },
+        "workspace": {
+          "type": "string"
+        },
+        "scenario": {
+          "type": "string"
+        },
+        "deliverable": {
+          "enum": [
+            "dashboard",
+            "csv",
+            "excel"
+          ]
+        },
+        "resume_argv": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "state": {
+          "enum": [
+            "repair",
+            "repair_patch",
+            "review_stale",
+            "needs_input",
+            "record",
+            "export",
+            "complete"
+          ]
+        },
+        "complete": {
+          "type": "boolean"
+        },
+        "action": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/agent_action"
+            }
+          ]
+        },
+        "next_steps": {
+          "type": "array",
+          "maxItems": 1,
+          "items": {
+            "$ref": "#/$defs/agent_action"
+          }
+        },
+        "required_inputs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "reason"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "diagnostics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/diagnostic"
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "evidence": {
+          "type": "object"
+        },
+        "message": {
+          "type": "string"
+        },
+        "fingerprint": {
+          "type": "string"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "state": {
+                "const": "complete"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "complete": {
+                "const": true
+              },
+              "action": {
+                "type": "null"
+              },
+              "next_steps": {
+                "maxItems": 0
+              },
+              "required_inputs": {
+                "maxItems": 0
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "complete": {
+                "const": false
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "type": "object",
+  "required": [
+    "ok"
+  ],
+  "properties": {
+    "ok": {
+      "type": "boolean"
+    }
+  }
+}

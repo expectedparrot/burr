@@ -1,0 +1,29 @@
+{
+  "ok": true,
+  "scenarios": [
+    {
+      "equity": 45448.04284986929,
+      "ev": 58063.2428498693,
+      "ok": true,
+      "per_share": 39.97540931468844,
+      "scenario": "base",
+      "terminal_weight": 0.7882779025537872
+    },
+    {
+      "equity": 24040.590729058607,
+      "ev": 36655.79072905861,
+      "ok": true,
+      "per_share": 21.14573905273868,
+      "scenario": "bear",
+      "terminal_weight": 0.7756749526001264
+    },
+    {
+      "equity": 59462.906243614736,
+      "ev": 72078.10624361473,
+      "ok": true,
+      "per_share": 52.30267063384179,
+      "scenario": "bull",
+      "terminal_weight": 0.7859566218080818
+    }
+  ]
+}

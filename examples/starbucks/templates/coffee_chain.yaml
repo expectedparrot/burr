@@ -1,0 +1,40 @@
+template: coffee_chain
+doc: Coffee-chain revenue drivers and an illustrative unlevered cash-flow forecast; USD millions.
+parameters:
+  - {name: company_revenue0, unit: currency_m}
+  - {name: licensed_revenue0, unit: currency_m}
+  - {name: other_revenue0, unit: currency_m}
+  - {name: revenue0, unit: currency_m}
+  - {name: footprint_growth, unit: ratio}
+  - {name: traffic_growth, unit: ratio}
+  - {name: ticket_growth, unit: ratio}
+  - {name: licensed_growth, unit: ratio}
+  - {name: other_growth, unit: ratio}
+  - {name: operating_margin, unit: ratio}
+  - {name: tax_rate, unit: ratio}
+  - {name: da_pct, unit: ratio}
+  - {name: capex_pct, unit: ratio}
+  - {name: incremental_nwc_pct, unit: ratio}
+lines:
+  company_growth: (1 + footprint_growth) * (1 + traffic_growth) * (1 + ticket_growth) - 1
+  company_revenue: grow(company_revenue0, company_growth)
+  licensed_revenue: grow(licensed_revenue0, licensed_growth)
+  other_revenue: grow(other_revenue0, other_growth)
+  revenue: company_revenue + licensed_revenue + other_revenue
+  ebit: revenue * operating_margin
+  cash_taxes: maximum(ebit, 0) * tax_rate
+  da: revenue * da_pct
+  capex: revenue * capex_pct
+  incremental_nwc: delta(revenue, revenue0) * incremental_nwc_pct
+  fcff: ebit - cash_taxes + da - capex - incremental_nwc
+decompositions:
+  revenue: [company_revenue, licensed_revenue, other_revenue]
+checks:
+  - revenue > 0
+  - ebit <= revenue
+  - operating_margin >= 0
+  - operating_margin <= 1
+  - tax_rate >= 0
+  - tax_rate <= 1
+  - da >= 0
+  - capex >= 0

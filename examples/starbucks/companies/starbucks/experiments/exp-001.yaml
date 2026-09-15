@@ -1,0 +1,30 @@
+id: exp-001
+at: '2026-09-15T11:01:32+00:00'
+question: What if customer visits do not recover?
+scenario: base
+patch:
+  bindings:
+    traffic_growth:
+      value: 0.0
+      source: tutorial experiment
+      rationale: Hold visits flat in all forecast years while retaining base ticket, capacity, and margin
+        assumptions.
+results:
+  ok: true
+  base_per_share: 39.97540931468844
+  trial_per_share: 36.55647561638849
+  gap: -3.418933698299952
+  attribution:
+  - key: traffic_growth
+    section: bindings
+    delta: -3.418933698299952
+    metadata:
+      source: tutorial experiment
+      rationale: Hold visits flat in all forecast years while retaining base ticket, capacity, and margin
+        assumptions.
+  interactions: 0.0
+finding: Flat traffic reduces modeled value by $3.42 per share with ticket, capacity, and margin assumptions
+  fixed.
+tags:
+- traffic
+fingerprint: d28711564727a9cb3345b0a73aa9645b945fc0df9af46227361ab723f5d857f1

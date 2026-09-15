@@ -1,0 +1,15 @@
+# LOGIC: business constants belong in params.yaml.
+template: lemonade
+doc: A lemonade stand with volume, price, and variable costs.
+parameters:
+  - {name: cups0, unit: count, doc: Base-year cups sold}
+  - {name: cup_growth, unit: ratio, doc: Annual volume growth}
+  - {name: price, unit: currency, doc: Price per cup}
+  - {name: cost_pct, unit: ratio, doc: Variable costs as a fraction of revenue}
+lines:
+  cups: grow(cups0, cup_growth)
+  revenue: cups * price
+  profit: revenue * (1 - cost_pct)
+checks:
+  - profit <= revenue
+  - revenue >= 0

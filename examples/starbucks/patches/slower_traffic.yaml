@@ -1,0 +1,5 @@
+bindings:
+  traffic_growth:
+    value: 0.0
+    source: tutorial experiment
+    rationale: Hold visits flat in all forecast years while retaining base ticket, capacity, and margin assumptions.

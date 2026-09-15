@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Stand · Decision dashboard</title>
+<style>
+:root{--ink:#17342f;--muted:#526b65;--green:#12684e;--line:#ccdcd3;--paper:#fff;--wash:#f1f5ef}*{box-sizing:border-box}body{margin:0;background:var(--wash);color:var(--ink);font:16px/1.5 system-ui,sans-serif}header,main,footer{max-width:1400px;margin:auto;padding:24px}h1{font:36px Georgia,serif;margin:8px 0}h2{font-size:20px;margin:0 0 16px}h3{font-size:16px}.muted,small{color:var(--muted)}.layout{display:grid;grid-template-columns:minmax(290px,380px) minmax(0,1fr);gap:24px}.layout>*{min-width:0}.panel{min-width:0;padding:24px;background:var(--paper);border:1px solid var(--line);border-radius:12px;margin-bottom:20px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.cards strong{display:block;font:32px Georgia,serif;margin:10px 0}.primary{background:#e0eee3}.control{border-top:1px solid var(--line);padding:18px 0}.control label{display:block}#add-controls label{display:block;margin:6px 0}.control input[type=range]{width:100%;accent-color:var(--green)}input,select,textarea,button{font:inherit}input[type=number],select,textarea{padding:8px;border:1px solid var(--line);border-radius:5px;max-width:100%;background:white;color:var(--ink)}input[type=number]{width:100%}.range-settings{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}button{border:0;border-radius:6px;padding:9px 13px;background:var(--green);color:white;cursor:pointer;margin:5px 5px 5px 0}button.secondary{background:#e6eee8;color:var(--ink)}button:disabled{opacity:.5;cursor:default}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #bc6f23;outline-offset:3px}.scroll{overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}th,td{padding:10px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}th:first-child,td:first-child{text-align:left}svg{display:block;width:100%;height:auto}.error{color:#a12622;background:#fff0eb;padding:12px;border-radius:6px}.entry{border-top:1px solid var(--line);padding:12px 0;overflow-wrap:anywhere}textarea{width:100%;min-height:80px}summary{cursor:pointer}footer{font-size:12px;overflow-wrap:anywhere}.actions{display:flex;flex-wrap:wrap;align-items:center;gap:6px}[hidden]{display:none!important}@media(max-width:850px){.layout{grid-template-columns:1fr}.cards{grid-template-columns:1fr}header,main,footer{padding:16px}}@media print{button,.range-settings,#add-controls{display:none}.layout{display:block}.panel{break-inside:avoid}}
+</style></head><body>
+<header><span class="muted">BURR / SCENARIO EXPLORER</span><h1>Stand · Decision dashboard</h1><p id="context" class="muted"></p></header>
+<main><noscript><p>This dashboard needs JavaScript to calculate forecasts and save experiments.</p></noscript>
+<div class="layout"><aside><section class="panel"><h2>Choose your assumptions</h2><p class="muted">Explore a business assumption across the forecast. Shift the whole path, use one value each year, or gradually reach a target.</p>
+<div id="add-controls"><label><input id="advanced-years" type="checkbox"> Advanced: include individual years</label><label for="parameter">Assumption</label><select id="parameter"></select><button id="add">Make slider</button></div><div id="controls"></div>
+<button class="secondary" id="reset">Reset values</button><details><summary>About the saved assumptions</summary><p id="locked" class="muted"></p><p class="muted">Whole-forecast sliders change the full assumption path. Advanced controls with year labels change only that year. Changing modes replaces the previous settings for that assumption. Distribution inputs use their resolved central values; this dashboard explores deterministic choices.</p></details></section></aside>
+<div><div id="error" class="error" role="alert" hidden></div><div class="cards" aria-live="polite">
+<section class="panel primary"><small>Implied value per share</small><strong id="price">—</strong><small id="delta"></small></section>
+<section class="panel"><small>Enterprise value</small><strong id="ev">—</strong><small>In model currency units</small></section>
+<section class="panel"><small>Terminal value / EV</small><strong id="terminal">—</strong><small>Discounted terminal contribution</small></section></div>
+<section class="panel"><h2>History and forecast</h2><label for="metric">Metric </label><select id="metric"></select><p class="muted">Reported history (blue) · Saved forecast (gray, dashed) · Your choices (green)</p><p id="history-note" class="muted"></p><div id="chart"></div><div id="forecast" class="scroll"></div></section>
+<section class="panel"><h2>Experiment log</h2><p class="muted">Save choices worth discussing, with a question or finding. Entries stay in this browser; download a copy to share or keep.</p><label for="note">Question or finding</label><textarea id="note" placeholder="What decision are you exploring?"></textarea>
+<div class="actions"><button id="save">Save experiment</button><button id="download-log" class="secondary">Download log</button><button id="download-patch" class="secondary">Download current choices</button></div><p id="storage-status" role="status" class="muted"></p><div id="log"></div></section></div></div></main>
+<footer id="provenance"></footer>
+<script id="dashboard-data" type="application/json">{"ok": true, "schema": "burr-dashboard-1", "entity": "stand", "title": "Stand \u00b7 Decision dashboard", "scenario": "base", "fingerprint": "8b3256147def829d7a0ab21ccb3331ef243f2cd89dd6db303ff15ccc8f8313c9", "years": [2027, 2028, 2029], "inputs": {"cost_pct": 0.4, "cup_growth": [0.1, 0.07500000000000001, 0.05], "cups0": 1000.0, "price": 2.5}, "valuation": {"shares": 2.0, "terminal_growth": 0.0, "wacc": 0.2}, "fcf": "profit", "expressions": {"cups": ["grow", ["name", "cups0"], ["name", "cup_growth"]], "profit": ["Mult", ["name", "revenue"], ["Sub", ["constant", 1], ["name", "cost_pct"]]], "revenue": ["Mult", ["name", "cups"], ["name", "price"]]}, "order": ["cups", "revenue", "profit"], "checks": [{"source": "profit \u003c= revenue", "expression": ["LtE", ["name", "profit"], ["name", "revenue"]]}, {"source": "revenue \u003e= 0", "expression": ["GtE", ["name", "revenue"], ["constant", 0]]}], "units": {"cost_pct": "ratio", "cup_growth": "ratio", "cups0": "count", "price": "currency", "cups": "count", "revenue": "currency", "profit": "currency"}, "controls": [{"key": "bindings.cost_pct", "section": "bindings", "name": "cost_pct", "index": null, "year": null, "transform": "scalar", "base": 0.4, "min": 0.2, "max": 0.6000000000000001, "step": 0.002, "unit": "ratio", "metadata": {}, "enabled": false}, {"key": "bindings.cup_growth", "section": "bindings", "name": "cup_growth", "index": null, "year": null, "transform": "shift", "profile": [0.1, 0.07500000000000001, 0.05], "base": 0, "min": -0.05, "max": 0.05, "step": 0.0005, "unit": "ratio", "metadata": {"rationale": "word of mouth fades"}, "enabled": false}, {"key": "bindings.cup_growth~level", "section": "bindings", "name": "cup_growth", "index": null, "year": null, "transform": "level", "profile": [0.1, 0.07500000000000001, 0.05], "base": 0.05, "min": 0.0, "max": 0.1, "step": 0.0005, "unit": "ratio", "metadata": {"rationale": "word of mouth fades"}, "enabled": false}, {"key": "bindings.cup_growth~target", "section": "bindings", "name": "cup_growth", "index": null, "year": null, "transform": "target", "profile": [0.1, 0.07500000000000001, 0.05], "base": 0.05, "min": 0.0, "max": 0.1, "step": 0.0005, "unit": "ratio", "metadata": {"rationale": "word of mouth fades"}, "enabled": false}, {"key": "bindings.cup_growth@2027", "section": "bindings", "name": "cup_growth", "index": 0, "year": 2027, "transform": "annual", "base": 0.1, "min": 0.05, "max": 0.15000000000000002, "step": 0.0005, "unit": "ratio", "metadata": {"rationale": "word of mouth fades"}, "enabled": false}, {"key": "bindings.cup_growth@2028", "section": "bindings", "name": "cup_growth", "index": 1, "year": 2028, "transform": "annual", "base": 0.07500000000000001, "min": 0.02500000000000001, "max": 0.125, "step": 0.0005, "unit": "ratio", "metadata": {"rationale": "word of mouth fades"}, "enabled": false}, {"key": "bindings.cup_growth@2029", "section": "bindings", "name": "cup_growth", "index": 2, "year": 2029, "transform": "annual", "base": 0.05, "min": 0.0, "max": 0.1, "step": 0.0005, "unit": "ratio", "metadata": {"rationale": "word of mouth fades"}, "enabled": false}, {"key": "bindings.price", "section": "bindings", "name": "price", "index": null, "year": null, "transform": "scalar", "base": 2.5, "min": 1.0, "max": 4.0, "step": 0.05, "unit": "currency", "metadata": {}, "enabled": true}, {"key": "valuation.shares", "section": "valuation", "name": "shares", "index": null, "year": null, "transform": "scalar", "base": 2.0, "min": 1.0, "max": 3.0, "step": 0.01, "unit": "count", "metadata": {}, "enabled": false}, {"key": "valuation.terminal_growth", "section": "valuation", "name": "terminal_growth", "index": null, "year": null, "transform": "scalar", "base": 0.0, "min": -0.05, "max": 0.05, "step": 0.0005, "unit": "ratio", "metadata": {}, "enabled": false}, {"key": "valuation.wacc", "section": "valuation", "name": "wacc", "index": null, "year": null, "transform": "scalar", "base": 0.2, "min": 0.08, "max": 0.3, "step": 0.005, "unit": "ratio", "metadata": {}, "enabled": true}], "baseline": {"lines": {"cups": [1100.0, 1182.5, 1241.6250000000002], "revenue": [2750.0, 2956.25, 3104.0625000000005], "profit": [1650.0, 1773.75, 1862.4375000000002]}, "value": {"ok": true, "ev": 9073.567708333332, "equity": 9073.567708333332, "per_share": 4536.783854166666, "terminal_weight": 0.5939226519337018}}, "history": {"cups": [{"period": 2025, "line": "cups", "value": 900.0}, {"period": 2026, "line": "cups", "value": 1000.0}], "revenue": [{"period": 2025, "line": "revenue", "value": 2160.0}, {"period": 2026, "line": "revenue", "value": 2500.0}], "profit": []}, "history_source": "companies/stand/actuals.csv", "locked": ["cups0"]}</script><script>/* Closed expression interpreter. Shared by the dashboard and parity tests. */
+function dashboardInputs(data, overrides = {}) {
+  const inputs = structuredClone(data.inputs), valuation = structuredClone(data.valuation);
+  const controls = new Map(data.controls.map(c => [c.key, c]));
+  const active = Object.entries(overrides).map(([key, value]) => {
+    const c = controls.get(key);
+    if (!c) throw Error('Unknown assumption: ' + key);
+    if (!Number.isFinite(value)) throw Error('Assumptions must be finite numbers.');
+    return {c, value};
+  });
+  const profiles = new Set();
+  // Whole-horizon changes first, then explicit annual overrides. This order is
+  // independent of insertion order and preserves old saved annual experiments.
+  active.sort((a,b) => Number(a.c.index !== null) - Number(b.c.index !== null));
+  for (const {c, value} of active) {
+    const target = c.section === 'bindings' ? inputs : valuation;
+    if (c.profile) {
+      const group = c.section + '.' + c.name;
+      if (profiles.has(group)) throw Error('Choose one forecast-wide mode for ' + c.name);
+      profiles.add(group);
+      target[c.name] = c.profile.map((saved, i) => {
+        if (c.transform === 'shift') return saved + value;
+        if (c.transform === 'level') return value;
+        // Phase in the difference from the saved terminal assumption, retaining
+        // the saved trajectory and leaving the first forecast year unchanged.
+        return saved + (value-c.profile.at(-1)) * (c.profile.length === 1 ? 1 : i/(c.profile.length-1));
+      });
+    } else if (c.index === null) target[c.name] = value;
+    else target[c.name][c.index] = value;
+  }
+  for (const values of [inputs, valuation]) for (const v of Object.values(values)) {
+    if (!(Array.isArray(v) ? v : [v]).every(Number.isFinite)) throw Error('Assumption changes exceed the supported numeric range.');
+  }
+  return {inputs, valuation};
+}
+
+function evaluateDashboard(data, overrides = {}) {
+  const {inputs, valuation} = dashboardInputs(data, overrides);
+  const finite = x => { if (!Number.isFinite(x)) throw Error('Calculation is not finite. Check your assumptions.'); return x; };
+  const cache = new Map(), products = new Map();
+  const scalar = n => {
+    if (n[0] === 'name') return Object.hasOwn(inputs, n[1]) && !Array.isArray(inputs[n[1]]);
+    if (['grow', 'lag', 'delta'].includes(n[0])) return false;
+    return n.slice(1).filter(Array.isArray).every(scalar);
+  };
+  function at(n, t) {
+    if (!cache.has(n)) cache.set(n, new Map());
+    const memo = cache.get(n);
+    if (memo.has(t)) return memo.get(t);
+    const [op, a, b, c] = n;
+    let v;
+    if (op === 'constant') v = a;
+    else if (op === 'name') v = Object.hasOwn(inputs, a) ? (Array.isArray(inputs[a]) ? inputs[a][t] : inputs[a]) : at(data.expressions[a], t);
+    else if (op === 'neg') v = -at(a, t);
+    else if (op === 'lag' || op === 'delta') {
+      if (!scalar(b)) throw Error(op + ' seed must be scalar');
+      const previous = t ? at(a, t - 1) : at(b, 0);
+      v = op === 'lag' ? previous : at(a, t) - previous;
+    } else if (op === 'grow') {
+      if (!scalar(a)) throw Error('grow seed must be scalar');
+      if (!products.has(n)) products.set(n, new Map());
+      const p = products.get(n);
+      if (t && !p.has(t - 1)) at(n, t - 1);
+      const product = (t ? p.get(t - 1) : 1) * (1 + at(b, t));
+      p.set(t, product); v = at(a, 0) * product;
+    } else {
+      const x = at(a, t), y = b ? at(b, t) : undefined;
+      switch (op) {
+        case 'Add': v = x + y; break;
+        case 'Sub': v = x - y; break;
+        case 'Mult': v = x * y; break;
+        case 'Div': v = x / y; break;
+        case 'abs': v = Math.abs(x); break;
+        case 'minimum': v = Math.min(x, y); break;
+        case 'maximum': v = Math.max(x, y); break;
+        case 'clip': v = Math.min(Math.max(x, y), at(c, t)); break;
+        case 'Lt': return x < y;
+        case 'LtE': return x <= y;
+        case 'Gt': return x > y;
+        case 'GtE': return x >= y;
+        case 'Eq': return x === y;
+        case 'NotEq': return x !== y;
+        default: throw Error('Unsupported operation: ' + op);
+      }
+    }
+    memo.set(t, finite(v)); return v;
+  }
+  const lines = Object.fromEntries(data.order.map(k => [k, []]));
+  data.years.forEach((year, t) => {
+    for (const key of data.order) lines[key].push(at(data.expressions[key], t));
+    for (const check of data.checks) if (!at(check.expression, t)) throw Error('Model check failed in ' + year + ': ' + check.source);
+  });
+  const series = x => Array.isArray(x) ? x : data.years.map(() => x);
+  const rates = series(valuation.wacc), growth = series(valuation.terminal_growth ?? 0).at(-1);
+  const shares = series(valuation.shares)[0], cash = series(valuation.net_cash ?? 0)[0];
+  if (!(shares > 0)) throw Error('Shares must be positive.');
+  if (!rates.every(x => x > -1)) throw Error('Discount rates must exceed −100%.');
+  if (!(rates.at(-1) > growth && growth > -1)) throw Error('Final discount rate must exceed terminal growth; growth must exceed −100%.');
+  let discount = 1, present = 0;
+  lines[data.fcf].forEach((fcf, t) => { discount *= 1 + rates[t]; present += fcf / discount; });
+  const terminalPV = lines[data.fcf].at(-1) * (1 + growth) / (rates.at(-1) - growth) / discount;
+  const ev = finite(present + terminalPV), equity = finite(ev + cash);
+  return {lines, value: {ok: true, ev, equity, per_share: finite(equity / shares), terminal_weight: ev ? finite(terminalPV / ev) : 0}};
+}
+
+function dashboardPatch(data, overrides) {
+  const {inputs, valuation} = dashboardInputs(data, overrides), patch = {};
+  for (const [section, original, changed] of [['bindings', data.inputs, inputs], ['valuation', data.valuation, valuation]]) {
+    for (const [key, value] of Object.entries(changed)) {
+      const before = original[key];
+      const same = Array.isArray(value) ? value.every((v,i) => v === before[i]) : value === before;
+      if (!same) (patch[section] ||= {})[key] = value;
+    }
+  }
+  return patch;
+}
+</script><script>'use strict';
+const data = JSON.parse(document.getElementById('dashboard-data').textContent);
+const $ = id => document.getElementById(id);
+const controls = structuredClone(data.controls), overrides = {};
+const invalidFields = new Set();
+const fmt = x => x.toLocaleString(undefined, {maximumFractionDigits: 2});
+const ratio = c => ['ratio', 'per_period_ratio'].includes(c.unit);
+const scale = c => ratio(c) ? 100 : 1;
+const modeNames = {shift:'Raise / lower every year',level:'Same value every year',target:'Gradually reach a target'};
+const label = c => c.name.replaceAll('_', ' ') + (c.year ? ' · ' + c.year : '') + (ratio(c) ? (c.transform === 'shift' ? ' (percentage points)' : ' (%)') : '');
+const sameAssumption = (a,b) => a.section === b.section && a.name === b.name;
+for (const c of controls) if (c.enabled && c.transform === 'level') overrides[c.key] = c.base;
+function activate(c) {
+  for (const other of controls) if (sameAssumption(c,other) && (c.profile || other.profile)) {
+    other.enabled = false; delete overrides[other.key]; invalidFields.delete(other.key);
+  }
+  c.enabled = true;
+  if (c.transform === 'level') overrides[c.key] = c.base;
+  invalidFields.clear(); renderControls(); recalculate();
+} 
+const make = (tag, text, parent) => {const e = document.createElement(tag); if (text !== undefined) e.textContent = text; if (parent) parent.append(e); return e;};
+let current = null, entries = [];
+const storageKey = 'burr-dashboard-1:' + data.fingerprint;
+try {
+  const stored = JSON.parse(localStorage.getItem(storageKey) || '[]');
+  if (!Array.isArray(stored) || !stored.every(e => e && e.fingerprint === data.fingerprint && typeof e.note === 'string' && typeof e.timestamp === 'string' && e.overrides && e.results)) throw Error('Invalid stored log');
+  entries = stored;
+  $('storage-status').textContent = 'Saved locally in this browser. Download the log before clearing browser data.';
+} catch (_) { $('storage-status').textContent = 'Browser storage is unavailable or unreadable. New entries last for this session; download the log to keep them.'; }
+$('context').textContent = 'Starting scenario: ' + data.scenario + ' · Forecast ' + data.years[0] + '–' + data.years.at(-1) + ' · All calculations run offline.';
+$('locked').textContent = 'Reported base-year inputs are held fixed: ' + (data.locked.join(', ') || 'none linked by the model') + '. Shared world inputs are also held fixed.';
+$('provenance').textContent = 'Model fingerprint: ' + data.fingerprint + '. Valuation uses burr’s period-by-period DCF convention. Value per share is expressed in the model’s currency/share units. Browser experiments do not update the workspace journal; downloaded choices can be reviewed with burr try and recorded with burr record.';
+for (const key of data.order) { const o = make('option', key.replaceAll('_', ' '), $('metric')); o.value = key; }
+$('metric').value = Object.hasOwn(data.expressions, 'revenue') ? 'revenue' : data.fcf;
+
+function renderControls() {
+  $('parameter').replaceChildren(); $('controls').replaceChildren();
+  for (const c of controls) {
+    if (!c.enabled) {
+      const visible = (!c.profile || c.transform === 'shift') && (c.year === null || $('advanced-years').checked);
+      if (visible && !controls.some(other => other.enabled && other.profile && sameAssumption(c,other) && c.profile)) {
+        const o = make('option', c.profile ? c.name.replaceAll('_',' ') + ' · whole forecast' : label(c), $('parameter')); o.value = c.key;
+      }
+      continue;
+    }
+    const box = make('div', undefined, $('controls')); box.className = 'control';
+    const id = 'slider-' + c.key;
+    const l = make('label', label(c), box); l.htmlFor = id;
+    if (c.profile) {
+      const modeLabel = make('label','How should it change?',box), mode = make('select',undefined,box);
+      mode.id = id + '-mode'; modeLabel.htmlFor = mode.id;
+      for (const candidate of controls.filter(other=>other.profile && sameAssumption(c,other))) {
+        const option=make('option',modeNames[candidate.transform],mode);option.value=candidate.key;
+      }
+      mode.value=c.key; mode.onchange=()=>activate(controls.find(other=>other.key===mode.value));
+      const description = c.transform === 'shift'
+        ? 'Adds the chosen change to every forecast year, preserving the saved pattern. Zero keeps the saved forecast.'
+        : c.transform === 'level' ? 'Uses the selected value in every forecast year.'
+        : 'Phases in the change from the saved forecast: the first year stays fixed and the last reaches your target.';
+      make('p',description,box).className='muted';
+    }
+    const slider = make('input', undefined, box); slider.type = 'range'; slider.id = id;
+    slider.min = c.min; slider.max = c.max; slider.step = c.step; slider.value = overrides[c.key] ?? c.base;
+    const numberLabel = make('label', 'Value', box);
+    const number = make('input', undefined, numberLabel); number.type = 'number'; number.step = 'any';
+    number.min = c.min * scale(c); number.max = c.max * scale(c); number.value = Number(((overrides[c.key] ?? c.base) * scale(c)).toPrecision(12));
+    const update = value => {
+      if (!Number.isFinite(value) || value < c.min || value > c.max) { invalidFields.add(c.key); invalid('Enter a value within the slider range.'); return; }
+      invalidFields.delete(c.key);
+      if (value === c.base && c.transform !== 'level') delete overrides[c.key]; else overrides[c.key] = value;
+      slider.value = value; number.value = Number((value * scale(c)).toPrecision(12)); recalculate();
+    };
+    slider.addEventListener('input', () => update(slider.valueAsNumber));
+    number.addEventListener('input', () => update(number.valueAsNumber / scale(c)));
+    if(c.profile) {
+      const pathDetails=make('details',undefined,box);make('summary','Annual assumption values',pathDetails);
+      const preview=make('div',undefined,pathDetails);preview.className='scroll';preview.dataset.profileKey=c.key;
+    }
+    const settings = make('details', undefined, box); make('summary', 'Range and evidence', settings);
+    const ranges = make('div', undefined, settings); ranges.className = 'range-settings';
+    const fields = {};
+    for (const [key, title] of [['min','Minimum'],['max','Maximum'],['step','Step']]) {
+      const l = make('label', title, ranges), input = make('input', undefined, l);
+      input.type = 'number'; input.step = 'any'; input.value = Number((c[key] * scale(c)).toPrecision(12)); fields[key] = input;
+    }
+    const rangeError = make('p', '', settings); rangeError.className = 'error'; rangeError.hidden = true;
+    const apply = make('button', 'Apply range', settings); apply.className = 'secondary';
+    apply.onclick = () => {
+      const low = fields.min.valueAsNumber / scale(c), high = fields.max.valueAsNumber / scale(c), step = fields.step.valueAsNumber / scale(c);
+      const value = overrides[c.key] ?? c.base;
+      if (![low, high, step].every(Number.isFinite) || low >= high || step <= 0 || step > high-low || low > Math.min(value,c.base) || high < Math.max(value,c.base)) {
+        rangeError.hidden = false; rangeError.textContent = 'Use a positive step and a range containing the saved and current values.'; return;
+      }
+      Object.assign(c, {min: low, max: high, step}); renderControls(); recalculate();
+    };
+    make('p', 'Saved value: ' + fmt(c.base * scale(c)) + (ratio(c) ? '%' : ''), settings);
+    for (const [key, value] of Object.entries(c.metadata)) make('p', key + ': ' + value, settings);
+    const remove = make('button', 'Return to fixed', box); remove.className = 'secondary';
+    remove.onclick = () => { c.enabled = false; delete overrides[c.key]; invalidFields.delete(c.key); renderControls(); recalculate(); };
+  }
+  $('add').disabled = !$('parameter').options.length;
+}
+function invalid(message) {
+  current = null; $('error').hidden = false; $('error').textContent = message;
+  for (const id of ['price','ev','terminal']) $(id).textContent = '—';
+  $('delta').textContent = 'Resolve the input error to calculate a value.';
+  $('chart').replaceChildren(); $('forecast').replaceChildren(); $('save').disabled = true; $('download-patch').disabled = true;
+  for(const preview of document.querySelectorAll('[data-profile-key]')) preview.replaceChildren();
+}
+function renderProfiles() {
+  const resolved = dashboardInputs(data, overrides);
+  for(const preview of document.querySelectorAll('[data-profile-key]')) {
+    const c=controls.find(c=>c.key===preview.dataset.profileKey);
+    const values=c.section==='bindings'?resolved.inputs[c.name]:resolved.valuation[c.name];
+    preview.replaceChildren();const table=make('table',undefined,preview),head=make('tr',undefined,make('thead',undefined,table));
+    for(const name of ['Year','Saved','Your choices'])make('th',name,head);
+    const body=make('tbody',undefined,table);
+    data.years.forEach((year,i)=>{const row=make('tr',undefined,body);make('th',year,row);
+      for(const value of [c.profile[i],values[i]])make('td',fmt(value*scale(c))+(ratio(c)?'%':''),row);
+    });
+  }
+}
+function recalculate() {
+  if (invalidFields.size) { invalid('Enter a value within the slider range, or reset the values.'); return; }
+  try {
+    current = evaluateDashboard(data, overrides); $('error').hidden = true;
+    $('price').textContent = fmt(current.value.per_share);
+    const gap = current.value.per_share - data.baseline.value.per_share;
+    $('delta').textContent = (gap >= 0 ? '+' : '') + fmt(gap) + ' vs saved ' + fmt(data.baseline.value.per_share);
+    $('ev').textContent = fmt(current.value.ev); $('terminal').textContent = fmt(current.value.terminal_weight * 100) + '%';
+    $('save').disabled = false; $('download-patch').disabled = !Object.keys(dashboardPatch(data, overrides)).length;
+    renderProfiles(); renderForecast();
+  } catch (error) { invalid(error.message); }
+}
+function renderForecast() {
+  if (!current) return;
+  const key = $('metric').value, saved = data.baseline.lines[key], trial = current.lines[key];
+  const history = data.history[key], reported = new Map(history.map(row => [row.period, row.value]));
+  const firstYear = history.length ? history[0].period : data.years[0], lastYear = data.years.at(-1);
+  const years = Array.from({length: lastYear-firstYear+1}, (_, i) => firstYear+i);
+  const percentage = ['ratio','per_period_ratio'].includes(data.units[key]);
+  const format = v => fmt(percentage ? v * 100 : v) + (percentage ? '%' : '');
+  $('history-note').textContent = history.length
+    ? 'Reported observations: ' + history[0].period + '–' + history.at(-1).period + '. Forecast begins in ' + data.years[0] + '. Source: ' + data.history_source + '.'
+    : 'No matching pre-forecast observations are available for this metric. Forecast begins in ' + data.years[0] + '.';
+  const low = Math.min(0,...saved,...trial,...reported.values()), high = Math.max(0,...saved,...trial,...reported.values()), span = high-low || 1;
+  const x = year => 80 + (year-firstYear) * 600 / Math.max(1, lastYear-firstYear), y = v => 205 - (v-low)/span*170;
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg'); svg.setAttribute('viewBox', '0 0 730 250'); svg.setAttribute('role','img'); svg.setAttribute('aria-label', key + ': reported history and saved and trial forecasts');
+  function element(tag, attrs, text) {const e = document.createElementNS(ns,tag); for(const [k,v] of Object.entries(attrs)) e.setAttribute(k,v); if(text !== undefined) e.textContent=text; svg.append(e); return e;}
+  const boundary = history.length ? x(data.years[0]-.5) : 80;
+  element('rect',{x:boundary,y:15,width:710-boundary,height:200,fill:'#eef5ef','data-region':'forecast'});
+  if (history.length) element('line',{x1:boundary,x2:boundary,y1:15,y2:215,stroke:'#a4bbae','stroke-dasharray':'3 4','data-boundary':'forecast'});
+  element('text',{x:boundary+8,y:28,'font-size':11,fill:'#526b65'},'Forecast');
+  element('line',{x1:80,x2:680,y1:y(0),y2:y(0),stroke:'#ccdcd3'});
+  element('text',{x:5,y:45,'font-size':11},format(high)); element('text',{x:5,y:210,'font-size':11},format(low));
+  const series = [
+    {name:'reported',title:'Reported',points:history.map(row=>[row.period,row.value]),color:'#296eaa',dash:''},
+    {name:'saved',title:'Saved forecast',points:data.years.map((year,i)=>[year,saved[i]]),color:'#8a9792',dash:'5 5'},
+    {name:'trial',title:'Your choices',points:data.years.map((year,i)=>[year,trial[i]]),color:'#12684e',dash:''}
+  ];
+  for (const {name,title,points,color,dash} of series) {
+    // Separate series and missing years never imply an observed transition.
+    points.forEach(([year,value],i)=>{
+      if(i && year===points[i-1][0]+1) element('line',{x1:x(points[i-1][0]),y1:y(points[i-1][1]),x2:x(year),y2:y(value),stroke:color,'stroke-width':3,'stroke-dasharray':dash,'data-series':name});
+      const circle=element('circle',{cx:x(year),cy:y(value),r:4,fill:color,'data-series':name,'data-year':year,'data-value':value});
+      const tooltip=document.createElementNS(ns,'title'); tooltip.textContent=title+' · '+year+': '+format(value)+(name==='reported'?' · '+data.history_source:'');circle.append(tooltip);
+    });
+  }
+  const tickEvery = Math.max(1, Math.ceil(years.length/10));
+  years.forEach((year,i)=>{if(i%tickEvery===0 || year===lastYear) element('text',{x:x(year),y:235,'text-anchor':'middle','font-size':12},year);});
+  $('chart').replaceChildren(svg); $('forecast').replaceChildren();
+  const table=make('table',undefined,$('forecast')), head=make('tr',undefined,make('thead',undefined,table));
+  for (const title of ['Series',...years]) make('th',title,head);
+  const body=make('tbody',undefined,table);
+  for(const {title,points} of series) {
+    const values = new Map(points), row=make('tr',undefined,body);make('th',title,row);
+    years.forEach(year=>make('td',values.has(year)?format(values.get(year)):'—',row));
+  }
+}
+function download(name, value) {
+  const url = URL.createObjectURL(new Blob([JSON.stringify(value,null,2)], {type:'application/json'}));
+  const a = make('a'); a.href=url; a.download=name; a.click(); setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function renderLog() {
+  $('log').replaceChildren();
+  for (const e of [...entries].reverse()) {
+    const box=make('div',undefined,$('log'));box.className='entry';
+    make('strong',e.note || 'Untitled experiment',box);make('p',e.timestamp + ' · Value per share: ' + fmt(e.results.value.per_share),box);
+    const details=make('details',undefined,box);make('summary','Assumptions and results',details);make('pre',JSON.stringify(e.patch,null,2),details);
+    const restore=make('button','Restore choices',box);restore.className='secondary';restore.onclick=()=>{
+      try {evaluateDashboard(data,e.overrides);} catch(error) {invalid(error.message);return;}
+      for(const k of Object.keys(overrides)) delete overrides[k];Object.assign(overrides,e.overrides);invalidFields.clear();
+      for(const c of controls) {
+        const saved = (e.sliders || []).find(s => s.key === c.key);
+        c.enabled = Boolean(saved) || Object.hasOwn(overrides,c.key);
+        if(saved && [saved.min,saved.max,saved.step].every(Number.isFinite) && saved.min < saved.max && saved.step > 0) Object.assign(c,{min:saved.min,max:saved.max,step:saved.step});
+        c.min=Math.min(c.min,c.base,overrides[c.key] ?? c.base);c.max=Math.max(c.max,c.base,overrides[c.key] ?? c.base);
+      }
+      renderControls();recalculate();
+    };
+  }
+}
+$('add').onclick=()=>{const c=controls.find(c=>c.key===$('parameter').value);if(c)activate(c);};
+$('advanced-years').onchange=()=>{invalidFields.clear();renderControls();recalculate();};
+$('reset').onclick=()=>{
+  for(const k of Object.keys(overrides)) delete overrides[k];
+  for(const c of controls) if(c.enabled && c.profile && c.transform!=='shift') {
+    c.enabled=false;controls.find(other=>sameAssumption(c,other)&&other.transform==='shift').enabled=true;
+  }
+  invalidFields.clear();renderControls();recalculate();
+};
+$('metric').onchange=renderForecast;
+$('save').onclick=()=>{
+  if(!current)return;
+  const entry={id:crypto.randomUUID ? crypto.randomUUID() : String(Date.now())+'-'+entries.length,timestamp:new Date().toISOString(),entity:data.entity,scenario:data.scenario,fingerprint:data.fingerprint,note:$('note').value,overrides:structuredClone(overrides),patch:dashboardPatch(data,overrides),results:structuredClone(current),baseline:data.baseline.value,sliders:controls.filter(c=>c.enabled).map(({key,min,max,step,transform})=>({key,min,max,step,transform}))};
+  entries.push(entry);
+  try{localStorage.setItem(storageKey,JSON.stringify(entries));$('storage-status').textContent='Experiment saved in this browser. Download the log to share or keep a copy.';}
+  catch(_){$('storage-status').textContent='Experiment saved for this session only. Browser storage is unavailable or full; download the log to keep it.';}
+  $('note').value='';renderLog();
+};
+$('download-log').onclick=()=>download(data.entity+'-experiments.json',{schema:data.schema,fingerprint:data.fingerprint,entity:data.entity,scenario:data.scenario,entries});
+$('download-patch').onclick=()=>{if(current)download(data.entity+'-choices.json',dashboardPatch(data,overrides));};
+renderControls();renderLog();recalculate();
+</script></body></html>

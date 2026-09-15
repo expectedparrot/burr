@@ -1,0 +1,21 @@
+# OPINIONS: value forms can carry rationale, source, confidence, and as_of.
+entity: stand
+template: lemonade
+periods: 2027..2029
+base_year: 2026
+bindings:
+  cups0: {value: 1000, source: last summer's tally}
+  cup_growth: {start: 0.10, end: 0.05, rationale: word of mouth fades}
+  price: 2.50
+  cost_pct: {dist: normal, mean: 0.40, sd: 0.05, lo: 0.2, hi: 0.7}
+valuation:
+  fcf: profit
+  wacc: 0.20
+  terminal_growth: 0.0
+  shares: 2
+scenarios:
+  bear:
+    thesis: Foot traffic slows and supply costs rise.
+    bindings:
+      cup_growth: 0.02
+      cost_pct: 0.50
