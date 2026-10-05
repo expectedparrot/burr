@@ -6,9 +6,9 @@ A command-line language for driver-based company models. Business logic lives in
 templates, reported facts in CSV, beliefs in params, and questions and findings in
 an append-only experiment journal.
 
-**[Package walkthrough](docs/index.html)** — build a model, explore a pricing
-scenario, record an experiment, and share a dashboard or spreadsheet. Open the
-HTML file in your browser; no documentation server is needed.
+**[Package walkthrough](https://expectedparrot.github.io/burr/index.html)** — build a model, explore a pricing
+scenario, record an experiment, and share a dashboard or spreadsheet. Read it
+on GitHub Pages, or open `docs/index.html` locally in your browser.
 
 Implemented from [burr-spec.md](burr-spec.md). Requires Python 3.11 or newer on
 macOS or Linux (workspace transactions use POSIX advisory locks).
