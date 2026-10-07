@@ -1,0 +1,5 @@
+{
+  "case_count": 15,
+  "description": "One visible baseline and 14 preregistered unseen numeric perturbations. Five-year horizon and workbook switches fixed.",
+  "input_sha256": "1f980a4e9cbcabd063bc0523330468dbee010f8f07646ff60c48d40ffaf108a4"
+}

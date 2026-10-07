@@ -1,0 +1,958 @@
+[
+  {
+    "argv": [
+      "/Users/johnhorton/tools/ep/burr/.venv/bin/python",
+      "-S",
+      "-m",
+      "burr",
+      "-C",
+      "/private/tmp/burr-agent-pilot-20261007/burr/model",
+      "next",
+      "fcff",
+      "--json",
+      "--patch",
+      "/private/tmp/burr-agent-pilot-20261007/burr/model/probe.yaml",
+      "--question",
+      "Does the reconstruction reproduce the source workbook and respond correctly to a higher stable return on capital?",
+      "--finding",
+      "All requested baseline metrics match source workbook cached results and 56 changed-input cases match independently evaluated source formulas. Raising stable ROC from 0.12 to 0.132 lowers terminal reinvestment and raises per-share value from 66.7825642215609 to 71.97308385937993; gap: 5.190519637819023. This is an implementation probe, not an investment recommendation.",
+      "--deliverable",
+      "excel",
+      "--output",
+      "/private/tmp/burr-agent-pilot-20261007/burr/output/baseline.xlsx"
+    ],
+    "result": {
+      "action": {
+        "argv": [
+          "/Users/johnhorton/tools/ep/burr/.venv/bin/python",
+          "-m",
+          "burr",
+          "--json",
+          "-C",
+          "/private/tmp/burr-agent-pilot-20261007/burr/model",
+          "-s",
+          "base",
+          "record",
+          "/private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff",
+          "/private/tmp/burr-agent-pilot-20261007/burr/model/probe.yaml",
+          "--question=Does the reconstruction reproduce the source workbook and respond correctly to a higher stable return on capital?",
+          "--finding=All requested baseline metrics match source workbook cached results and 56 changed-input cases match independently evaluated source formulas. Raising stable ROC from 0.12 to 0.132 lowers terminal reinvestment and raises per-share value from 66.7825642215609 to 71.97308385937993; gap: 5.190519637819023. This is an implementation probe, not an investment recommendation."
+        ],
+        "command": "record",
+        "cwd": "/private/tmp/burr-agent-pilot-20261007/burr/model",
+        "expected": "A new matching journal entry with the current fingerprint.",
+        "mutates": true,
+        "reason": "Preserve current machine-computed evidence without applying the patch.",
+        "requires_network": false,
+        "shell": "/Users/johnhorton/tools/ep/burr/.venv/bin/python -m burr --json -C /private/tmp/burr-agent-pilot-20261007/burr/model -s base record /private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff /private/tmp/burr-agent-pilot-20261007/burr/model/probe.yaml '--question=Does the reconstruction reproduce the source workbook and respond correctly to a higher stable return on capital?' '--finding=All requested baseline metrics match source workbook cached results and 56 changed-input cases match independently evaluated source formulas. Raising stable ROC from 0.12 to 0.132 lowers terminal reinvestment and raises per-share value from 66.7825642215609 to 71.97308385937993; gap: 5.190519637819023. This is an implementation probe, not an investment recommendation.'",
+        "writes": [
+          "/private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff/experiments/exp-NNN.yaml"
+        ]
+      },
+      "company": "/private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff",
+      "complete": false,
+      "deliverable": "excel",
+      "diagnostics": [],
+      "evidence": {
+        "assumptions": {
+          "beta": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D52",
+            "value": 0.8
+          },
+          "capex0": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D22",
+            "value": 2152
+          },
+          "cash": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D28",
+            "value": 500
+          },
+          "debt": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!F38",
+            "value": 1822
+          },
+          "debt_cost": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!E56",
+            "value": 0.055
+          },
+          "depreciation0": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D23",
+            "value": 1228
+          },
+          "ebit0": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D20",
+            "value": 5186
+          },
+          "high_phase": {
+            "rationale": "Five explicit high-growth years plus the first stable year.",
+            "source": "Source workbook E43 and N133",
+            "value": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              0
+            ]
+          },
+          "high_years": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!E43",
+            "value": 5
+          },
+          "options": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D29",
+            "value": 1500
+          },
+          "prior_book_debt": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!E30",
+            "value": 1315
+          },
+          "prior_book_equity": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!E31",
+            "value": 12156
+          },
+          "revenue0": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D25",
+            "value": 16701
+          },
+          "risk_premium": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D54",
+            "value": 0.055
+          },
+          "riskfree": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D53",
+            "value": 0.053
+          },
+          "share_price": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!F36",
+            "value": 125.5
+          },
+          "shares": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!F37",
+            "value": 993.57
+          },
+          "stable_growth": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!E79",
+            "value": 0.06
+          },
+          "stable_roc": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!F101",
+            "value": 0.12
+          },
+          "tax_rate": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D24",
+            "value": 0.2849
+          },
+          "working_capital0": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D26",
+            "value": 3755
+          },
+          "working_capital_change0": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D27",
+            "value": 499
+          }
+        },
+        "assumptions_file": "/private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff/params.yaml",
+        "comparison": [
+          {
+            "equity": 66353.15233361626,
+            "ev": 69175.15233361626,
+            "ok": true,
+            "per_share": 66.7825642215609,
+            "scenario": "base",
+            "terminal_weight": 0.7930124949717773
+          }
+        ],
+        "journal": [],
+        "trial": {
+          "attribution": [
+            {
+              "delta": 5.190519637819023,
+              "key": "stable_roc",
+              "metadata": {
+                "rationale": "Test whether a 10 percent relative rise in stable return on capital reduces required reinvestment and increases value.",
+                "source": "Modeling pilot sensitivity experiment; source F101 baseline 0.12"
+              },
+              "section": "bindings"
+            }
+          ],
+          "base_per_share": 66.7825642215609,
+          "gap": 5.190519637819023,
+          "interactions": 0.0,
+          "ok": true,
+          "trial_per_share": 71.97308385937993
+        },
+        "validation": {
+          "ok": true,
+          "scenarios": [
+            "base"
+          ]
+        }
+      },
+      "fingerprint": "237976a941998c62d3a6faf1e8b0ce951272083231b71d34fafedd8cfeecfac0",
+      "message": "The proposed patch is valid. Append the question and reviewed finding to the journal.",
+      "next_steps": [
+        {
+          "argv": [
+            "/Users/johnhorton/tools/ep/burr/.venv/bin/python",
+            "-m",
+            "burr",
+            "--json",
+            "-C",
+            "/private/tmp/burr-agent-pilot-20261007/burr/model",
+            "-s",
+            "base",
+            "record",
+            "/private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff",
+            "/private/tmp/burr-agent-pilot-20261007/burr/model/probe.yaml",
+            "--question=Does the reconstruction reproduce the source workbook and respond correctly to a higher stable return on capital?",
+            "--finding=All requested baseline metrics match source workbook cached results and 56 changed-input cases match independently evaluated source formulas. Raising stable ROC from 0.12 to 0.132 lowers terminal reinvestment and raises per-share value from 66.7825642215609 to 71.97308385937993; gap: 5.190519637819023. This is an implementation probe, not an investment recommendation."
+          ],
+          "command": "record",
+          "cwd": "/private/tmp/burr-agent-pilot-20261007/burr/model",
+          "expected": "A new matching journal entry with the current fingerprint.",
+          "mutates": true,
+          "reason": "Preserve current machine-computed evidence without applying the patch.",
+          "requires_network": false,
+          "shell": "/Users/johnhorton/tools/ep/burr/.venv/bin/python -m burr --json -C /private/tmp/burr-agent-pilot-20261007/burr/model -s base record /private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff /private/tmp/burr-agent-pilot-20261007/burr/model/probe.yaml '--question=Does the reconstruction reproduce the source workbook and respond correctly to a higher stable return on capital?' '--finding=All requested baseline metrics match source workbook cached results and 56 changed-input cases match independently evaluated source formulas. Raising stable ROC from 0.12 to 0.132 lowers terminal reinvestment and raises per-share value from 66.7825642215609 to 71.97308385937993; gap: 5.190519637819023. This is an implementation probe, not an investment recommendation.'",
+          "writes": [
+            "/private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff/experiments/exp-NNN.yaml"
+          ]
+        }
+      ],
+      "ok": true,
+      "protocol_version": "1",
+      "required_inputs": [],
+      "resume_argv": [
+        "/Users/johnhorton/tools/ep/burr/.venv/bin/python",
+        "-m",
+        "burr",
+        "--json",
+        "-C",
+        "/private/tmp/burr-agent-pilot-20261007/burr/model",
+        "-s",
+        "base",
+        "next",
+        "/private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff",
+        "--deliverable",
+        "excel",
+        "--output",
+        "/private/tmp/burr-agent-pilot-20261007/burr/output/baseline.xlsx",
+        "--patch=/private/tmp/burr-agent-pilot-20261007/burr/model/probe.yaml",
+        "--question=Does the reconstruction reproduce the source workbook and respond correctly to a higher stable return on capital?",
+        "--finding=All requested baseline metrics match source workbook cached results and 56 changed-input cases match independently evaluated source formulas. Raising stable ROC from 0.12 to 0.132 lowers terminal reinvestment and raises per-share value from 66.7825642215609 to 71.97308385937993; gap: 5.190519637819023. This is an implementation probe, not an investment recommendation."
+      ],
+      "scenario": "base",
+      "state": "record",
+      "warnings": [],
+      "workspace": "/private/tmp/burr-agent-pilot-20261007/burr/model"
+    }
+  },
+  {
+    "argv": [
+      "/Users/johnhorton/tools/ep/burr/.venv/bin/python",
+      "-S",
+      "-m",
+      "burr",
+      "--json",
+      "-C",
+      "/private/tmp/burr-agent-pilot-20261007/burr/model",
+      "-s",
+      "base",
+      "record",
+      "/private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff",
+      "/private/tmp/burr-agent-pilot-20261007/burr/model/probe.yaml",
+      "--question=Does the reconstruction reproduce the source workbook and respond correctly to a higher stable return on capital?",
+      "--finding=All requested baseline metrics match source workbook cached results and 56 changed-input cases match independently evaluated source formulas. Raising stable ROC from 0.12 to 0.132 lowers terminal reinvestment and raises per-share value from 66.7825642215609 to 71.97308385937993; gap: 5.190519637819023. This is an implementation probe, not an investment recommendation."
+    ],
+    "result": {
+      "experiment": {
+        "at": "2026-10-07T11:23:50+00:00",
+        "finding": "All requested baseline metrics match source workbook cached results and 56 changed-input cases match independently evaluated source formulas. Raising stable ROC from 0.12 to 0.132 lowers terminal reinvestment and raises per-share value from 66.7825642215609 to 71.97308385937993; gap: 5.190519637819023. This is an implementation probe, not an investment recommendation.",
+        "fingerprint": "237976a941998c62d3a6faf1e8b0ce951272083231b71d34fafedd8cfeecfac0",
+        "id": "exp-001",
+        "patch": {
+          "bindings": {
+            "stable_roc": {
+              "rationale": "Test whether a 10 percent relative rise in stable return on capital reduces required reinvestment and increases value.",
+              "source": "Modeling pilot sensitivity experiment; source F101 baseline 0.12",
+              "value": 0.132
+            }
+          }
+        },
+        "question": "Does the reconstruction reproduce the source workbook and respond correctly to a higher stable return on capital?",
+        "results": {
+          "attribution": [
+            {
+              "delta": 5.190519637819023,
+              "key": "stable_roc",
+              "metadata": {
+                "rationale": "Test whether a 10 percent relative rise in stable return on capital reduces required reinvestment and increases value.",
+                "source": "Modeling pilot sensitivity experiment; source F101 baseline 0.12"
+              },
+              "section": "bindings"
+            }
+          ],
+          "base_per_share": 66.7825642215609,
+          "gap": 5.190519637819023,
+          "interactions": 0.0,
+          "ok": true,
+          "trial_per_share": 71.97308385937993
+        },
+        "scenario": "base",
+        "tags": []
+      },
+      "ok": true
+    }
+  },
+  {
+    "argv": [
+      "/Users/johnhorton/tools/ep/burr/.venv/bin/python",
+      "-S",
+      "-m",
+      "burr",
+      "--json",
+      "-C",
+      "/private/tmp/burr-agent-pilot-20261007/burr/model",
+      "-s",
+      "base",
+      "next",
+      "/private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff",
+      "--deliverable",
+      "excel",
+      "--output",
+      "/private/tmp/burr-agent-pilot-20261007/burr/output/baseline.xlsx",
+      "--patch=/private/tmp/burr-agent-pilot-20261007/burr/model/probe.yaml",
+      "--question=Does the reconstruction reproduce the source workbook and respond correctly to a higher stable return on capital?",
+      "--finding=All requested baseline metrics match source workbook cached results and 56 changed-input cases match independently evaluated source formulas. Raising stable ROC from 0.12 to 0.132 lowers terminal reinvestment and raises per-share value from 66.7825642215609 to 71.97308385937993; gap: 5.190519637819023. This is an implementation probe, not an investment recommendation."
+    ],
+    "result": {
+      "action": {
+        "argv": [
+          "/Users/johnhorton/tools/ep/burr/.venv/bin/python",
+          "-m",
+          "burr",
+          "--json",
+          "-C",
+          "/private/tmp/burr-agent-pilot-20261007/burr/model",
+          "-s",
+          "base",
+          "emit",
+          "/private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff",
+          "-o",
+          "/private/tmp/burr-agent-pilot-20261007/burr/output/baseline.xlsx",
+          "--receipt"
+        ],
+        "command": "emit",
+        "cwd": "/private/tmp/burr-agent-pilot-20261007/burr/model",
+        "expected": "An output file and receipt matching the current model and file contents.",
+        "mutates": true,
+        "reason": "missing_or_invalid_receipt",
+        "requires_network": false,
+        "shell": "/Users/johnhorton/tools/ep/burr/.venv/bin/python -m burr --json -C /private/tmp/burr-agent-pilot-20261007/burr/model -s base emit /private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff -o /private/tmp/burr-agent-pilot-20261007/burr/output/baseline.xlsx --receipt",
+        "writes": [
+          "/private/tmp/burr-agent-pilot-20261007/burr/output/baseline.xlsx",
+          "/private/tmp/burr-agent-pilot-20261007/burr/output/baseline.xlsx.burr.json"
+        ]
+      },
+      "company": "/private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff",
+      "complete": false,
+      "deliverable": "excel",
+      "diagnostics": [],
+      "evidence": {
+        "artifact": {
+          "current": false,
+          "output": "/private/tmp/burr-agent-pilot-20261007/burr/output/baseline.xlsx",
+          "reason": "missing_or_invalid_receipt",
+          "receipt": "/private/tmp/burr-agent-pilot-20261007/burr/output/baseline.xlsx.burr.json"
+        },
+        "assumptions": {
+          "beta": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D52",
+            "value": 0.8
+          },
+          "capex0": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D22",
+            "value": 2152
+          },
+          "cash": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D28",
+            "value": 500
+          },
+          "debt": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!F38",
+            "value": 1822
+          },
+          "debt_cost": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!E56",
+            "value": 0.055
+          },
+          "depreciation0": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D23",
+            "value": 1228
+          },
+          "ebit0": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D20",
+            "value": 5186
+          },
+          "high_phase": {
+            "rationale": "Five explicit high-growth years plus the first stable year.",
+            "source": "Source workbook E43 and N133",
+            "value": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              0
+            ]
+          },
+          "high_years": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!E43",
+            "value": 5
+          },
+          "options": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D29",
+            "value": 1500
+          },
+          "prior_book_debt": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!E30",
+            "value": 1315
+          },
+          "prior_book_equity": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!E31",
+            "value": 12156
+          },
+          "revenue0": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D25",
+            "value": 16701
+          },
+          "risk_premium": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D54",
+            "value": 0.055
+          },
+          "riskfree": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D53",
+            "value": 0.053
+          },
+          "share_price": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!F36",
+            "value": 125.5
+          },
+          "shares": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!F37",
+            "value": 993.57
+          },
+          "stable_growth": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!E79",
+            "value": 0.06
+          },
+          "stable_roc": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!F101",
+            "value": 0.12
+          },
+          "tax_rate": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D24",
+            "value": 0.2849
+          },
+          "working_capital0": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D26",
+            "value": 3755
+          },
+          "working_capital_change0": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D27",
+            "value": 499
+          }
+        },
+        "assumptions_file": "/private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff/params.yaml",
+        "comparison": [
+          {
+            "equity": 66353.15233361626,
+            "ev": 69175.15233361626,
+            "ok": true,
+            "per_share": 66.7825642215609,
+            "scenario": "base",
+            "terminal_weight": 0.7930124949717773
+          }
+        ],
+        "finding_warnings": [],
+        "journal": [
+          {
+            "finding": "All requested baseline metrics match source workbook cached results and 56 changed-input cases match independently evaluated source formulas. Raising stable ROC from 0.12 to 0.132 lowers terminal reinvestment and raises per-share value from 66.7825642215609 to 71.97308385937993; gap: 5.190519637819023. This is an implementation probe, not an investment recommendation.",
+            "id": "exp-001",
+            "question": "Does the reconstruction reproduce the source workbook and respond correctly to a higher stable return on capital?",
+            "stale": false
+          }
+        ],
+        "replay": {
+          "current": {
+            "attribution": [
+              {
+                "delta": 5.190519637819023,
+                "key": "stable_roc",
+                "metadata": {
+                  "rationale": "Test whether a 10 percent relative rise in stable return on capital reduces required reinvestment and increases value.",
+                  "source": "Modeling pilot sensitivity experiment; source F101 baseline 0.12"
+                },
+                "section": "bindings"
+              }
+            ],
+            "base_per_share": 66.7825642215609,
+            "gap": 5.190519637819023,
+            "interactions": 0.0,
+            "ok": true,
+            "trial_per_share": 71.97308385937993
+          },
+          "id": "exp-001",
+          "ok": true,
+          "recorded": {
+            "attribution": [
+              {
+                "delta": 5.190519637819023,
+                "key": "stable_roc",
+                "metadata": {
+                  "rationale": "Test whether a 10 percent relative rise in stable return on capital reduces required reinvestment and increases value.",
+                  "source": "Modeling pilot sensitivity experiment; source F101 baseline 0.12"
+                },
+                "section": "bindings"
+              }
+            ],
+            "base_per_share": 66.7825642215609,
+            "gap": 5.190519637819023,
+            "interactions": 0.0,
+            "ok": true,
+            "trial_per_share": 71.97308385937993
+          },
+          "status": "HOLDS"
+        },
+        "selected_experiment": "exp-001",
+        "trial": {
+          "attribution": [
+            {
+              "delta": 5.190519637819023,
+              "key": "stable_roc",
+              "metadata": {
+                "rationale": "Test whether a 10 percent relative rise in stable return on capital reduces required reinvestment and increases value.",
+                "source": "Modeling pilot sensitivity experiment; source F101 baseline 0.12"
+              },
+              "section": "bindings"
+            }
+          ],
+          "base_per_share": 66.7825642215609,
+          "gap": 5.190519637819023,
+          "interactions": 0.0,
+          "ok": true,
+          "trial_per_share": 71.97308385937993
+        },
+        "validation": {
+          "ok": true,
+          "scenarios": [
+            "base"
+          ]
+        }
+      },
+      "fingerprint": "237976a941998c62d3a6faf1e8b0ce951272083231b71d34fafedd8cfeecfac0",
+      "message": "Current experiment evidence is available. Generate the requested deliverable from the saved scenario.",
+      "next_steps": [
+        {
+          "argv": [
+            "/Users/johnhorton/tools/ep/burr/.venv/bin/python",
+            "-m",
+            "burr",
+            "--json",
+            "-C",
+            "/private/tmp/burr-agent-pilot-20261007/burr/model",
+            "-s",
+            "base",
+            "emit",
+            "/private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff",
+            "-o",
+            "/private/tmp/burr-agent-pilot-20261007/burr/output/baseline.xlsx",
+            "--receipt"
+          ],
+          "command": "emit",
+          "cwd": "/private/tmp/burr-agent-pilot-20261007/burr/model",
+          "expected": "An output file and receipt matching the current model and file contents.",
+          "mutates": true,
+          "reason": "missing_or_invalid_receipt",
+          "requires_network": false,
+          "shell": "/Users/johnhorton/tools/ep/burr/.venv/bin/python -m burr --json -C /private/tmp/burr-agent-pilot-20261007/burr/model -s base emit /private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff -o /private/tmp/burr-agent-pilot-20261007/burr/output/baseline.xlsx --receipt",
+          "writes": [
+            "/private/tmp/burr-agent-pilot-20261007/burr/output/baseline.xlsx",
+            "/private/tmp/burr-agent-pilot-20261007/burr/output/baseline.xlsx.burr.json"
+          ]
+        }
+      ],
+      "ok": true,
+      "protocol_version": "1",
+      "required_inputs": [],
+      "resume_argv": [
+        "/Users/johnhorton/tools/ep/burr/.venv/bin/python",
+        "-m",
+        "burr",
+        "--json",
+        "-C",
+        "/private/tmp/burr-agent-pilot-20261007/burr/model",
+        "-s",
+        "base",
+        "next",
+        "/private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff",
+        "--deliverable",
+        "excel",
+        "--output",
+        "/private/tmp/burr-agent-pilot-20261007/burr/output/baseline.xlsx",
+        "--patch=/private/tmp/burr-agent-pilot-20261007/burr/model/probe.yaml",
+        "--question=Does the reconstruction reproduce the source workbook and respond correctly to a higher stable return on capital?",
+        "--finding=All requested baseline metrics match source workbook cached results and 56 changed-input cases match independently evaluated source formulas. Raising stable ROC from 0.12 to 0.132 lowers terminal reinvestment and raises per-share value from 66.7825642215609 to 71.97308385937993; gap: 5.190519637819023. This is an implementation probe, not an investment recommendation."
+      ],
+      "scenario": "base",
+      "state": "export",
+      "warnings": [],
+      "workspace": "/private/tmp/burr-agent-pilot-20261007/burr/model"
+    }
+  },
+  {
+    "argv": [
+      "/Users/johnhorton/tools/ep/burr/.venv/bin/python",
+      "-S",
+      "-m",
+      "burr",
+      "--json",
+      "-C",
+      "/private/tmp/burr-agent-pilot-20261007/burr/model",
+      "-s",
+      "base",
+      "emit",
+      "/private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff",
+      "-o",
+      "/private/tmp/burr-agent-pilot-20261007/burr/output/baseline.xlsx",
+      "--receipt"
+    ],
+    "result": {
+      "ok": true,
+      "output": "/private/tmp/burr-agent-pilot-20261007/burr/output/baseline.xlsx",
+      "per_share": 66.7825642215609,
+      "receipt": "/private/tmp/burr-agent-pilot-20261007/burr/output/baseline.xlsx.burr.json",
+      "sheets": [
+        "Assumptions",
+        "Model",
+        "DCF",
+        "Actuals"
+      ],
+      "verified": true
+    }
+  },
+  {
+    "argv": [
+      "/Users/johnhorton/tools/ep/burr/.venv/bin/python",
+      "-S",
+      "-m",
+      "burr",
+      "--json",
+      "-C",
+      "/private/tmp/burr-agent-pilot-20261007/burr/model",
+      "-s",
+      "base",
+      "next",
+      "/private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff",
+      "--deliverable",
+      "excel",
+      "--output",
+      "/private/tmp/burr-agent-pilot-20261007/burr/output/baseline.xlsx",
+      "--patch=/private/tmp/burr-agent-pilot-20261007/burr/model/probe.yaml",
+      "--question=Does the reconstruction reproduce the source workbook and respond correctly to a higher stable return on capital?",
+      "--finding=All requested baseline metrics match source workbook cached results and 56 changed-input cases match independently evaluated source formulas. Raising stable ROC from 0.12 to 0.132 lowers terminal reinvestment and raises per-share value from 66.7825642215609 to 71.97308385937993; gap: 5.190519637819023. This is an implementation probe, not an investment recommendation."
+    ],
+    "result": {
+      "action": null,
+      "company": "/private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff",
+      "complete": true,
+      "deliverable": "excel",
+      "diagnostics": [],
+      "evidence": {
+        "artifact": {
+          "current": true,
+          "output": "/private/tmp/burr-agent-pilot-20261007/burr/output/baseline.xlsx",
+          "reason": "verified_receipt",
+          "receipt": "/private/tmp/burr-agent-pilot-20261007/burr/output/baseline.xlsx.burr.json"
+        },
+        "assumptions": {
+          "beta": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D52",
+            "value": 0.8
+          },
+          "capex0": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D22",
+            "value": 2152
+          },
+          "cash": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D28",
+            "value": 500
+          },
+          "debt": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!F38",
+            "value": 1822
+          },
+          "debt_cost": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!E56",
+            "value": 0.055
+          },
+          "depreciation0": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D23",
+            "value": 1228
+          },
+          "ebit0": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D20",
+            "value": 5186
+          },
+          "high_phase": {
+            "rationale": "Five explicit high-growth years plus the first stable year.",
+            "source": "Source workbook E43 and N133",
+            "value": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              0
+            ]
+          },
+          "high_years": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!E43",
+            "value": 5
+          },
+          "options": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D29",
+            "value": 1500
+          },
+          "prior_book_debt": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!E30",
+            "value": 1315
+          },
+          "prior_book_equity": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!E31",
+            "value": 12156
+          },
+          "revenue0": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D25",
+            "value": 16701
+          },
+          "risk_premium": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D54",
+            "value": 0.055
+          },
+          "riskfree": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D53",
+            "value": 0.053
+          },
+          "share_price": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!F36",
+            "value": 125.5
+          },
+          "shares": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!F37",
+            "value": 993.57
+          },
+          "stable_growth": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!E79",
+            "value": 0.06
+          },
+          "stable_roc": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!F101",
+            "value": 0.12
+          },
+          "tax_rate": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D24",
+            "value": 0.2849
+          },
+          "working_capital0": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D26",
+            "value": 3755
+          },
+          "working_capital_change0": {
+            "rationale": "Supplied model input; source workbook assumption, not independently verified financial fact.",
+            "source": "source.xlsx:NewFCFF2Stage!D27",
+            "value": 499
+          }
+        },
+        "assumptions_file": "/private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff/params.yaml",
+        "comparison": [
+          {
+            "equity": 66353.15233361626,
+            "ev": 69175.15233361626,
+            "ok": true,
+            "per_share": 66.7825642215609,
+            "scenario": "base",
+            "terminal_weight": 0.7930124949717773
+          }
+        ],
+        "finding_warnings": [],
+        "journal": [
+          {
+            "finding": "All requested baseline metrics match source workbook cached results and 56 changed-input cases match independently evaluated source formulas. Raising stable ROC from 0.12 to 0.132 lowers terminal reinvestment and raises per-share value from 66.7825642215609 to 71.97308385937993; gap: 5.190519637819023. This is an implementation probe, not an investment recommendation.",
+            "id": "exp-001",
+            "question": "Does the reconstruction reproduce the source workbook and respond correctly to a higher stable return on capital?",
+            "stale": false
+          }
+        ],
+        "replay": {
+          "current": {
+            "attribution": [
+              {
+                "delta": 5.190519637819023,
+                "key": "stable_roc",
+                "metadata": {
+                  "rationale": "Test whether a 10 percent relative rise in stable return on capital reduces required reinvestment and increases value.",
+                  "source": "Modeling pilot sensitivity experiment; source F101 baseline 0.12"
+                },
+                "section": "bindings"
+              }
+            ],
+            "base_per_share": 66.7825642215609,
+            "gap": 5.190519637819023,
+            "interactions": 0.0,
+            "ok": true,
+            "trial_per_share": 71.97308385937993
+          },
+          "id": "exp-001",
+          "ok": true,
+          "recorded": {
+            "attribution": [
+              {
+                "delta": 5.190519637819023,
+                "key": "stable_roc",
+                "metadata": {
+                  "rationale": "Test whether a 10 percent relative rise in stable return on capital reduces required reinvestment and increases value.",
+                  "source": "Modeling pilot sensitivity experiment; source F101 baseline 0.12"
+                },
+                "section": "bindings"
+              }
+            ],
+            "base_per_share": 66.7825642215609,
+            "gap": 5.190519637819023,
+            "interactions": 0.0,
+            "ok": true,
+            "trial_per_share": 71.97308385937993
+          },
+          "status": "HOLDS"
+        },
+        "selected_experiment": "exp-001",
+        "trial": {
+          "attribution": [
+            {
+              "delta": 5.190519637819023,
+              "key": "stable_roc",
+              "metadata": {
+                "rationale": "Test whether a 10 percent relative rise in stable return on capital reduces required reinvestment and increases value.",
+                "source": "Modeling pilot sensitivity experiment; source F101 baseline 0.12"
+              },
+              "section": "bindings"
+            }
+          ],
+          "base_per_share": 66.7825642215609,
+          "gap": 5.190519637819023,
+          "interactions": 0.0,
+          "ok": true,
+          "trial_per_share": 71.97308385937993
+        },
+        "validation": {
+          "ok": true,
+          "scenarios": [
+            "base"
+          ]
+        }
+      },
+      "fingerprint": "237976a941998c62d3a6faf1e8b0ce951272083231b71d34fafedd8cfeecfac0",
+      "message": "Model checks pass, the selected experiment is current and replays, and the requested deliverable has a valid receipt. Present the finding, assumptions, and artifact to the principal; assess their question explicitly.",
+      "next_steps": [],
+      "ok": true,
+      "protocol_version": "1",
+      "required_inputs": [],
+      "resume_argv": [
+        "/Users/johnhorton/tools/ep/burr/.venv/bin/python",
+        "-m",
+        "burr",
+        "--json",
+        "-C",
+        "/private/tmp/burr-agent-pilot-20261007/burr/model",
+        "-s",
+        "base",
+        "next",
+        "/private/tmp/burr-agent-pilot-20261007/burr/model/companies/fcff",
+        "--deliverable",
+        "excel",
+        "--output",
+        "/private/tmp/burr-agent-pilot-20261007/burr/output/baseline.xlsx",
+        "--patch=/private/tmp/burr-agent-pilot-20261007/burr/model/probe.yaml",
+        "--question=Does the reconstruction reproduce the source workbook and respond correctly to a higher stable return on capital?",
+        "--finding=All requested baseline metrics match source workbook cached results and 56 changed-input cases match independently evaluated source formulas. Raising stable ROC from 0.12 to 0.132 lowers terminal reinvestment and raises per-share value from 66.7825642215609 to 71.97308385937993; gap: 5.190519637819023. This is an implementation probe, not an investment recommendation."
+      ],
+      "scenario": "base",
+      "state": "complete",
+      "warnings": [],
+      "workspace": "/private/tmp/burr-agent-pilot-20261007/burr/model"
+    }
+  }
+]

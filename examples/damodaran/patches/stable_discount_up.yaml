@@ -1,0 +1,5 @@
+bindings:
+  riskfree:
+    value: 0.08
+    source: fcffst.xls!NewFCFFStableGrowth!D35
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.

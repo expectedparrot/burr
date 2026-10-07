@@ -1,0 +1,97 @@
+{
+  "cases": {
+    "base": {
+      "errors": [],
+      "passed": 40,
+      "per_share": 66.7825642215609,
+      "total": 40
+    },
+    "holdout_01": {
+      "errors": [],
+      "passed": 40,
+      "per_share": 44.7010442150672,
+      "total": 40
+    },
+    "holdout_02": {
+      "errors": [],
+      "passed": 40,
+      "per_share": 75.2314899728565,
+      "total": 40
+    },
+    "holdout_03": {
+      "errors": [],
+      "passed": 40,
+      "per_share": 77.2695324693993,
+      "total": 40
+    },
+    "holdout_04": {
+      "errors": [],
+      "passed": 40,
+      "per_share": 62.7737062710909,
+      "total": 40
+    },
+    "holdout_05": {
+      "errors": [],
+      "passed": 40,
+      "per_share": 58.9079813835641,
+      "total": 40
+    },
+    "holdout_06": {
+      "errors": [],
+      "passed": 40,
+      "per_share": 66.3715735068774,
+      "total": 40
+    },
+    "holdout_07": {
+      "errors": [],
+      "passed": 40,
+      "per_share": 62.8300903866156,
+      "total": 40
+    },
+    "holdout_08": {
+      "errors": [],
+      "passed": 40,
+      "per_share": 67.1644553533683,
+      "total": 40
+    },
+    "holdout_09": {
+      "errors": [],
+      "passed": 40,
+      "per_share": 58.9681439090843,
+      "total": 40
+    },
+    "holdout_10": {
+      "errors": [],
+      "passed": 40,
+      "per_share": 70.8053304269138,
+      "total": 40
+    },
+    "holdout_11": {
+      "errors": [],
+      "passed": 40,
+      "per_share": 66.7825642215609,
+      "total": 40
+    },
+    "holdout_12": {
+      "errors": [],
+      "passed": 40,
+      "per_share": 68.6352789501612,
+      "total": 40
+    },
+    "holdout_13": {
+      "errors": [],
+      "passed": 40,
+      "per_share": 65.6397400242103,
+      "total": 40
+    },
+    "holdout_14": {
+      "errors": [],
+      "passed": 40,
+      "per_share": 43.1706726899441,
+      "total": 40
+    }
+  },
+  "oracle": "LibreOffice 26.2.2.2 1f77d10d6938fd34972958f64b2bcfa54f8b1ba5",
+  "passed": 600,
+  "total": 600
+}

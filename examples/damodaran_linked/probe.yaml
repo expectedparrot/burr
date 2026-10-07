@@ -1,0 +1,5 @@
+bindings:
+  stable_roc:
+    value: 0.132
+    source: Modeling pilot sensitivity experiment; source F101 baseline 0.12
+    rationale: Test whether a 10 percent relative rise in stable return on capital reduces required reinvestment and increases value.

@@ -1,0 +1,107 @@
+template: two_stage_fcff
+doc: Selected Damodaran two-stage FCFF switches, with terminal cash flow explicitly
+  visible in sixth column.
+parameters:
+- name: beta
+  unit: ratio
+  doc: Source workbook NewFCFF2Stage!D52
+- name: capex0
+  unit: currency
+  doc: Source workbook NewFCFF2Stage!D22
+- name: cash
+  unit: currency
+  doc: Source workbook NewFCFF2Stage!D28
+- name: debt
+  unit: currency
+  doc: Source workbook NewFCFF2Stage!F38
+- name: debt_cost
+  unit: ratio
+  doc: Source workbook NewFCFF2Stage!E56
+- name: depreciation0
+  unit: currency
+  doc: Source workbook NewFCFF2Stage!D23
+- name: ebit0
+  unit: currency
+  doc: Source workbook NewFCFF2Stage!D20
+- name: high_years
+  unit: count
+  doc: Source workbook NewFCFF2Stage!E43
+- name: options
+  unit: currency
+  doc: Source workbook NewFCFF2Stage!D29
+- name: prior_book_debt
+  unit: currency
+  doc: Source workbook NewFCFF2Stage!E30
+- name: prior_book_equity
+  unit: currency
+  doc: Source workbook NewFCFF2Stage!E31
+- name: revenue0
+  unit: currency
+  doc: Source workbook NewFCFF2Stage!D25
+- name: risk_premium
+  unit: ratio
+  doc: Source workbook NewFCFF2Stage!D54
+- name: riskfree
+  unit: ratio
+  doc: Source workbook NewFCFF2Stage!D53
+- name: share_price
+  unit: currency
+  doc: Source workbook NewFCFF2Stage!F36
+- name: shares
+  unit: count
+  doc: Source workbook NewFCFF2Stage!F37
+- name: stable_growth
+  unit: ratio
+  doc: Source workbook NewFCFF2Stage!E79
+- name: stable_roc
+  unit: ratio
+  doc: Source workbook NewFCFF2Stage!F101
+- name: tax_rate
+  unit: ratio
+  doc: Source workbook NewFCFF2Stage!D24
+- name: working_capital0
+  unit: currency
+  doc: Source workbook NewFCFF2Stage!D26
+- name: working_capital_change0
+  unit: currency
+  doc: Source workbook NewFCFF2Stage!D27
+- name: high_phase
+  unit: ratio
+  doc: One for five high-growth years, zero for terminal year
+lines:
+  horizon: high_years
+  cost_of_equity: riskfree + beta * risk_premium
+  equity_weight: share_price * shares / (debt + share_price * shares)
+  debt_weight: 1 - equity_weight
+  after_tax_debt_cost: debt_cost * (1 - tax_rate)
+  wacc: cost_of_equity * equity_weight + after_tax_debt_cost * debt_weight
+  return_on_capital: ebit0 * (1 - tax_rate) / (prior_book_debt + prior_book_equity)
+  reinvestment_rate: (capex0 - depreciation0 + working_capital_change0) / (ebit0 *
+    (1 - tax_rate))
+  high_growth: return_on_capital * reinvestment_rate
+  working_capital_ratio: maximum(working_capital0 / revenue0, 0)
+  growth: high_phase * high_growth + (1 - high_phase) * stable_growth
+  nopat: grow(ebit0 * (1 - tax_rate), growth)
+  revenue: grow(revenue0, growth)
+  working_capital_change: delta(revenue, revenue0) * working_capital_ratio
+  capex_high: grow(capex0, high_growth)
+  depreciation_high: grow(depreciation0, high_growth)
+  net_capex: high_phase * (capex_high - depreciation_high) + (1 - high_phase) * (stable_growth
+    / stable_roc * nopat - working_capital_change)
+  fcff: nopat - net_capex - working_capital_change
+  discount_factor: grow(1, wacc)
+  pv_fcff: fcff / discount_factor
+  cumulative_pv_fcff: lag(cumulative_pv_fcff, 0 * cash) + pv_fcff
+  terminal_value: nopat * (1 + stable_growth) * (1 - stable_growth / stable_roc) /
+    (wacc - stable_growth)
+  pv_terminal: terminal_value / discount_factor
+  enterprise_value: cumulative_pv_fcff + pv_terminal
+  equity_before_options: enterprise_value + cash - debt
+  equity_after_options: equity_before_options - options
+  per_share: equity_after_options / shares
+  net_cash_after_options: cash - debt - options
+checks:
+- horizon == 5
+- shares > 0
+- wacc > stable_growth
+- stable_growth > -1

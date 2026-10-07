@@ -34,6 +34,8 @@ def dashboard_data(workspace, scenario="base", sliders=(), title=None):
     controls = []
     for section, values in (("bindings", model.inputs), ("valuation", model.valuation)):
         for name, value in sorted(values.items()):
+            if section == "valuation" and name in model.valuation_refs:
+                continue  # Edit the source assumption, never a detached computed copy.
             if section == "bindings" and (name not in model.params["bindings"] or name in locked):
                 continue
             unit = model.units.get(name) if section == "bindings" else (
@@ -85,6 +87,7 @@ def dashboard_data(workspace, scenario="base", sliders=(), title=None):
             "title": title or f"{model.entity.replace('_', ' ').title()} · Decision dashboard",
             "scenario": scenario, "fingerprint": workspace.fingerprint(scenario), "years": model.years,
             "inputs": model.inputs, "valuation": model.valuation, "fcf": model.params["valuation"]["fcf"],
+            **({"valuation_refs": model.valuation_refs} if model.valuation_refs else {}),
             "expressions": {k: expression(v) for k, v in model.expressions.items()}, "order": model.order,
             "checks": [{"source": s, "expression": expression(n)} for s, n in model.checks],
             "units": model.units, "controls": controls, "baseline": baseline,

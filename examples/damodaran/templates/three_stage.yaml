@@ -1,0 +1,93 @@
+template: three_stage
+doc: Independent Burr reconstruction of fcff3st.xls.
+parameters:
+- name: revenue0
+  unit: currency
+- name: capex0
+  unit: currency
+- name: depreciation0
+  unit: currency
+- name: high_growth
+  unit: ratio
+- name: capex_growth
+  unit: ratio
+- name: stable_growth
+  unit: ratio
+- name: stable_margin
+  unit: ratio
+- name: stable_roc
+  unit: ratio
+- name: working_capital_ratio
+  unit: ratio
+- name: tax_rate
+  unit: ratio
+- name: riskfree
+  unit: ratio
+- name: risk_premium
+  unit: ratio
+- name: revenue_growth_profile
+  unit: ratio
+- name: depreciation_growth_profile
+  unit: ratio
+- name: beta_profile
+  unit: ratio
+- name: debt_cost_profile
+  unit: ratio
+- name: debt_weight_profile
+  unit: ratio
+- name: margin_profile
+  unit: ratio
+- name: capex_growth_profile
+  unit: ratio
+- name: transition_weight
+  unit: ratio
+- name: transition_years
+  unit: ratio
+lines:
+  revenue_growth: revenue_growth_profile
+  depreciation_growth: depreciation_growth_profile
+  revenue: grow(revenue0, revenue_growth_profile)
+  ebit: revenue * margin_profile
+  nopat: ebit * (1 - tax_rate)
+  depreciation: grow(depreciation0, depreciation_growth_profile)
+  working_capital_change: delta(revenue, revenue0) * working_capital_ratio
+  revenue_step: (high_growth - stable_growth) / transition_years
+  depreciation_step: (capex_growth - stable_growth) / transition_years
+  revenue5: revenue0 * (1 + high_growth) * (1 + high_growth) * (1 + high_growth) * (1 + high_growth) *
+    (1 + high_growth)
+  depreciation5: depreciation0 * (1 + capex_growth) * (1 + capex_growth) * (1 + capex_growth) * (1 + capex_growth)
+    * (1 + capex_growth)
+  revenue_growth6: high_growth - revenue_step
+  revenue6: revenue5 * (1 + revenue_growth6)
+  revenue_growth7: revenue_growth6 - revenue_step
+  revenue7: revenue6 * (1 + revenue_growth7)
+  revenue_growth8: revenue_growth7 - revenue_step
+  revenue8: revenue7 * (1 + revenue_growth8)
+  revenue_growth9: revenue_growth8 - revenue_step
+  revenue9: revenue8 * (1 + revenue_growth9)
+  revenue_growth10: revenue_growth9 - revenue_step
+  revenue10: revenue9 * (1 + revenue_growth10)
+  depreciation_growth6: capex_growth - depreciation_step
+  depreciation6: depreciation5 * (1 + depreciation_growth6)
+  depreciation_growth7: depreciation_growth6 - depreciation_step
+  depreciation7: depreciation6 * (1 + depreciation_growth7)
+  depreciation_growth8: depreciation_growth7 - depreciation_step
+  depreciation8: depreciation7 * (1 + depreciation_growth8)
+  depreciation_growth9: depreciation_growth8 - depreciation_step
+  depreciation9: depreciation8 * (1 + depreciation_growth9)
+  depreciation_growth10: depreciation_growth9 - depreciation_step
+  depreciation10: depreciation9 * (1 + depreciation_growth10)
+  terminal_nopat: revenue10 * stable_margin * (1 - tax_rate)
+  terminal_working_capital_change: (revenue10 - revenue9) * working_capital_ratio
+  terminal_capex: terminal_nopat * stable_growth / stable_roc - terminal_working_capital_change + depreciation10
+  capex: (1 - transition_weight) * grow(capex0, capex_growth_profile) + transition_weight * terminal_capex
+  fcff: nopat + depreciation - capex - working_capital_change
+  cost_of_equity: riskfree + beta_profile * risk_premium
+  after_tax_debt_cost: debt_cost_profile * (1 - tax_rate)
+  debt_weight: debt_weight_profile
+  wacc: cost_of_equity * (1 - debt_weight_profile) + after_tax_debt_cost * debt_weight_profile
+  discount_factor: grow(1, wacc)
+  pv_fcff: fcff / discount_factor
+checks:
+- wacc > stable_growth
+- fcff >= 0

@@ -1,0 +1,12 @@
+{
+  "baseline_metrics_verified": 16,
+  "source_formula_scenarios_verified": 247,
+  "generated_live_workbooks_verified": [
+    "baseline",
+    "combined 8",
+    "zero debt"
+  ],
+  "relative_tolerance": 2e-12,
+  "absolute_tolerance": 2e-09,
+  "excel_or_libreoffice_execution": false
+}

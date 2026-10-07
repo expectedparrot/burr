@@ -1,0 +1,37 @@
+template: stable
+doc: Independent Burr reconstruction of fcffst.xls.
+parameters:
+- name: ebit0
+  unit: currency
+- name: depreciation0
+  unit: currency
+- name: working_capital_change0
+  unit: currency
+- name: tax_rate
+  unit: ratio
+- name: capex_depreciation_ratio
+  unit: ratio
+- name: debt_weight
+  unit: ratio
+- name: beta
+  unit: ratio
+- name: riskfree
+  unit: ratio
+- name: risk_premium
+  unit: ratio
+- name: debt_cost
+  unit: ratio
+- name: stable_growth
+  unit: ratio
+lines:
+  nopat_current: ebit0 * (1 - tax_rate)
+  net_capex_current: (capex_depreciation_ratio - 1) * depreciation0
+  working_capital_change_current: working_capital_change0
+  fcff_current: nopat_current - net_capex_current - working_capital_change_current
+  fcff: fcff_current * grow(1, stable_growth)
+  cost_of_equity: riskfree + beta * risk_premium
+  after_tax_debt_cost: debt_cost * (1 - tax_rate)
+  wacc: cost_of_equity * (1 - debt_weight) + after_tax_debt_cost * debt_weight
+checks:
+- wacc > stable_growth
+- fcff >= 0

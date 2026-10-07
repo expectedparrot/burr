@@ -1,0 +1,106 @@
+{
+  "archived_submissions_unchanged": true,
+  "passed": 5,
+  "plan": {
+    "criteria": [
+      "Read-only exploration preserves files and matches direct Python values.",
+      "A named scenario preserves the base and records source/rationale.",
+      "A source-only revision invalidates evidence even when numbers hold.",
+      "A numerical revision marks drift; recovery appends rather than overwrites evidence.",
+      "An edited Excel export is detected and regenerated with a current receipt.",
+      "A risk-free binding edit exposes any stale dependent valuation assumptions."
+    ],
+    "interpretation": "Absence of a Python safeguard is not inability to implement one.",
+    "kind": "deterministic stress tests of existing pilot artifacts; no new agents",
+    "python_comparator": "Unmodified prior submission; no added workflow safeguards."
+  },
+  "python_comparison_limit": "Observations are based on the existing code contract, not a new agent tasked with adding safeguards.",
+  "results": {
+    "dependent_assumption_consistency": {
+      "absolute_error": 22.081520006493733,
+      "burr_formula_line": 44.70104421506718,
+      "burr_native_dcf": 66.7825642215609,
+      "diagnostics": [],
+      "interpretation": "Burr flags stale evidence, but does not diagnose the adapter's duplicated WACC. Regeneration is required.",
+      "libreoffice_reference": 44.7010442150672,
+      "native_validation_passed": true,
+      "next_state": "needs_input",
+      "pass": false,
+      "python": 44.70104421506717,
+      "python_matches_source": true,
+      "replay_status": "HOLDS",
+      "warnings": [
+        {
+          "code": "stale_evidence",
+          "message": "Replay does not refresh the old journal fingerprint; review the current result and append a new finding."
+        }
+      ]
+    },
+    "modified_export": {
+      "detected_reason": "stale_or_modified_output",
+      "pass": true,
+      "python_observation": "The saved Python workbook has no digest receipt or command to check artifact freshness.",
+      "repaired_complete": true
+    },
+    "named_scenario": {
+      "base_bindings_unchanged": true,
+      "pass": true,
+      "python_observation": "Separate input JSON files work, but naming, sources and rationale need an additional convention.",
+      "saved_scenario": {
+        "bindings": {
+          "stable_roc": {
+            "rationale": "Higher stable capital efficiency, all other inputs fixed.",
+            "source": "Synthetic analyst hypothesis, 2026-10-07",
+            "value": 0.147
+          }
+        },
+        "thesis": "Analyst hypothesis: improved stable capital efficiency."
+      }
+    },
+    "read_only_exploration": {
+      "attribution": [
+        {
+          "delta": 10.48696824783842,
+          "key": "stable_roc",
+          "metadata": {
+            "rationale": "Higher stable capital efficiency, all other inputs fixed.",
+            "source": "Synthetic analyst hypothesis, 2026-10-07"
+          },
+          "section": "bindings"
+        }
+      ],
+      "base": 66.7825642215609,
+      "burr_trial": 77.26953246939932,
+      "files_unchanged": true,
+      "libreoffice_reference": 77.2695324693993,
+      "pass": true,
+      "python_input_unchanged": true,
+      "python_observation": "Pure model(input_dict) also preserves its input; both support numerical exploration.",
+      "python_trial": 77.26953246939932
+    },
+    "revision_replay_and_handoff": {
+      "handoff_replay_without_proposal_file": "HOLDS",
+      "initial_replay": "DRIFTED",
+      "new_record": "exp-002",
+      "old_record_unchanged": true,
+      "pass": true,
+      "python_observation": "Recalculation works; the submission has no persistent hypothesis, finding, or replay journal.",
+      "python_trial": 81.39561922003958,
+      "recorded_trial": 71.97308385937993,
+      "revised_trial": 81.39561922003956
+    },
+    "source_only_revision": {
+      "pass": true,
+      "python_observation": "The numeric input/output contract has no source metadata or evidence-freshness check.",
+      "replay": "HOLDS",
+      "state": "needs_input",
+      "warnings": [
+        {
+          "code": "stale_evidence",
+          "message": "Replay does not refresh the old journal fingerprint; review the current result and append a new finding."
+        }
+      ]
+    }
+  },
+  "total": 6
+}

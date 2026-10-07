@@ -1,0 +1,42 @@
+id: exp-001
+at: '2026-10-06T07:31:29+00:00'
+question: Does the runnable Burr model reproduce the source workbook under a higher discount rate?
+scenario: base
+patch:
+  bindings:
+    riskfree:
+      value: 0.08
+      source: fcffst.xls!NewFCFFStableGrowth!D35
+      rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  valuation:
+    wacc:
+      value: 0.11469583
+      source: fcffst.xls!NewFCFFStableGrowth; input-only adapter
+      rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+        source inputs or structural year weights; see models.py.
+results:
+  ok: true
+  base_per_share: 13147.560970748016
+  trial_per_share: 11724.403257520617
+  gap: -1423.1577132273997
+  attribution:
+  - key: wacc
+    section: valuation
+    delta: -1423.1577132273997
+    metadata:
+      source: fcffst.xls!NewFCFFStableGrowth; input-only adapter
+      rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+        source inputs or structural year weights; see models.py.
+  - key: riskfree
+    section: bindings
+    delta: 0.0
+    metadata:
+      source: fcffst.xls!NewFCFFStableGrowth!D35
+      rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  interactions: 0.0
+finding: A one percentage point risk-free-rate increase reduces firm value (normalized to one synthetic
+  share) from 13147.5609707480 to 11724.4032575206. The independently recalculated Damodaran workbook
+  agrees within relative tolerance 1e-9 and absolute tolerance 1e-7. These are the source's historical
+  illustrative assumptions.
+tags: []
+fingerprint: 48a8af52cc5fbf5a9e5ec81ef782da50bdf493bfd5a854e2833387bacd27cb4b

@@ -1,0 +1,28 @@
+id: exp-002
+at: '2026-10-07T11:55:19+00:00'
+question: Does changing the risk-free input now update native DCF consistently?
+scenario: base
+patch:
+  bindings:
+    riskfree:
+      value: 0.0707
+      source: 'Saved Damodaran pilot holdout: risk-free assumption 7.07%'
+      rationale: Verify that native DCF follows a primitive input change without adapter regeneration.
+results:
+  ok: true
+  base_per_share: 66.7825642215609
+  trial_per_share: 44.701044215067164
+  gap: -22.08152000649374
+  attribution:
+  - key: riskfree
+    section: bindings
+    delta: -22.08152000649374
+    metadata:
+      source: 'Saved Damodaran pilot holdout: risk-free assumption 7.07%'
+      rationale: Verify that native DCF follows a primitive input change without adapter regeneration.
+  interactions: 0.0
+finding: Raising risk-free rate from 5.3% to 7.07% now changes native per-share value from 66.7825642216
+  to 44.7010442151, matching the source oracle and the explicit formula. Valuation references remove copied
+  assumptions; base is unchanged.
+tags: []
+fingerprint: 934e55a2b64b99e57dd3235555a7c646f3abbccb41ce7dfe1786d779858a7dc6

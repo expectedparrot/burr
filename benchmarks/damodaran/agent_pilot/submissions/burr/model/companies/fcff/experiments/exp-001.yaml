@@ -1,0 +1,32 @@
+id: exp-001
+at: '2026-10-07T11:23:50+00:00'
+question: Does the reconstruction reproduce the source workbook and respond correctly to a higher stable
+  return on capital?
+scenario: base
+patch:
+  bindings:
+    stable_roc:
+      value: 0.132
+      source: Modeling pilot sensitivity experiment; source F101 baseline 0.12
+      rationale: Test whether a 10 percent relative rise in stable return on capital reduces required
+        reinvestment and increases value.
+results:
+  ok: true
+  base_per_share: 66.7825642215609
+  trial_per_share: 71.97308385937993
+  gap: 5.190519637819023
+  attribution:
+  - key: stable_roc
+    section: bindings
+    delta: 5.190519637819023
+    metadata:
+      source: Modeling pilot sensitivity experiment; source F101 baseline 0.12
+      rationale: Test whether a 10 percent relative rise in stable return on capital reduces required
+        reinvestment and increases value.
+  interactions: 0.0
+finding: 'All requested baseline metrics match source workbook cached results and 56 changed-input cases
+  match independently evaluated source formulas. Raising stable ROC from 0.12 to 0.132 lowers terminal
+  reinvestment and raises per-share value from 66.7825642215609 to 71.97308385937993; gap: 5.190519637819023.
+  This is an implementation probe, not an investment recommendation.'
+tags: []
+fingerprint: 237976a941998c62d3a6faf1e8b0ce951272083231b71d34fafedd8cfeecfac0

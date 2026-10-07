@@ -1,0 +1,479 @@
+entity: stable
+template: stable
+base_year: 0
+periods: 1..1
+bindings:
+  ebit0:
+    value: 1535
+    source: fcffst.xls!NewFCFFStableGrowth!D21
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  depreciation0:
+    value: 400
+    source: fcffst.xls!NewFCFFStableGrowth!D25
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  working_capital_change0:
+    value: 160
+    source: fcffst.xls!NewFCFFStableGrowth!D26
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  tax_rate:
+    value: 0.36
+    source: fcffst.xls!NewFCFFStableGrowth!D22
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  capex_depreciation_ratio:
+    value: 1.25
+    source: fcffst.xls!NewFCFFStableGrowth!F28
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  debt_weight:
+    value: 0.2997
+    source: fcffst.xls!NewFCFFStableGrowth!D29
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  beta:
+    value: 1.1
+    source: fcffst.xls!NewFCFFStableGrowth!D34
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  riskfree:
+    value: 0.07
+    source: fcffst.xls!NewFCFFStableGrowth!D35
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  risk_premium:
+    value: 0.055
+    source: fcffst.xls!NewFCFFStableGrowth!D36
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  debt_cost:
+    value: 0.085
+    source: fcffst.xls!NewFCFFStableGrowth!D38
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  stable_growth:
+    value: 0.05
+    source: fcffst.xls!NewFCFFStableGrowth!D40
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+valuation:
+  fcf: fcff
+  wacc:
+    ref: wacc
+    source: 'Burr model: wacc'
+    rationale: Follow the current scenario instead of copying a computed valuation input.
+  terminal_growth:
+    ref: stable_growth
+    source: 'Burr model: stable_growth'
+    rationale: Follow the current scenario instead of copying a computed valuation input.
+  shares:
+    value: 1
+    source: fcffst.xls!NewFCFFStableGrowth; input-only adapter
+    rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+      source inputs or structural year weights; see models.py.
+  net_cash:
+    value: 0
+    source: fcffst.xls!NewFCFFStableGrowth; input-only adapter
+    rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+      source inputs or structural year weights; see models.py.
+scenarios:
+  growth_up:
+    thesis: 'Benchmark perturbation growth_up: {''stable_growth'': 0.06}. Other source inputs and workbook
+      switches held fixed.'
+    bindings:
+      ebit0:
+        value: 1535
+        source: fcffst.xls!NewFCFFStableGrowth!D21
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      depreciation0:
+        value: 400
+        source: fcffst.xls!NewFCFFStableGrowth!D25
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      working_capital_change0:
+        value: 160
+        source: fcffst.xls!NewFCFFStableGrowth!D26
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      tax_rate:
+        value: 0.36
+        source: fcffst.xls!NewFCFFStableGrowth!D22
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      capex_depreciation_ratio:
+        value: 1.25
+        source: fcffst.xls!NewFCFFStableGrowth!F28
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      debt_weight:
+        value: 0.2997
+        source: fcffst.xls!NewFCFFStableGrowth!D29
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      beta:
+        value: 1.1
+        source: fcffst.xls!NewFCFFStableGrowth!D34
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      riskfree:
+        value: 0.07
+        source: fcffst.xls!NewFCFFStableGrowth!D35
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      risk_premium:
+        value: 0.055
+        source: fcffst.xls!NewFCFFStableGrowth!D36
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      debt_cost:
+        value: 0.085
+        source: fcffst.xls!NewFCFFStableGrowth!D38
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_growth:
+        value: 0.06
+        source: fcffst.xls!NewFCFFStableGrowth!D40
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+    valuation:
+      fcf: fcff
+      wacc:
+        ref: wacc
+        source: 'Burr model: wacc'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      terminal_growth:
+        ref: stable_growth
+        source: 'Burr model: stable_growth'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      shares:
+        value: 1
+        source: fcffst.xls!NewFCFFStableGrowth; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+          source inputs or structural year weights; see models.py.
+      net_cash:
+        value: 0
+        source: fcffst.xls!NewFCFFStableGrowth; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+          source inputs or structural year weights; see models.py.
+  growth_down:
+    thesis: 'Benchmark perturbation growth_down: {''stable_growth'': 0.04}. Other source inputs and workbook
+      switches held fixed.'
+    bindings:
+      ebit0:
+        value: 1535
+        source: fcffst.xls!NewFCFFStableGrowth!D21
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      depreciation0:
+        value: 400
+        source: fcffst.xls!NewFCFFStableGrowth!D25
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      working_capital_change0:
+        value: 160
+        source: fcffst.xls!NewFCFFStableGrowth!D26
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      tax_rate:
+        value: 0.36
+        source: fcffst.xls!NewFCFFStableGrowth!D22
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      capex_depreciation_ratio:
+        value: 1.25
+        source: fcffst.xls!NewFCFFStableGrowth!F28
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      debt_weight:
+        value: 0.2997
+        source: fcffst.xls!NewFCFFStableGrowth!D29
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      beta:
+        value: 1.1
+        source: fcffst.xls!NewFCFFStableGrowth!D34
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      riskfree:
+        value: 0.07
+        source: fcffst.xls!NewFCFFStableGrowth!D35
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      risk_premium:
+        value: 0.055
+        source: fcffst.xls!NewFCFFStableGrowth!D36
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      debt_cost:
+        value: 0.085
+        source: fcffst.xls!NewFCFFStableGrowth!D38
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_growth:
+        value: 0.04
+        source: fcffst.xls!NewFCFFStableGrowth!D40
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+    valuation:
+      fcf: fcff
+      wacc:
+        ref: wacc
+        source: 'Burr model: wacc'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      terminal_growth:
+        ref: stable_growth
+        source: 'Burr model: stable_growth'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      shares:
+        value: 1
+        source: fcffst.xls!NewFCFFStableGrowth; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+          source inputs or structural year weights; see models.py.
+      net_cash:
+        value: 0
+        source: fcffst.xls!NewFCFFStableGrowth; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+          source inputs or structural year weights; see models.py.
+  tax_up:
+    thesis: 'Benchmark perturbation tax_up: {''tax_rate'': 0.4}. Other source inputs and workbook switches
+      held fixed.'
+    bindings:
+      ebit0:
+        value: 1535
+        source: fcffst.xls!NewFCFFStableGrowth!D21
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      depreciation0:
+        value: 400
+        source: fcffst.xls!NewFCFFStableGrowth!D25
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      working_capital_change0:
+        value: 160
+        source: fcffst.xls!NewFCFFStableGrowth!D26
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      tax_rate:
+        value: 0.4
+        source: fcffst.xls!NewFCFFStableGrowth!D22
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      capex_depreciation_ratio:
+        value: 1.25
+        source: fcffst.xls!NewFCFFStableGrowth!F28
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      debt_weight:
+        value: 0.2997
+        source: fcffst.xls!NewFCFFStableGrowth!D29
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      beta:
+        value: 1.1
+        source: fcffst.xls!NewFCFFStableGrowth!D34
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      riskfree:
+        value: 0.07
+        source: fcffst.xls!NewFCFFStableGrowth!D35
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      risk_premium:
+        value: 0.055
+        source: fcffst.xls!NewFCFFStableGrowth!D36
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      debt_cost:
+        value: 0.085
+        source: fcffst.xls!NewFCFFStableGrowth!D38
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_growth:
+        value: 0.05
+        source: fcffst.xls!NewFCFFStableGrowth!D40
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+    valuation:
+      fcf: fcff
+      wacc:
+        ref: wacc
+        source: 'Burr model: wacc'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      terminal_growth:
+        ref: stable_growth
+        source: 'Burr model: stable_growth'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      shares:
+        value: 1
+        source: fcffst.xls!NewFCFFStableGrowth; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+          source inputs or structural year weights; see models.py.
+      net_cash:
+        value: 0
+        source: fcffst.xls!NewFCFFStableGrowth; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+          source inputs or structural year weights; see models.py.
+  discount_up:
+    thesis: 'Benchmark perturbation discount_up: {''riskfree'': 0.08}. Other source inputs and workbook
+      switches held fixed.'
+    bindings:
+      ebit0:
+        value: 1535
+        source: fcffst.xls!NewFCFFStableGrowth!D21
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      depreciation0:
+        value: 400
+        source: fcffst.xls!NewFCFFStableGrowth!D25
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      working_capital_change0:
+        value: 160
+        source: fcffst.xls!NewFCFFStableGrowth!D26
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      tax_rate:
+        value: 0.36
+        source: fcffst.xls!NewFCFFStableGrowth!D22
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      capex_depreciation_ratio:
+        value: 1.25
+        source: fcffst.xls!NewFCFFStableGrowth!F28
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      debt_weight:
+        value: 0.2997
+        source: fcffst.xls!NewFCFFStableGrowth!D29
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      beta:
+        value: 1.1
+        source: fcffst.xls!NewFCFFStableGrowth!D34
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      riskfree:
+        value: 0.08
+        source: fcffst.xls!NewFCFFStableGrowth!D35
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      risk_premium:
+        value: 0.055
+        source: fcffst.xls!NewFCFFStableGrowth!D36
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      debt_cost:
+        value: 0.085
+        source: fcffst.xls!NewFCFFStableGrowth!D38
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_growth:
+        value: 0.05
+        source: fcffst.xls!NewFCFFStableGrowth!D40
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+    valuation:
+      fcf: fcff
+      wacc:
+        ref: wacc
+        source: 'Burr model: wacc'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      terminal_growth:
+        ref: stable_growth
+        source: 'Burr model: stable_growth'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      shares:
+        value: 1
+        source: fcffst.xls!NewFCFFStableGrowth; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+          source inputs or structural year weights; see models.py.
+      net_cash:
+        value: 0
+        source: fcffst.xls!NewFCFFStableGrowth; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+          source inputs or structural year weights; see models.py.
+  reinvestment_up:
+    thesis: 'Benchmark perturbation reinvestment_up: {''capex_depreciation_ratio'': 1.5}. Other source
+      inputs and workbook switches held fixed.'
+    bindings:
+      ebit0:
+        value: 1535
+        source: fcffst.xls!NewFCFFStableGrowth!D21
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      depreciation0:
+        value: 400
+        source: fcffst.xls!NewFCFFStableGrowth!D25
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      working_capital_change0:
+        value: 160
+        source: fcffst.xls!NewFCFFStableGrowth!D26
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      tax_rate:
+        value: 0.36
+        source: fcffst.xls!NewFCFFStableGrowth!D22
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      capex_depreciation_ratio:
+        value: 1.5
+        source: fcffst.xls!NewFCFFStableGrowth!F28
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      debt_weight:
+        value: 0.2997
+        source: fcffst.xls!NewFCFFStableGrowth!D29
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      beta:
+        value: 1.1
+        source: fcffst.xls!NewFCFFStableGrowth!D34
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      riskfree:
+        value: 0.07
+        source: fcffst.xls!NewFCFFStableGrowth!D35
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      risk_premium:
+        value: 0.055
+        source: fcffst.xls!NewFCFFStableGrowth!D36
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      debt_cost:
+        value: 0.085
+        source: fcffst.xls!NewFCFFStableGrowth!D38
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_growth:
+        value: 0.05
+        source: fcffst.xls!NewFCFFStableGrowth!D40
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+    valuation:
+      fcf: fcff
+      wacc:
+        ref: wacc
+        source: 'Burr model: wacc'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      terminal_growth:
+        ref: stable_growth
+        source: 'Burr model: stable_growth'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      shares:
+        value: 1
+        source: fcffst.xls!NewFCFFStableGrowth; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+          source inputs or structural year weights; see models.py.
+      net_cash:
+        value: 0
+        source: fcffst.xls!NewFCFFStableGrowth; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+          source inputs or structural year weights; see models.py.
+  combined:
+    thesis: 'Benchmark perturbation combined: {''ebit0'': 1600, ''tax_rate'': 0.4, ''riskfree'': 0.08,
+      ''stable_growth'': 0.04, ''capex_depreciation_ratio'': 1.5}. Other source inputs and workbook switches
+      held fixed.'
+    bindings:
+      ebit0:
+        value: 1600
+        source: fcffst.xls!NewFCFFStableGrowth!D21
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      depreciation0:
+        value: 400
+        source: fcffst.xls!NewFCFFStableGrowth!D25
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      working_capital_change0:
+        value: 160
+        source: fcffst.xls!NewFCFFStableGrowth!D26
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      tax_rate:
+        value: 0.4
+        source: fcffst.xls!NewFCFFStableGrowth!D22
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      capex_depreciation_ratio:
+        value: 1.5
+        source: fcffst.xls!NewFCFFStableGrowth!F28
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      debt_weight:
+        value: 0.2997
+        source: fcffst.xls!NewFCFFStableGrowth!D29
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      beta:
+        value: 1.1
+        source: fcffst.xls!NewFCFFStableGrowth!D34
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      riskfree:
+        value: 0.08
+        source: fcffst.xls!NewFCFFStableGrowth!D35
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      risk_premium:
+        value: 0.055
+        source: fcffst.xls!NewFCFFStableGrowth!D36
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      debt_cost:
+        value: 0.085
+        source: fcffst.xls!NewFCFFStableGrowth!D38
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_growth:
+        value: 0.04
+        source: fcffst.xls!NewFCFFStableGrowth!D40
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+    valuation:
+      fcf: fcff
+      wacc:
+        ref: wacc
+        source: 'Burr model: wacc'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      terminal_growth:
+        ref: stable_growth
+        source: 'Burr model: stable_growth'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      shares:
+        value: 1
+        source: fcffst.xls!NewFCFFStableGrowth; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+          source inputs or structural year weights; see models.py.
+      net_cash:
+        value: 0
+        source: fcffst.xls!NewFCFFStableGrowth; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+          source inputs or structural year weights; see models.py.

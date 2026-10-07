@@ -1,0 +1,1571 @@
+entity: three_stage
+template: three_stage
+base_year: 0
+periods: 1..10
+bindings:
+  revenue0:
+    value: 12406
+    source: fcff3st.xls!Sheet1!D3
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  capex0:
+    value: 233
+    source: fcff3st.xls!Sheet1!D5
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  depreciation0:
+    value: 298
+    source: fcff3st.xls!Sheet1!D6
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  high_growth:
+    value: 0.3
+    source: fcff3st.xls!Sheet1!E14
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  capex_growth:
+    value: 0.3
+    source: fcff3st.xls!Sheet1!E18
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  stable_growth:
+    value: 0.06
+    source: fcff3st.xls!Sheet1!E26
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  stable_margin:
+    value: 0.25
+    source: fcff3st.xls!Sheet1!E27
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  stable_roc:
+    value: 0.12
+    source: fcff3st.xls!Sheet1!E29
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  working_capital_ratio:
+    value: 0.075
+    source: fcff3st.xls!Sheet1!E19
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  tax_rate:
+    value: 0.36
+    source: fcff3st.xls!Sheet1!E20
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  riskfree:
+    value: 0.065
+    source: fcff3st.xls!Sheet1!E22
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  risk_premium:
+    value: 0.055
+    source: fcff3st.xls!Sheet1!E23
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  revenue_growth_profile:
+    value:
+    - 0.3
+    - 0.3
+    - 0.3
+    - 0.3
+    - 0.3
+    - 0.252
+    - 0.204
+    - 0.156
+    - 0.10799999999999998
+    - 0.06
+    source: fcff3st.xls!Sheet1; input-only adapter
+    rationale: Historical workbook illustration, not current company guidance. Derived binding from source
+      inputs or structural year weights; see models.py.
+  depreciation_growth_profile:
+    value:
+    - 0.3
+    - 0.3
+    - 0.3
+    - 0.3
+    - 0.3
+    - 0.252
+    - 0.204
+    - 0.156
+    - 0.10799999999999998
+    - 0.06
+    source: fcff3st.xls!Sheet1; input-only adapter
+    rationale: Historical workbook illustration, not current company guidance. Derived binding from source
+      inputs or structural year weights; see models.py.
+  beta_profile:
+    value:
+    - 1.25
+    - 1.25
+    - 1.25
+    - 1.25
+    - 1.25
+    - 1.22
+    - 1.19
+    - 1.1600000000000001
+    - 1.1300000000000001
+    - 1.1
+    source: fcff3st.xls!Sheet1; input-only adapter
+    rationale: Historical workbook illustration, not current company guidance. Derived binding from source
+      inputs or structural year weights; see models.py.
+  debt_cost_profile:
+    value:
+    - 0.085
+    - 0.085
+    - 0.085
+    - 0.085
+    - 0.085
+    - 0.083
+    - 0.081
+    - 0.079
+    - 0.077
+    - 0.075
+    source: fcff3st.xls!Sheet1; input-only adapter
+    rationale: Historical workbook illustration, not current company guidance. Derived binding from source
+      inputs or structural year weights; see models.py.
+  debt_weight_profile:
+    value:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0.01
+    - 0.02
+    - 0.030000000000000006
+    - 0.04
+    - 0.05
+    source: fcff3st.xls!Sheet1; input-only adapter
+    rationale: Historical workbook illustration, not current company guidance. Derived binding from source
+      inputs or structural year weights; see models.py.
+  margin_profile:
+    value:
+    - 0.11513461228437852
+    - 0.1613509592132839
+    - 0.20756730614218924
+    - 0.25378365307109463
+    - 0.29999999999999993
+    - 0.29
+    - 0.27999999999999997
+    - 0.27
+    - 0.26
+    - 0.25
+    source: fcff3st.xls!Sheet1; input-only adapter
+    rationale: Historical workbook illustration, not current company guidance. Derived binding from source
+      inputs or structural year weights; see models.py.
+  capex_growth_profile:
+    value:
+    - 0.3
+    - 0.3
+    - 0.3
+    - 0.3
+    - 0.3
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    source: fcff3st.xls!Sheet1; input-only adapter
+    rationale: Historical workbook illustration, not current company guidance. Derived binding from source
+      inputs or structural year weights; see models.py.
+  transition_weight:
+    value:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0.2
+    - 0.4
+    - 0.6
+    - 0.8
+    - 1.0
+    source: fcff3st.xls!Sheet1; input-only adapter
+    rationale: Historical workbook illustration, not current company guidance. Derived binding from source
+      inputs or structural year weights; see models.py.
+  transition_years:
+    value: 5
+    source: fcff3st.xls!Sheet1; input-only adapter
+    rationale: Historical workbook illustration, not current company guidance. Derived binding from source
+      inputs or structural year weights; see models.py.
+valuation:
+  fcf: fcff
+  wacc:
+    ref: wacc
+    source: 'Burr model: wacc'
+    rationale: Follow the current scenario instead of copying a computed valuation input.
+  terminal_growth:
+    ref: stable_growth
+    source: 'Burr model: stable_growth'
+    rationale: Follow the current scenario instead of copying a computed valuation input.
+  shares:
+    value: 1500
+    source: fcff3st.xls!Sheet1!D11
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  net_cash:
+    value: -650
+    source: fcff3st.xls!Sheet1; input-only adapter
+    rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+      source inputs or structural year weights; see models.py.
+scenarios:
+  growth_up:
+    thesis: 'Benchmark perturbation growth_up: {''high_growth'': 0.35}. Other source inputs and workbook
+      switches held fixed.'
+    bindings:
+      revenue0:
+        value: 12406
+        source: fcff3st.xls!Sheet1!D3
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      capex0:
+        value: 233
+        source: fcff3st.xls!Sheet1!D5
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      depreciation0:
+        value: 298
+        source: fcff3st.xls!Sheet1!D6
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      high_growth:
+        value: 0.35
+        source: fcff3st.xls!Sheet1!E14
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      capex_growth:
+        value: 0.35
+        source: fcff3st.xls!Sheet1!E18
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_growth:
+        value: 0.06
+        source: fcff3st.xls!Sheet1!E26
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_margin:
+        value: 0.25
+        source: fcff3st.xls!Sheet1!E27
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_roc:
+        value: 0.12
+        source: fcff3st.xls!Sheet1!E29
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      working_capital_ratio:
+        value: 0.075
+        source: fcff3st.xls!Sheet1!E19
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      tax_rate:
+        value: 0.36
+        source: fcff3st.xls!Sheet1!E20
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      riskfree:
+        value: 0.065
+        source: fcff3st.xls!Sheet1!E22
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      risk_premium:
+        value: 0.055
+        source: fcff3st.xls!Sheet1!E23
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      revenue_growth_profile:
+        value:
+        - 0.35
+        - 0.35
+        - 0.35
+        - 0.35
+        - 0.35
+        - 0.292
+        - 0.23399999999999999
+        - 0.176
+        - 0.118
+        - 0.06
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      depreciation_growth_profile:
+        value:
+        - 0.35
+        - 0.35
+        - 0.35
+        - 0.35
+        - 0.35
+        - 0.292
+        - 0.23399999999999999
+        - 0.176
+        - 0.118
+        - 0.06
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      beta_profile:
+        value:
+        - 1.25
+        - 1.25
+        - 1.25
+        - 1.25
+        - 1.25
+        - 1.22
+        - 1.19
+        - 1.1600000000000001
+        - 1.1300000000000001
+        - 1.1
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      debt_cost_profile:
+        value:
+        - 0.085
+        - 0.085
+        - 0.085
+        - 0.085
+        - 0.085
+        - 0.083
+        - 0.081
+        - 0.079
+        - 0.077
+        - 0.075
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      debt_weight_profile:
+        value:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0.01
+        - 0.02
+        - 0.030000000000000006
+        - 0.04
+        - 0.05
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      margin_profile:
+        value:
+        - 0.11513461228437852
+        - 0.1613509592132839
+        - 0.20756730614218924
+        - 0.25378365307109463
+        - 0.29999999999999993
+        - 0.29
+        - 0.27999999999999997
+        - 0.27
+        - 0.26
+        - 0.25
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      capex_growth_profile:
+        value:
+        - 0.35
+        - 0.35
+        - 0.35
+        - 0.35
+        - 0.35
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      transition_weight:
+        value:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0.2
+        - 0.4
+        - 0.6
+        - 0.8
+        - 1.0
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      transition_years:
+        value: 5
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+    valuation:
+      fcf: fcff
+      wacc:
+        ref: wacc
+        source: 'Burr model: wacc'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      terminal_growth:
+        ref: stable_growth
+        source: 'Burr model: stable_growth'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      shares:
+        value: 1500
+        source: fcff3st.xls!Sheet1!D11
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      net_cash:
+        value: -650
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+          source inputs or structural year weights; see models.py.
+  growth_down:
+    thesis: 'Benchmark perturbation growth_down: {''high_growth'': 0.25}. Other source inputs and workbook
+      switches held fixed.'
+    bindings:
+      revenue0:
+        value: 12406
+        source: fcff3st.xls!Sheet1!D3
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      capex0:
+        value: 233
+        source: fcff3st.xls!Sheet1!D5
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      depreciation0:
+        value: 298
+        source: fcff3st.xls!Sheet1!D6
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      high_growth:
+        value: 0.25
+        source: fcff3st.xls!Sheet1!E14
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      capex_growth:
+        value: 0.25
+        source: fcff3st.xls!Sheet1!E18
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_growth:
+        value: 0.06
+        source: fcff3st.xls!Sheet1!E26
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_margin:
+        value: 0.25
+        source: fcff3st.xls!Sheet1!E27
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_roc:
+        value: 0.12
+        source: fcff3st.xls!Sheet1!E29
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      working_capital_ratio:
+        value: 0.075
+        source: fcff3st.xls!Sheet1!E19
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      tax_rate:
+        value: 0.36
+        source: fcff3st.xls!Sheet1!E20
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      riskfree:
+        value: 0.065
+        source: fcff3st.xls!Sheet1!E22
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      risk_premium:
+        value: 0.055
+        source: fcff3st.xls!Sheet1!E23
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      revenue_growth_profile:
+        value:
+        - 0.25
+        - 0.25
+        - 0.25
+        - 0.25
+        - 0.25
+        - 0.212
+        - 0.174
+        - 0.13599999999999998
+        - 0.098
+        - 0.06
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      depreciation_growth_profile:
+        value:
+        - 0.25
+        - 0.25
+        - 0.25
+        - 0.25
+        - 0.25
+        - 0.212
+        - 0.174
+        - 0.13599999999999998
+        - 0.098
+        - 0.06
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      beta_profile:
+        value:
+        - 1.25
+        - 1.25
+        - 1.25
+        - 1.25
+        - 1.25
+        - 1.22
+        - 1.19
+        - 1.1600000000000001
+        - 1.1300000000000001
+        - 1.1
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      debt_cost_profile:
+        value:
+        - 0.085
+        - 0.085
+        - 0.085
+        - 0.085
+        - 0.085
+        - 0.083
+        - 0.081
+        - 0.079
+        - 0.077
+        - 0.075
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      debt_weight_profile:
+        value:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0.01
+        - 0.02
+        - 0.030000000000000006
+        - 0.04
+        - 0.05
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      margin_profile:
+        value:
+        - 0.11513461228437852
+        - 0.1613509592132839
+        - 0.20756730614218924
+        - 0.25378365307109463
+        - 0.29999999999999993
+        - 0.29
+        - 0.27999999999999997
+        - 0.27
+        - 0.26
+        - 0.25
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      capex_growth_profile:
+        value:
+        - 0.25
+        - 0.25
+        - 0.25
+        - 0.25
+        - 0.25
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      transition_weight:
+        value:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0.2
+        - 0.4
+        - 0.6
+        - 0.8
+        - 1.0
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      transition_years:
+        value: 5
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+    valuation:
+      fcf: fcff
+      wacc:
+        ref: wacc
+        source: 'Burr model: wacc'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      terminal_growth:
+        ref: stable_growth
+        source: 'Burr model: stable_growth'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      shares:
+        value: 1500
+        source: fcff3st.xls!Sheet1!D11
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      net_cash:
+        value: -650
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+          source inputs or structural year weights; see models.py.
+  margin_down:
+    thesis: 'Benchmark perturbation margin_down: {''high_margin'': 0.25, ''stable_margin'': 0.2}. Other
+      source inputs and workbook switches held fixed.'
+    bindings:
+      revenue0:
+        value: 12406
+        source: fcff3st.xls!Sheet1!D3
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      capex0:
+        value: 233
+        source: fcff3st.xls!Sheet1!D5
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      depreciation0:
+        value: 298
+        source: fcff3st.xls!Sheet1!D6
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      high_growth:
+        value: 0.3
+        source: fcff3st.xls!Sheet1!E14
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      capex_growth:
+        value: 0.3
+        source: fcff3st.xls!Sheet1!E18
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_growth:
+        value: 0.06
+        source: fcff3st.xls!Sheet1!E26
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_margin:
+        value: 0.2
+        source: fcff3st.xls!Sheet1!E27
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_roc:
+        value: 0.12
+        source: fcff3st.xls!Sheet1!E29
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      working_capital_ratio:
+        value: 0.075
+        source: fcff3st.xls!Sheet1!E19
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      tax_rate:
+        value: 0.36
+        source: fcff3st.xls!Sheet1!E20
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      riskfree:
+        value: 0.065
+        source: fcff3st.xls!Sheet1!E22
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      risk_premium:
+        value: 0.055
+        source: fcff3st.xls!Sheet1!E23
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      revenue_growth_profile:
+        value:
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.252
+        - 0.204
+        - 0.156
+        - 0.10799999999999998
+        - 0.06
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      depreciation_growth_profile:
+        value:
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.252
+        - 0.204
+        - 0.156
+        - 0.10799999999999998
+        - 0.06
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      beta_profile:
+        value:
+        - 1.25
+        - 1.25
+        - 1.25
+        - 1.25
+        - 1.25
+        - 1.22
+        - 1.19
+        - 1.1600000000000001
+        - 1.1300000000000001
+        - 1.1
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      debt_cost_profile:
+        value:
+        - 0.085
+        - 0.085
+        - 0.085
+        - 0.085
+        - 0.085
+        - 0.083
+        - 0.081
+        - 0.079
+        - 0.077
+        - 0.075
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      debt_weight_profile:
+        value:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0.01
+        - 0.02
+        - 0.030000000000000006
+        - 0.04
+        - 0.05
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      margin_profile:
+        value:
+        - 0.10513461228437852
+        - 0.1413509592132839
+        - 0.17756730614218927
+        - 0.21378365307109462
+        - 0.25
+        - 0.24
+        - 0.23
+        - 0.22
+        - 0.21000000000000002
+        - 0.2
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      capex_growth_profile:
+        value:
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      transition_weight:
+        value:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0.2
+        - 0.4
+        - 0.6
+        - 0.8
+        - 1.0
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      transition_years:
+        value: 5
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+    valuation:
+      fcf: fcff
+      wacc:
+        ref: wacc
+        source: 'Burr model: wacc'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      terminal_growth:
+        ref: stable_growth
+        source: 'Burr model: stable_growth'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      shares:
+        value: 1500
+        source: fcff3st.xls!Sheet1!D11
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      net_cash:
+        value: -650
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+          source inputs or structural year weights; see models.py.
+  discount_up:
+    thesis: 'Benchmark perturbation discount_up: {''riskfree'': 0.075}. Other source inputs and workbook
+      switches held fixed.'
+    bindings:
+      revenue0:
+        value: 12406
+        source: fcff3st.xls!Sheet1!D3
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      capex0:
+        value: 233
+        source: fcff3st.xls!Sheet1!D5
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      depreciation0:
+        value: 298
+        source: fcff3st.xls!Sheet1!D6
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      high_growth:
+        value: 0.3
+        source: fcff3st.xls!Sheet1!E14
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      capex_growth:
+        value: 0.3
+        source: fcff3st.xls!Sheet1!E18
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_growth:
+        value: 0.06
+        source: fcff3st.xls!Sheet1!E26
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_margin:
+        value: 0.25
+        source: fcff3st.xls!Sheet1!E27
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_roc:
+        value: 0.12
+        source: fcff3st.xls!Sheet1!E29
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      working_capital_ratio:
+        value: 0.075
+        source: fcff3st.xls!Sheet1!E19
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      tax_rate:
+        value: 0.36
+        source: fcff3st.xls!Sheet1!E20
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      riskfree:
+        value: 0.075
+        source: fcff3st.xls!Sheet1!E22
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      risk_premium:
+        value: 0.055
+        source: fcff3st.xls!Sheet1!E23
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      revenue_growth_profile:
+        value:
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.252
+        - 0.204
+        - 0.156
+        - 0.10799999999999998
+        - 0.06
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      depreciation_growth_profile:
+        value:
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.252
+        - 0.204
+        - 0.156
+        - 0.10799999999999998
+        - 0.06
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      beta_profile:
+        value:
+        - 1.25
+        - 1.25
+        - 1.25
+        - 1.25
+        - 1.25
+        - 1.22
+        - 1.19
+        - 1.1600000000000001
+        - 1.1300000000000001
+        - 1.1
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      debt_cost_profile:
+        value:
+        - 0.085
+        - 0.085
+        - 0.085
+        - 0.085
+        - 0.085
+        - 0.083
+        - 0.081
+        - 0.079
+        - 0.077
+        - 0.075
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      debt_weight_profile:
+        value:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0.01
+        - 0.02
+        - 0.030000000000000006
+        - 0.04
+        - 0.05
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      margin_profile:
+        value:
+        - 0.11513461228437852
+        - 0.1613509592132839
+        - 0.20756730614218924
+        - 0.25378365307109463
+        - 0.29999999999999993
+        - 0.29
+        - 0.27999999999999997
+        - 0.27
+        - 0.26
+        - 0.25
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      capex_growth_profile:
+        value:
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      transition_weight:
+        value:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0.2
+        - 0.4
+        - 0.6
+        - 0.8
+        - 1.0
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      transition_years:
+        value: 5
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+    valuation:
+      fcf: fcff
+      wacc:
+        ref: wacc
+        source: 'Burr model: wacc'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      terminal_growth:
+        ref: stable_growth
+        source: 'Burr model: stable_growth'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      shares:
+        value: 1500
+        source: fcff3st.xls!Sheet1!D11
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      net_cash:
+        value: -650
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+          source inputs or structural year weights; see models.py.
+  reinvestment_up:
+    thesis: 'Benchmark perturbation reinvestment_up: {''capex0'': 300, ''stable_roc'': 0.1}. Other source
+      inputs and workbook switches held fixed.'
+    bindings:
+      revenue0:
+        value: 12406
+        source: fcff3st.xls!Sheet1!D3
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      capex0:
+        value: 300
+        source: fcff3st.xls!Sheet1!D5
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      depreciation0:
+        value: 298
+        source: fcff3st.xls!Sheet1!D6
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      high_growth:
+        value: 0.3
+        source: fcff3st.xls!Sheet1!E14
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      capex_growth:
+        value: 0.3
+        source: fcff3st.xls!Sheet1!E18
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_growth:
+        value: 0.06
+        source: fcff3st.xls!Sheet1!E26
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_margin:
+        value: 0.25
+        source: fcff3st.xls!Sheet1!E27
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_roc:
+        value: 0.1
+        source: fcff3st.xls!Sheet1!E29
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      working_capital_ratio:
+        value: 0.075
+        source: fcff3st.xls!Sheet1!E19
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      tax_rate:
+        value: 0.36
+        source: fcff3st.xls!Sheet1!E20
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      riskfree:
+        value: 0.065
+        source: fcff3st.xls!Sheet1!E22
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      risk_premium:
+        value: 0.055
+        source: fcff3st.xls!Sheet1!E23
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      revenue_growth_profile:
+        value:
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.252
+        - 0.204
+        - 0.156
+        - 0.10799999999999998
+        - 0.06
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      depreciation_growth_profile:
+        value:
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.252
+        - 0.204
+        - 0.156
+        - 0.10799999999999998
+        - 0.06
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      beta_profile:
+        value:
+        - 1.25
+        - 1.25
+        - 1.25
+        - 1.25
+        - 1.25
+        - 1.22
+        - 1.19
+        - 1.1600000000000001
+        - 1.1300000000000001
+        - 1.1
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      debt_cost_profile:
+        value:
+        - 0.085
+        - 0.085
+        - 0.085
+        - 0.085
+        - 0.085
+        - 0.083
+        - 0.081
+        - 0.079
+        - 0.077
+        - 0.075
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      debt_weight_profile:
+        value:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0.01
+        - 0.02
+        - 0.030000000000000006
+        - 0.04
+        - 0.05
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      margin_profile:
+        value:
+        - 0.11513461228437852
+        - 0.1613509592132839
+        - 0.20756730614218924
+        - 0.25378365307109463
+        - 0.29999999999999993
+        - 0.29
+        - 0.27999999999999997
+        - 0.27
+        - 0.26
+        - 0.25
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      capex_growth_profile:
+        value:
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      transition_weight:
+        value:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0.2
+        - 0.4
+        - 0.6
+        - 0.8
+        - 1.0
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      transition_years:
+        value: 5
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+    valuation:
+      fcf: fcff
+      wacc:
+        ref: wacc
+        source: 'Burr model: wacc'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      terminal_growth:
+        ref: stable_growth
+        source: 'Burr model: stable_growth'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      shares:
+        value: 1500
+        source: fcff3st.xls!Sheet1!D11
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      net_cash:
+        value: -650
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+          source inputs or structural year weights; see models.py.
+  terminal_growth_down:
+    thesis: 'Benchmark perturbation terminal_growth_down: {''stable_growth'': 0.05}. Other source inputs
+      and workbook switches held fixed.'
+    bindings:
+      revenue0:
+        value: 12406
+        source: fcff3st.xls!Sheet1!D3
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      capex0:
+        value: 233
+        source: fcff3st.xls!Sheet1!D5
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      depreciation0:
+        value: 298
+        source: fcff3st.xls!Sheet1!D6
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      high_growth:
+        value: 0.3
+        source: fcff3st.xls!Sheet1!E14
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      capex_growth:
+        value: 0.3
+        source: fcff3st.xls!Sheet1!E18
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_growth:
+        value: 0.05
+        source: fcff3st.xls!Sheet1!E26
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_margin:
+        value: 0.25
+        source: fcff3st.xls!Sheet1!E27
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_roc:
+        value: 0.12
+        source: fcff3st.xls!Sheet1!E29
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      working_capital_ratio:
+        value: 0.075
+        source: fcff3st.xls!Sheet1!E19
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      tax_rate:
+        value: 0.36
+        source: fcff3st.xls!Sheet1!E20
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      riskfree:
+        value: 0.065
+        source: fcff3st.xls!Sheet1!E22
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      risk_premium:
+        value: 0.055
+        source: fcff3st.xls!Sheet1!E23
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      revenue_growth_profile:
+        value:
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.25
+        - 0.19999999999999998
+        - 0.15
+        - 0.09999999999999998
+        - 0.04999999999999999
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      depreciation_growth_profile:
+        value:
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.25
+        - 0.19999999999999998
+        - 0.15
+        - 0.09999999999999998
+        - 0.04999999999999999
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      beta_profile:
+        value:
+        - 1.25
+        - 1.25
+        - 1.25
+        - 1.25
+        - 1.25
+        - 1.22
+        - 1.19
+        - 1.1600000000000001
+        - 1.1300000000000001
+        - 1.1
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      debt_cost_profile:
+        value:
+        - 0.085
+        - 0.085
+        - 0.085
+        - 0.085
+        - 0.085
+        - 0.083
+        - 0.081
+        - 0.079
+        - 0.077
+        - 0.075
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      debt_weight_profile:
+        value:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0.01
+        - 0.02
+        - 0.030000000000000006
+        - 0.04
+        - 0.05
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      margin_profile:
+        value:
+        - 0.11513461228437852
+        - 0.1613509592132839
+        - 0.20756730614218924
+        - 0.25378365307109463
+        - 0.29999999999999993
+        - 0.29
+        - 0.27999999999999997
+        - 0.27
+        - 0.26
+        - 0.25
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      capex_growth_profile:
+        value:
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0.3
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      transition_weight:
+        value:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0.2
+        - 0.4
+        - 0.6
+        - 0.8
+        - 1.0
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      transition_years:
+        value: 5
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+    valuation:
+      fcf: fcff
+      wacc:
+        ref: wacc
+        source: 'Burr model: wacc'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      terminal_growth:
+        ref: stable_growth
+        source: 'Burr model: stable_growth'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      shares:
+        value: 1500
+        source: fcff3st.xls!Sheet1!D11
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      net_cash:
+        value: -650
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+          source inputs or structural year weights; see models.py.
+  combined:
+    thesis: 'Benchmark perturbation combined: {''high_growth'': 0.25, ''high_margin'': 0.25, ''stable_margin'':
+      0.2, ''riskfree'': 0.075, ''capex0'': 300, ''stable_growth'': 0.05}. Other source inputs and workbook
+      switches held fixed.'
+    bindings:
+      revenue0:
+        value: 12406
+        source: fcff3st.xls!Sheet1!D3
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      capex0:
+        value: 300
+        source: fcff3st.xls!Sheet1!D5
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      depreciation0:
+        value: 298
+        source: fcff3st.xls!Sheet1!D6
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      high_growth:
+        value: 0.25
+        source: fcff3st.xls!Sheet1!E14
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      capex_growth:
+        value: 0.25
+        source: fcff3st.xls!Sheet1!E18
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_growth:
+        value: 0.05
+        source: fcff3st.xls!Sheet1!E26
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_margin:
+        value: 0.2
+        source: fcff3st.xls!Sheet1!E27
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      stable_roc:
+        value: 0.12
+        source: fcff3st.xls!Sheet1!E29
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      working_capital_ratio:
+        value: 0.075
+        source: fcff3st.xls!Sheet1!E19
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      tax_rate:
+        value: 0.36
+        source: fcff3st.xls!Sheet1!E20
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      riskfree:
+        value: 0.075
+        source: fcff3st.xls!Sheet1!E22
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      risk_premium:
+        value: 0.055
+        source: fcff3st.xls!Sheet1!E23
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      revenue_growth_profile:
+        value:
+        - 0.25
+        - 0.25
+        - 0.25
+        - 0.25
+        - 0.25
+        - 0.21
+        - 0.16999999999999998
+        - 0.12999999999999998
+        - 0.09
+        - 0.04999999999999999
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      depreciation_growth_profile:
+        value:
+        - 0.25
+        - 0.25
+        - 0.25
+        - 0.25
+        - 0.25
+        - 0.21
+        - 0.16999999999999998
+        - 0.12999999999999998
+        - 0.09
+        - 0.04999999999999999
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      beta_profile:
+        value:
+        - 1.25
+        - 1.25
+        - 1.25
+        - 1.25
+        - 1.25
+        - 1.22
+        - 1.19
+        - 1.1600000000000001
+        - 1.1300000000000001
+        - 1.1
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      debt_cost_profile:
+        value:
+        - 0.085
+        - 0.085
+        - 0.085
+        - 0.085
+        - 0.085
+        - 0.083
+        - 0.081
+        - 0.079
+        - 0.077
+        - 0.075
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      debt_weight_profile:
+        value:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0.01
+        - 0.02
+        - 0.030000000000000006
+        - 0.04
+        - 0.05
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      margin_profile:
+        value:
+        - 0.10513461228437852
+        - 0.1413509592132839
+        - 0.17756730614218927
+        - 0.21378365307109462
+        - 0.25
+        - 0.24
+        - 0.23
+        - 0.22
+        - 0.21000000000000002
+        - 0.2
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      capex_growth_profile:
+        value:
+        - 0.25
+        - 0.25
+        - 0.25
+        - 0.25
+        - 0.25
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      transition_weight:
+        value:
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0
+        - 0.2
+        - 0.4
+        - 0.6
+        - 0.8
+        - 1.0
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+      transition_years:
+        value: 5
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived binding from
+          source inputs or structural year weights; see models.py.
+    valuation:
+      fcf: fcff
+      wacc:
+        ref: wacc
+        source: 'Burr model: wacc'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      terminal_growth:
+        ref: stable_growth
+        source: 'Burr model: stable_growth'
+        rationale: Follow the current scenario instead of copying a computed valuation input.
+      shares:
+        value: 1500
+        source: fcff3st.xls!Sheet1!D11
+        rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+      net_cash:
+        value: -650
+        source: fcff3st.xls!Sheet1; input-only adapter
+        rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+          source inputs or structural year weights; see models.py.

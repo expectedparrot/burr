@@ -15,7 +15,7 @@ import yaml
 from .errors import BurrError, require
 
 METADATA = {"rationale", "source", "confidence", "as_of", "unit", "tolerance"}
-VALUE_KEYS = {"value", "start", "end", "shape", "until", "after", "dist", "mean", "sd",
+VALUE_KEYS = {"value", "ref", "start", "end", "shape", "until", "after", "dist", "mean", "sd",
               "lo", "hi", "low", "high", "applies_to"}
 IDENTIFIER = re.compile(r"[a-z][a-z0-9_]*\Z")
 

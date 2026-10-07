@@ -91,6 +91,9 @@ function evaluateDashboard(data, overrides = {}) {
     for (const check of data.checks) if (!at(check.expression, t)) throw Error('Model check failed in ' + year + ': ' + check.source);
   });
   const series = x => Array.isArray(x) ? x : data.years.map(() => x);
+  for (const [key, ref] of Object.entries(data.valuation_refs || {})) {
+    valuation[key] = Object.hasOwn(inputs, ref) ? inputs[ref] : lines[ref];
+  }
   const rates = series(valuation.wacc), growth = series(valuation.terminal_growth ?? 0).at(-1);
   const shares = series(valuation.shares)[0], cash = series(valuation.net_cash ?? 0)[0];
   if (!(shares > 0)) throw Error('Shares must be positive.');

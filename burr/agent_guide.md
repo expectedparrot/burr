@@ -101,6 +101,11 @@ Use `burr patch stand --help` for durable edits; the plain mapping above is for
 - Valuation requires an explicit cash-flow line, discount assumptions, and
   consistent shares/currency units. Operating-only models can still use `run`
   and `plot`; the valuation golden path stops for missing valuation inputs.
+- For valuation assumptions derived from inputs or model lines, use `{ref: NAME}`
+  (for example `wacc: {ref: wacc}`), not a copied numeric result. References stay
+  linked in scenarios, Monte Carlo, Excel, and dashboards. Put arithmetic in a
+  template line and reference that line. Numeric valuation settings remain
+  independent assumptions; equality of their current values does not link them.
 - No provider calls, spending, messaging, or publication is required by this
   local workflow. Respect the principal's authorized scope for durable edits.
 

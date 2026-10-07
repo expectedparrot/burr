@@ -1,0 +1,590 @@
+{
+  "burr": {
+    "source_sha256": "96e997f63e8108d03937cb1f37f5ac615faba8d7133a7696591c860a936290ea",
+    "formula_cells": 230,
+    "errors": [],
+    "missing_formula_caches": [],
+    "source_metric_checks": {
+      "ok": true,
+      "schema_ok": true,
+      "passed": 40,
+      "total": 40,
+      "checks": [
+        {
+          "metric": "after_tax_debt_cost",
+          "index": 0,
+          "actual": 0.0393305,
+          "expected": 0.0393305,
+          "ok": true
+        },
+        {
+          "metric": "cost_of_equity",
+          "index": 0,
+          "actual": 0.097,
+          "expected": 0.097,
+          "ok": true
+        },
+        {
+          "metric": "debt_weight",
+          "index": 0,
+          "actual": 0.0144014503888806,
+          "expected": 0.0144014503888806,
+          "ok": true
+        },
+        {
+          "metric": "equity_before_options",
+          "index": 0,
+          "actual": 67853.1523336163,
+          "expected": 67853.1523336163,
+          "ok": true
+        },
+        {
+          "metric": "ev",
+          "index": 0,
+          "actual": 69175.1523336163,
+          "expected": 69175.1523336163,
+          "ok": true
+        },
+        {
+          "metric": "fcff",
+          "index": 0,
+          "actual": 2681.99139547175,
+          "expected": 2681.99139547176,
+          "ok": true
+        },
+        {
+          "metric": "fcff",
+          "index": 1,
+          "actual": 2965.30174776604,
+          "expected": 2965.30174776604,
+          "ok": true
+        },
+        {
+          "metric": "fcff",
+          "index": 2,
+          "actual": 3278.53939805711,
+          "expected": 3278.53939805712,
+          "ok": true
+        },
+        {
+          "metric": "fcff",
+          "index": 3,
+          "actual": 3624.86569628555,
+          "expected": 3624.86569628555,
+          "ok": true
+        },
+        {
+          "metric": "fcff",
+          "index": 4,
+          "actual": 4007.77593946084,
+          "expected": 4007.77593946084,
+          "ok": true
+        },
+        {
+          "metric": "fcff",
+          "index": 5,
+          "actual": 3247.37712358278,
+          "expected": 3247.37712358278,
+          "ok": true
+        },
+        {
+          "metric": "high_growth",
+          "index": 0,
+          "actual": 0.105634325588301,
+          "expected": 0.105634325588301,
+          "ok": true
+        },
+        {
+          "metric": "net_capex",
+          "index": 0,
+          "actual": 1021.60611684359,
+          "expected": 1021.60611684359,
+          "ok": true
+        },
+        {
+          "metric": "net_capex",
+          "index": 1,
+          "actual": 1129.52279001325,
+          "expected": 1129.52279001325,
+          "ok": true
+        },
+        {
+          "metric": "net_capex",
+          "index": 2,
+          "actual": 1248.83916817291,
+          "expected": 1248.83916817291,
+          "ok": true
+        },
+        {
+          "metric": "net_capex",
+          "index": 3,
+          "actual": 1380.75945147111,
+          "expected": 1380.75945147111,
+          "ok": true
+        },
+        {
+          "metric": "net_capex",
+          "index": 4,
+          "actual": 1526.61504492693,
+          "expected": 1526.61504492693,
+          "ok": true
+        },
+        {
+          "metric": "net_capex",
+          "index": 5,
+          "actual": 2875.140792823,
+          "expected": 2875.140792823,
+          "ok": true
+        },
+        {
+          "metric": "nopat",
+          "index": 0,
+          "actual": 4100.25440489941,
+          "expected": 4100.25440489941,
+          "ok": true
+        },
+        {
+          "metric": "nopat",
+          "index": 1,
+          "actual": 4533.38201370142,
+          "expected": 4533.38201370142,
+          "ok": true
+        },
+        {
+          "metric": "nopat",
+          "index": 2,
+          "actual": 5012.26276535291,
+          "expected": 5012.26276535291,
+          "ok": true
+        },
+        {
+          "metric": "nopat",
+          "index": 3,
+          "actual": 5541.72976224231,
+          "expected": 5541.72976224231,
+          "ok": true
+        },
+        {
+          "metric": "nopat",
+          "index": 4,
+          "actual": 6127.12664826939,
+          "expected": 6127.12664826939,
+          "ok": true
+        },
+        {
+          "metric": "nopat",
+          "index": 5,
+          "actual": 6494.75424716556,
+          "expected": 6494.75424716556,
+          "ok": true
+        },
+        {
+          "metric": "per_share",
+          "index": 0,
+          "actual": 66.7825642215609,
+          "expected": 66.7825642215609,
+          "ok": true
+        },
+        {
+          "metric": "pv_fcff",
+          "index": 0,
+          "actual": 2446.69410641036,
+          "expected": 2446.69410641036,
+          "ok": true
+        },
+        {
+          "metric": "pv_fcff",
+          "index": 1,
+          "actual": 2467.82003018996,
+          "expected": 2467.82003018996,
+          "ok": true
+        },
+        {
+          "metric": "pv_fcff",
+          "index": 2,
+          "actual": 2489.12836527074,
+          "expected": 2489.12836527074,
+          "ok": true
+        },
+        {
+          "metric": "pv_fcff",
+          "index": 3,
+          "actual": 2510.62068667886,
+          "expected": 2510.62068667887,
+          "ok": true
+        },
+        {
+          "metric": "pv_fcff",
+          "index": 4,
+          "actual": 2532.29858304004,
+          "expected": 2532.29858304004,
+          "ok": true
+        },
+        {
+          "metric": "pv_terminal",
+          "index": 0,
+          "actual": 56728.5905620263,
+          "expected": 56728.5905620263,
+          "ok": true
+        },
+        {
+          "metric": "terminal_value",
+          "index": 0,
+          "actual": 89782.2562697456,
+          "expected": 89782.2562697456,
+          "ok": true
+        },
+        {
+          "metric": "wacc",
+          "index": 0,
+          "actual": 0.0961694755567984,
+          "expected": 0.0961694755567984,
+          "ok": true
+        },
+        {
+          "metric": "working_capital_change",
+          "index": 0,
+          "actual": 396.65689258407,
+          "expected": 396.656892584069,
+          "ok": true
+        },
+        {
+          "metric": "working_capital_change",
+          "index": 1,
+          "actual": 438.557475922139,
+          "expected": 438.557475922139,
+          "ok": true
+        },
+        {
+          "metric": "working_capital_change",
+          "index": 2,
+          "actual": 484.884199122882,
+          "expected": 484.88419912288,
+          "ok": true
+        },
+        {
+          "metric": "working_capital_change",
+          "index": 3,
+          "actual": 536.10461448565,
+          "expected": 536.10461448565,
+          "ok": true
+        },
+        {
+          "metric": "working_capital_change",
+          "index": 4,
+          "actual": 592.735663881618,
+          "expected": 592.735663881618,
+          "ok": true
+        },
+        {
+          "metric": "working_capital_change",
+          "index": 5,
+          "actual": 372.236330759781,
+          "expected": 372.236330759781,
+          "ok": true
+        },
+        {
+          "metric": "working_capital_ratio",
+          "index": 0,
+          "actual": 0.224836836117598,
+          "expected": 0.224836836117598,
+          "ok": true
+        }
+      ]
+    }
+  },
+  "python": {
+    "source_sha256": "9903c090282d6da32bdb756b6c2cf270d2ddb2740013ceefad81c1b79f826b6e",
+    "formula_cells": 87,
+    "errors": [],
+    "missing_formula_caches": [],
+    "source_metric_checks": {
+      "ok": true,
+      "schema_ok": true,
+      "passed": 40,
+      "total": 40,
+      "checks": [
+        {
+          "metric": "after_tax_debt_cost",
+          "index": 0,
+          "actual": 0.0393305,
+          "expected": 0.0393305,
+          "ok": true
+        },
+        {
+          "metric": "cost_of_equity",
+          "index": 0,
+          "actual": 0.097,
+          "expected": 0.097,
+          "ok": true
+        },
+        {
+          "metric": "debt_weight",
+          "index": 0,
+          "actual": 0.0144014503888806,
+          "expected": 0.0144014503888806,
+          "ok": true
+        },
+        {
+          "metric": "equity_before_options",
+          "index": 0,
+          "actual": 67853.1523336163,
+          "expected": 67853.1523336163,
+          "ok": true
+        },
+        {
+          "metric": "ev",
+          "index": 0,
+          "actual": 69175.1523336163,
+          "expected": 69175.1523336163,
+          "ok": true
+        },
+        {
+          "metric": "fcff",
+          "index": 0,
+          "actual": 2681.99139547176,
+          "expected": 2681.99139547176,
+          "ok": true
+        },
+        {
+          "metric": "fcff",
+          "index": 1,
+          "actual": 2965.30174776604,
+          "expected": 2965.30174776604,
+          "ok": true
+        },
+        {
+          "metric": "fcff",
+          "index": 2,
+          "actual": 3278.53939805712,
+          "expected": 3278.53939805712,
+          "ok": true
+        },
+        {
+          "metric": "fcff",
+          "index": 3,
+          "actual": 3624.86569628555,
+          "expected": 3624.86569628555,
+          "ok": true
+        },
+        {
+          "metric": "fcff",
+          "index": 4,
+          "actual": 4007.77593946084,
+          "expected": 4007.77593946084,
+          "ok": true
+        },
+        {
+          "metric": "fcff",
+          "index": 5,
+          "actual": 3247.37712358278,
+          "expected": 3247.37712358278,
+          "ok": true
+        },
+        {
+          "metric": "high_growth",
+          "index": 0,
+          "actual": 0.105634325588301,
+          "expected": 0.105634325588301,
+          "ok": true
+        },
+        {
+          "metric": "net_capex",
+          "index": 0,
+          "actual": 1021.60611684359,
+          "expected": 1021.60611684359,
+          "ok": true
+        },
+        {
+          "metric": "net_capex",
+          "index": 1,
+          "actual": 1129.52279001325,
+          "expected": 1129.52279001325,
+          "ok": true
+        },
+        {
+          "metric": "net_capex",
+          "index": 2,
+          "actual": 1248.83916817291,
+          "expected": 1248.83916817291,
+          "ok": true
+        },
+        {
+          "metric": "net_capex",
+          "index": 3,
+          "actual": 1380.75945147111,
+          "expected": 1380.75945147111,
+          "ok": true
+        },
+        {
+          "metric": "net_capex",
+          "index": 4,
+          "actual": 1526.61504492693,
+          "expected": 1526.61504492693,
+          "ok": true
+        },
+        {
+          "metric": "net_capex",
+          "index": 5,
+          "actual": 2875.140792823,
+          "expected": 2875.140792823,
+          "ok": true
+        },
+        {
+          "metric": "nopat",
+          "index": 0,
+          "actual": 4100.25440489941,
+          "expected": 4100.25440489941,
+          "ok": true
+        },
+        {
+          "metric": "nopat",
+          "index": 1,
+          "actual": 4533.38201370142,
+          "expected": 4533.38201370142,
+          "ok": true
+        },
+        {
+          "metric": "nopat",
+          "index": 2,
+          "actual": 5012.26276535291,
+          "expected": 5012.26276535291,
+          "ok": true
+        },
+        {
+          "metric": "nopat",
+          "index": 3,
+          "actual": 5541.72976224231,
+          "expected": 5541.72976224231,
+          "ok": true
+        },
+        {
+          "metric": "nopat",
+          "index": 4,
+          "actual": 6127.12664826939,
+          "expected": 6127.12664826939,
+          "ok": true
+        },
+        {
+          "metric": "nopat",
+          "index": 5,
+          "actual": 6494.75424716556,
+          "expected": 6494.75424716556,
+          "ok": true
+        },
+        {
+          "metric": "per_share",
+          "index": 0,
+          "actual": 66.7825642215609,
+          "expected": 66.7825642215609,
+          "ok": true
+        },
+        {
+          "metric": "pv_fcff",
+          "index": 0,
+          "actual": 2446.69410641036,
+          "expected": 2446.69410641036,
+          "ok": true
+        },
+        {
+          "metric": "pv_fcff",
+          "index": 1,
+          "actual": 2467.82003018996,
+          "expected": 2467.82003018996,
+          "ok": true
+        },
+        {
+          "metric": "pv_fcff",
+          "index": 2,
+          "actual": 2489.12836527074,
+          "expected": 2489.12836527074,
+          "ok": true
+        },
+        {
+          "metric": "pv_fcff",
+          "index": 3,
+          "actual": 2510.62068667887,
+          "expected": 2510.62068667887,
+          "ok": true
+        },
+        {
+          "metric": "pv_fcff",
+          "index": 4,
+          "actual": 2532.29858304004,
+          "expected": 2532.29858304004,
+          "ok": true
+        },
+        {
+          "metric": "pv_terminal",
+          "index": 0,
+          "actual": 56728.5905620263,
+          "expected": 56728.5905620263,
+          "ok": true
+        },
+        {
+          "metric": "terminal_value",
+          "index": 0,
+          "actual": 89782.2562697456,
+          "expected": 89782.2562697456,
+          "ok": true
+        },
+        {
+          "metric": "wacc",
+          "index": 0,
+          "actual": 0.0961694755567984,
+          "expected": 0.0961694755567984,
+          "ok": true
+        },
+        {
+          "metric": "working_capital_change",
+          "index": 0,
+          "actual": 396.656892584069,
+          "expected": 396.656892584069,
+          "ok": true
+        },
+        {
+          "metric": "working_capital_change",
+          "index": 1,
+          "actual": 438.557475922139,
+          "expected": 438.557475922139,
+          "ok": true
+        },
+        {
+          "metric": "working_capital_change",
+          "index": 2,
+          "actual": 484.88419912288,
+          "expected": 484.88419912288,
+          "ok": true
+        },
+        {
+          "metric": "working_capital_change",
+          "index": 3,
+          "actual": 536.10461448565,
+          "expected": 536.10461448565,
+          "ok": true
+        },
+        {
+          "metric": "working_capital_change",
+          "index": 4,
+          "actual": 592.735663881618,
+          "expected": 592.735663881618,
+          "ok": true
+        },
+        {
+          "metric": "working_capital_change",
+          "index": 5,
+          "actual": 372.236330759781,
+          "expected": 372.236330759781,
+          "ok": true
+        },
+        {
+          "metric": "working_capital_ratio",
+          "index": 0,
+          "actual": 0.224836836117598,
+          "expected": 0.224836836117598,
+          "ok": true
+        }
+      ]
+    }
+  }
+}

@@ -178,6 +178,11 @@ class Compiler:
         for name in sorted(m.expressions):
             self.line_rows[name] = model.max_row + 1
             model.append([name])
+        for name, target in m.valuation_refs.items():
+            sheet, row = (("Assumptions", self.input_rows[target]) if target in self.input_rows
+                          else ("Model", self.line_rows[target]))
+            for t in range(n):
+                assumptions.cell(valuation_rows[name], t + 2, f"={sheet}!{get_column_letter(t + 2)}{row}")
         helper = model.max_row + 1
         for name in sorted(m.expressions):
             for node in ast.walk(m.expressions[name]):

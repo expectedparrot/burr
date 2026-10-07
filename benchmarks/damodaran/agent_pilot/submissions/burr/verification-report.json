@@ -1,0 +1,287 @@
+{
+  "cached_source_relative_error": 4.227313717372504e-15,
+  "baseline_relative_error": 4.227313717372504e-15,
+  "cases": [
+    {
+      "name": "beta*0.9",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "beta*1.1",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "capex0*0.9",
+      "maximum_relative_error": 1.549474178399614e-15,
+      "pass": true
+    },
+    {
+      "name": "capex0*1.1",
+      "maximum_relative_error": 1.1874112036839935e-15,
+      "pass": true
+    },
+    {
+      "name": "cash*0.9",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "cash*1.1",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "debt*0.9",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "debt*1.1",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "debt_cost*0.9",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "debt_cost*1.1",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "depreciation0*0.9",
+      "maximum_relative_error": 2.198479677225661e-15,
+      "pass": true
+    },
+    {
+      "name": "depreciation0*1.1",
+      "maximum_relative_error": 1.3018993213062314e-15,
+      "pass": true
+    },
+    {
+      "name": "ebit0*0.9",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "ebit0*1.1",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "options*0.9",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "options*1.1",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "prior_book_debt*0.9",
+      "maximum_relative_error": 2.0856272250916093e-15,
+      "pass": true
+    },
+    {
+      "name": "prior_book_debt*1.1",
+      "maximum_relative_error": 2.3012259717908954e-15,
+      "pass": true
+    },
+    {
+      "name": "prior_book_equity*0.9",
+      "maximum_relative_error": 2.0394261758353055e-15,
+      "pass": true
+    },
+    {
+      "name": "prior_book_equity*1.1",
+      "maximum_relative_error": 2.2244855195122824e-15,
+      "pass": true
+    },
+    {
+      "name": "revenue0*0.9",
+      "maximum_relative_error": 2.1101564896224786e-15,
+      "pass": true
+    },
+    {
+      "name": "revenue0*1.1",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "risk_premium*0.9",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "risk_premium*1.1",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "riskfree*0.9",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "riskfree*1.1",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "share_price*0.9",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "share_price*1.1",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "shares*0.9",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "shares*1.1",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "stable_growth*0.9",
+      "maximum_relative_error": 2.3754558246697356e-15,
+      "pass": true
+    },
+    {
+      "name": "stable_growth*1.1",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "stable_roc*0.9",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "stable_roc*1.1",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "tax_rate*0.9",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "tax_rate*1.1",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "working_capital0*0.9",
+      "maximum_relative_error": 2.084105174935781e-15,
+      "pass": true
+    },
+    {
+      "name": "working_capital0*1.1",
+      "maximum_relative_error": 2.131471201638867e-15,
+      "pass": true
+    },
+    {
+      "name": "working_capital_change0*0.9",
+      "maximum_relative_error": 2.1740866960913958e-15,
+      "pass": true
+    },
+    {
+      "name": "working_capital_change0*1.1",
+      "maximum_relative_error": 9.000332982920824e-16,
+      "pass": true
+    },
+    {
+      "name": "negative_working_capital",
+      "maximum_relative_error": 3.155850153209478e-16,
+      "pass": true
+    },
+    {
+      "name": "zero_working_capital",
+      "maximum_relative_error": 3.155850153209478e-16,
+      "pass": true
+    },
+    {
+      "name": "zero_stable_growth",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "negative_terminal_fcff",
+      "maximum_relative_error": 2.227387405712616e-15,
+      "pass": true
+    },
+    {
+      "name": "combined_0",
+      "maximum_relative_error": 1.3258992094180779e-15,
+      "pass": true
+    },
+    {
+      "name": "combined_1",
+      "maximum_relative_error": 7.703900789361181e-16,
+      "pass": true
+    },
+    {
+      "name": "combined_2",
+      "maximum_relative_error": 1.9751755155005728e-15,
+      "pass": true
+    },
+    {
+      "name": "combined_3",
+      "maximum_relative_error": 1.574337522138241e-15,
+      "pass": true
+    },
+    {
+      "name": "combined_4",
+      "maximum_relative_error": 2.2257315418570284e-15,
+      "pass": true
+    },
+    {
+      "name": "combined_5",
+      "maximum_relative_error": 2.299752613424228e-15,
+      "pass": true
+    },
+    {
+      "name": "combined_6",
+      "maximum_relative_error": 1.8045887819301393e-15,
+      "pass": true
+    },
+    {
+      "name": "combined_7",
+      "maximum_relative_error": 2.423538526957539e-15,
+      "pass": true
+    },
+    {
+      "name": "combined_8",
+      "maximum_relative_error": 1.40930722481731e-15,
+      "pass": true
+    },
+    {
+      "name": "combined_9",
+      "maximum_relative_error": 2.083176181485563e-15,
+      "pass": true
+    },
+    {
+      "name": "combined_10",
+      "maximum_relative_error": 2.1124815097251716e-15,
+      "pass": true
+    },
+    {
+      "name": "combined_11",
+      "maximum_relative_error": 1.5751011810166055e-15,
+      "pass": true
+    }
+  ],
+  "passed_cases": 56
+}

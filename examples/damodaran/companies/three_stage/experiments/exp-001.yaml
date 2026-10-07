@@ -1,0 +1,51 @@
+id: exp-001
+at: '2026-10-06T07:31:30+00:00'
+question: Does the runnable Burr model reproduce the source workbook under a higher discount rate?
+scenario: base
+patch:
+  bindings:
+    riskfree:
+      value: 0.075
+      source: fcff3st.xls!Sheet1!E22
+      rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  valuation:
+    wacc:
+      value:
+      - 0.14375
+      - 0.14375
+      - 0.14375
+      - 0.14375
+      - 0.14375
+      - 0.1412102
+      - 0.1386778
+      - 0.13615280000000002
+      - 0.1336352
+      - 0.13112500000000002
+      source: fcff3st.xls!Sheet1; input-only adapter
+      rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+        source inputs or structural year weights; see models.py.
+results:
+  ok: true
+  base_per_share: 44.011222078537365
+  trial_per_share: 37.812490874200655
+  gap: -6.19873120433671
+  attribution:
+  - key: wacc
+    section: valuation
+    delta: -6.19873120433671
+    metadata:
+      source: fcff3st.xls!Sheet1; input-only adapter
+      rationale: Historical workbook illustration, not current company guidance. Derived valuation from
+        source inputs or structural year weights; see models.py.
+  - key: riskfree
+    section: bindings
+    delta: 0.0
+    metadata:
+      source: fcff3st.xls!Sheet1!E22
+      rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  interactions: 0.0
+finding: A one percentage point risk-free-rate increase reduces equity value per share from 44.0112220785
+  to 37.8124908742. The independently recalculated Damodaran workbook agrees within relative tolerance
+  1e-9 and absolute tolerance 1e-7. These are the source's historical illustrative assumptions.
+tags: []
+fingerprint: 2c6345c47b6f05074b4387476df0765abcbeb6a9ff18fcf9241f6511171a29b2

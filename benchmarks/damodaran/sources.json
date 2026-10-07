@@ -1,0 +1,26 @@
+{
+  "author": "Aswath Damodaran, NYU Stern",
+  "retrieved_at": "2026-10-05T22:37:37.289678+00:00",
+  "reuse_note": "Source page invites downloading and modification; original workbooks are fetched into an ignored local cache, not redistributed here.",
+  "source_page": "https://pages.stern.nyu.edu/adamodar/New_Home_Page/spreadsh.htm",
+  "sources": {
+    "stable": {
+      "bytes": 19456,
+      "filename": "fcffst.xls",
+      "sha256": "685650830dcafb8fa7441bc50e1e831b7e018e7e41e99a3233a440d411c52ff9",
+      "url": "https://pages.stern.nyu.edu/adamodar/pc/fcffst.xls"
+    },
+    "three_stage": {
+      "bytes": 36352,
+      "filename": "fcff3st.xls",
+      "sha256": "0fb2dcf5e9200c9e7ff32d1915c1c1eb404170eb17684c25d49016ed693027b3",
+      "url": "https://pages.stern.nyu.edu/adamodar/pc/fcff3st.xls"
+    },
+    "two_stage": {
+      "bytes": 49152,
+      "filename": "fcff2st.xls",
+      "sha256": "6bcb01bb95d301fd1e95c6664704882e861d902c6a680bf9be27f552ef436135",
+      "url": "https://pages.stern.nyu.edu/adamodar/pc/fcff2st.xls"
+    }
+  }
+}

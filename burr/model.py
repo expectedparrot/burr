@@ -9,7 +9,7 @@ from pathlib import Path
 from . import ENGINE_VERSION, SCHEMA_VERSION
 from .errors import BurrError, Diagnostic, require
 from .expressions import COMPARE, Evaluator, dependencies, infer_unit, parse, topological
-from .storage import IDENTIFIER, digest, identifier, merge, read_yaml
+from .storage import IDENTIFIER, METADATA, digest, identifier, merge, read_yaml
 from .values import UNITS, number, periods, resolve, series
 
 
@@ -202,13 +202,17 @@ class Model:
                     d.where = {"file": self.template_file, "key": name}
                 diagnostics.extend(exc.diagnostics)
         referenced = {n for expr in self.expressions.values() for n, _ in dependencies(expr)}
+        raw_valuation = params.get("valuation", {})
+        require(isinstance(raw_valuation, dict), "eval_error", "valuation must be a mapping", file=self.file)
+        valuation_referenced = {form["ref"] for form in raw_valuation.values()
+                                if isinstance(form, dict) and isinstance(form.get("ref"), str)}
         available = set(parameters) | set(lines) | set(workspace.world)
         for name in sorted(referenced - available):
             diag("unknown_name", f"unknown expression name {name!r}", name, template=True)
-        for name in sorted(set(parameters) - referenced):
-            diag("unused_parameter", f"parameter {name!r} is never used by a line", name, template=True)
+        for name in sorted(set(parameters) - referenced - valuation_referenced):
+            diag("unused_parameter", f"parameter {name!r} is never used by a line or valuation reference", name, template=True)
         for name, form in sorted({**workspace.world, **bindings}.items()):
-            if name not in parameters and name not in referenced:
+            if name not in parameters and name not in referenced and name not in valuation_referenced:
                 continue
             try:
                 self.inputs[name] = resolve(form, self.years, rng)
@@ -255,9 +259,7 @@ class Model:
                     changed = True
             if not changed:
                 break
-        self.valuation = {}
-        raw_valuation = params.get("valuation", {})
-        require(isinstance(raw_valuation, dict), "eval_error", "valuation must be a mapping", file=self.file)
+        self._valuation, self.valuation_refs = {}, {}
         require(not set(raw_valuation) - {"fcf", "wacc", "terminal_growth", "net_cash", "shares"},
                 "orphan_binding", "unknown valuation parameter", file=self.file)
         for name, form in sorted(raw_valuation.items()):
@@ -265,15 +267,41 @@ class Model:
                 require(form in lines, "unknown_name", f"unknown FCF line {form!r}", file=self.file, key="valuation.fcf")
                 continue
             try:
-                self.valuation[name] = resolve(form, self.years, rng)
+                if isinstance(form, dict) and "ref" in form:
+                    require(set(form) <= METADATA | {"ref"}, "eval_error",
+                            "a valuation reference cannot also contain a numeric value form")
+                    target = form["ref"]
+                    require(isinstance(target, str) and target in available, "unknown_name",
+                            f"unknown valuation reference {target!r}; use an input or model line")
+                    resolve({"value": 0, **{k: v for k, v in form.items() if k != "ref"}}, self.years)
+                    self.valuation_refs[name] = target
+                else:
+                    self._valuation[name] = resolve(form, self.years, rng)
                 unit = form.get("unit") if isinstance(form, dict) else None
+                if name in self.valuation_refs:
+                    target_unit = self.units.get(self.valuation_refs[name])
+                    require(not (unit and target_unit and unit != target_unit), "unit_mismatch",
+                            "valuation reference unit differs from referenced definition")
+                    unit = unit or target_unit
                 if name in {"wacc", "terminal_growth"}:
                     require(unit is None or unit in {"ratio", "per_period_ratio"}, "unit_mismatch", f"{name} requires a ratio unit")
+                elif name in self.valuation_refs:
+                    allowed = {"count"} if name == "shares" else {"currency", "currency_m"}
+                    require(unit is None or unit in allowed, "unit_mismatch", f"invalid unit for {name} reference")
             except BurrError as exc:
                 exc.diagnostics[0].where = {"file": self.file, "key": f"valuation.{name}"}
                 raise
         self.evaluator = Evaluator(self.expressions, self.inputs, len(self.years), self.order)
         self.results = None
+
+    @property
+    def valuation(self):
+        """Resolve linked assumptions from this scenario's already sampled inputs/lines."""
+        if not self.valuation_refs:
+            return self._valuation
+        results = self.run() if any(ref in self.expressions for ref in self.valuation_refs.values()) else {}
+        return {**self._valuation, **{name: self.inputs[ref] if ref in self.inputs else results[ref]
+                                   for name, ref in self.valuation_refs.items()}}
 
     def validate(self):
         rows, diagnostics = [], []

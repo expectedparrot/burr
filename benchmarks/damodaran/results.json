@@ -1,0 +1,365 @@
+{
+  "burr_engine_version": "1.0.0",
+  "case_count": 23,
+  "cases": {
+    "stable--base": {
+      "check_count": 8,
+      "max_absolute_error": 1.6370904631912708e-11,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 13147.560970748016,
+          "libreoffice": 13147.560970748
+        }
+      }
+    },
+    "stable--combined": {
+      "check_count": 16,
+      "max_absolute_error": 1.2732925824820995e-11,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 8469.417462880134,
+          "libreoffice": 8469.41746288013
+        }
+      }
+    },
+    "stable--discount_up": {
+      "check_count": 16,
+      "max_absolute_error": 1.6370904631912708e-11,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 11724.403257520617,
+          "libreoffice": 11724.4032575206
+        }
+      }
+    },
+    "stable--growth_down": {
+      "check_count": 16,
+      "max_absolute_error": 2.7284841053187847e-11,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 11098.60527326159,
+          "libreoffice": 11098.6052732616
+        }
+      }
+    },
+    "stable--growth_up": {
+      "check_count": 16,
+      "max_absolute_error": 4.9112713895738125e-11,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 16055.746744321948,
+          "libreoffice": 16055.7467443219
+        }
+      }
+    },
+    "stable--reinvestment_up": {
+      "check_count": 16,
+      "max_absolute_error": 9.094947017729282e-12,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 11327.57744766551,
+          "libreoffice": 11327.5774476655
+        }
+      }
+    },
+    "stable--tax_up": {
+      "check_count": 16,
+      "max_absolute_error": 4.18367562815547e-11,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 12246.388766600474,
+          "libreoffice": 12246.3887666005
+        }
+      }
+    },
+    "three_stage--base": {
+      "check_count": 154,
+      "max_absolute_error": 1.1641532182693481e-10,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 66666.83311780605,
+          "libreoffice": 66666.8331178061
+        },
+        "per_share": {
+          "burr": 44.011222078537365,
+          "libreoffice": 44.0112220785374
+        }
+      }
+    },
+    "three_stage--combined": {
+      "check_count": 308,
+      "max_absolute_error": 8.731149137020111e-11,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 36643.90070682578,
+          "libreoffice": 36643.9007068258
+        },
+        "per_share": {
+          "burr": 23.995933804550518,
+          "libreoffice": 23.9959338045505
+        }
+      }
+    },
+    "three_stage--discount_up": {
+      "check_count": 308,
+      "max_absolute_error": 1.8917489796876907e-10,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 57368.736311300985,
+          "libreoffice": 57368.736311301
+        },
+        "per_share": {
+          "burr": 37.812490874200655,
+          "libreoffice": 37.8124908742007
+        }
+      }
+    },
+    "three_stage--growth_down": {
+      "check_count": 308,
+      "max_absolute_error": 1.0186340659856796e-10,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 52343.09813568305,
+          "libreoffice": 52343.0981356831
+        },
+        "per_share": {
+          "burr": 34.4620654237887,
+          "libreoffice": 34.4620654237887
+        }
+      }
+    },
+    "three_stage--growth_up": {
+      "check_count": 308,
+      "max_absolute_error": 5.238689482212067e-10,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 84520.97476913885,
+          "libreoffice": 84520.9747691389
+        },
+        "per_share": {
+          "burr": 55.9139831794259,
+          "libreoffice": 55.9139831794259
+        }
+      }
+    },
+    "three_stage--margin_down": {
+      "check_count": 308,
+      "max_absolute_error": 5.529727786779404e-10,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 54027.9786441895,
+          "libreoffice": 54027.9786441895
+        },
+        "per_share": {
+          "burr": 35.585319096126334,
+          "libreoffice": 35.5853190961263
+        }
+      }
+    },
+    "three_stage--reinvestment_up": {
+      "check_count": 308,
+      "max_absolute_error": 5.093170329928398e-10,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 56733.38807518124,
+          "libreoffice": 56733.3880751812
+        },
+        "per_share": {
+          "burr": 37.38892538345416,
+          "libreoffice": 37.3889253834542
+        }
+      }
+    },
+    "three_stage--terminal_growth_down": {
+      "check_count": 308,
+      "max_absolute_error": 5.384208634495735e-10,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 66649.40422321836,
+          "libreoffice": 66649.4042232183
+        },
+        "per_share": {
+          "burr": 43.9996028154789,
+          "libreoffice": 43.9996028154789
+        }
+      }
+    },
+    "two_stage--base": {
+      "check_count": 40,
+      "max_absolute_error": 4.3655745685100555e-11,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 69175.15233361625,
+          "libreoffice": 69175.1523336163
+        },
+        "per_share": {
+          "burr": 66.78256422156089,
+          "libreoffice": 66.7825642215609
+        }
+      }
+    },
+    "two_stage--combined": {
+      "check_count": 80,
+      "max_absolute_error": 2.9103830456733704e-11,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 56149.61054972747,
+          "libreoffice": 56149.6105497275
+        },
+        "per_share": {
+          "burr": 53.67272617905881,
+          "libreoffice": 53.6727261790588
+        }
+      }
+    },
+    "two_stage--discount_up": {
+      "check_count": 80,
+      "max_absolute_error": 3.637978807091713e-11,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 54745.257643454985,
+          "libreoffice": 54745.257643455
+        },
+        "per_share": {
+          "burr": 52.25928484500839,
+          "libreoffice": 52.2592848450084
+        }
+      }
+    },
+    "two_stage--growth_down": {
+      "check_count": 80,
+      "max_absolute_error": 7.275957614183426e-11,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 64274.90449367343,
+          "libreoffice": 64274.9044936735
+        },
+        "per_share": {
+          "burr": 61.85060387659996,
+          "libreoffice": 61.8506038766
+        }
+      }
+    },
+    "two_stage--growth_up": {
+      "check_count": 80,
+      "max_absolute_error": 8.003553375601768e-11,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 74901.76165013152,
+          "libreoffice": 74901.7616501316
+        },
+        "per_share": {
+          "burr": 72.54623393432925,
+          "libreoffice": 72.5462339343293
+        }
+      }
+    },
+    "two_stage--reinvestment_up": {
+      "check_count": 80,
+      "max_absolute_error": 4.220055416226387e-10,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 74682.63157380075,
+          "libreoffice": 74682.6315738008
+        },
+        "per_share": {
+          "burr": 72.32568573306436,
+          "libreoffice": 72.3256857330644
+        }
+      }
+    },
+    "two_stage--tax_up": {
+      "check_count": 80,
+      "max_absolute_error": 1.0913936421275139e-10,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 62365.80471841837,
+          "libreoffice": 62365.8047184183
+        },
+        "per_share": {
+          "burr": 59.92914914743638,
+          "libreoffice": 59.9291491474363
+        }
+      }
+    },
+    "two_stage--terminal_growth_down": {
+      "check_count": 80,
+      "max_absolute_error": 7.275957614183426e-11,
+      "ok": true,
+      "valuation": {
+        "ev": {
+          "burr": 63805.908056485,
+          "libreoffice": 63805.908056485
+        },
+        "per_share": {
+          "burr": 61.3785722762211,
+          "libreoffice": 61.3785722762211
+        }
+      }
+    }
+  },
+  "catalog_digest": "b389c377b66e500d30afd3dc5cae1b53d61ac6d93954b7e0248bea3fe80a6315",
+  "check_count": 3014,
+  "failed_checks": 0,
+  "live_reference_checks": 1608,
+  "live_reference_failures": 0,
+  "max_absolute_error": 5.529727786779404e-10,
+  "mode": "live",
+  "ok": true,
+  "oracle": "LibreOffice 26.2.2.2 1f77d10d6938fd34972958f64b2bcfa54f8b1ba5",
+  "source_hashes": {
+    "stable": "685650830dcafb8fa7441bc50e1e831b7e018e7e41e99a3233a440d411c52ff9",
+    "three_stage": "0fb2dcf5e9200c9e7ff32d1915c1c1eb404170eb17684c25d49016ed693027b3",
+    "two_stage": "6bcb01bb95d301fd1e95c6664704882e861d902c6a680bf9be27f552ef436135"
+  },
+  "tolerances": {
+    "absolute": 1e-07,
+    "relative": 1e-09
+  },
+  "verified_at": "2026-10-05T22:50:45.961860+00:00",
+  "workflow_evidence": {
+    "stable": {
+      "deliverable": "csv",
+      "finding": "A 1 percentage point risk-free-rate increase changes normalized firm value from 13147.5609707480 to 11724.4032575206; the source-workbook recalculation agrees within benchmark tolerances. Cash-flow assumptions are unchanged.",
+      "replay_status": "HOLDS",
+      "selected_experiment": "exp-001",
+      "state": "complete"
+    },
+    "three_stage": {
+      "deliverable": "csv",
+      "finding": "A 1 percentage point risk-free-rate increase changes value per share from 44.0112220785 to 37.8124908742; the source-workbook recalculation agrees within benchmark tolerances. Cash-flow assumptions are unchanged.",
+      "replay_status": "HOLDS",
+      "selected_experiment": "exp-001",
+      "state": "complete"
+    },
+    "two_stage": {
+      "deliverable": "csv",
+      "finding": "A 1 percentage point risk-free-rate increase changes value per share from 66.7825642216 to 52.2592848450; the source-workbook recalculation agrees within benchmark tolerances. Cash-flow assumptions are unchanged.",
+      "replay_status": "HOLDS",
+      "selected_experiment": "exp-001",
+      "state": "complete"
+    }
+  }
+}

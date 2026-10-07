@@ -1,0 +1,5 @@
+bindings:
+  riskfree:
+    value: 0.063
+    source: fcff2st.xls!NewFCFF2Stage!D53
+    rationale: Historical workbook illustration, not current company guidance. Direct source assumption.

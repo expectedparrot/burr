@@ -1,0 +1,9 @@
+include benchmarks/__init__.py
+include benchmarks/damodaran/*.py
+include benchmarks/damodaran/*.json
+include benchmarks/damodaran/*.md
+recursive-include benchmarks/damodaran/agent_pilot *.py *.json *.md *.yaml *.csv *.xlsx burr.lock
+include examples/damodaran/burr.lock
+recursive-include examples/damodaran *.yaml *.csv *.md
+include examples/damodaran_linked/burr.lock
+recursive-include examples/damodaran_linked *.yaml *.csv *.md

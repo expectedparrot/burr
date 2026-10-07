@@ -1,0 +1,23 @@
+{
+  "beta": 0.8,
+  "capex0": 2152,
+  "cash": 500,
+  "debt": 1822,
+  "debt_cost": 0.055,
+  "depreciation0": 1228,
+  "ebit0": 5186,
+  "high_years": 5,
+  "options": 1500,
+  "prior_book_debt": 1315,
+  "prior_book_equity": 12156,
+  "revenue0": 16701,
+  "risk_premium": 0.055,
+  "riskfree": 0.053,
+  "share_price": 125.5,
+  "shares": 993.57,
+  "stable_growth": 0.06,
+  "stable_roc": 0.12,
+  "tax_rate": 0.2849,
+  "working_capital0": 3755,
+  "working_capital_change0": 499
+}

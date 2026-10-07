@@ -1,0 +1,138 @@
+entity: fcff
+template: two_stage_fcff
+periods: 1..6
+base_year: 0
+bindings:
+  beta:
+    value: 0.8
+    source: source.xlsx:NewFCFF2Stage!D52
+    rationale: Supplied model input; source workbook assumption, not independently verified financial
+      fact.
+  capex0:
+    value: 2152
+    source: source.xlsx:NewFCFF2Stage!D22
+    rationale: Supplied model input; source workbook assumption, not independently verified financial
+      fact.
+  cash:
+    value: 500
+    source: source.xlsx:NewFCFF2Stage!D28
+    rationale: Supplied model input; source workbook assumption, not independently verified financial
+      fact.
+  debt:
+    value: 1822
+    source: source.xlsx:NewFCFF2Stage!F38
+    rationale: Supplied model input; source workbook assumption, not independently verified financial
+      fact.
+  debt_cost:
+    value: 0.055
+    source: source.xlsx:NewFCFF2Stage!E56
+    rationale: Supplied model input; source workbook assumption, not independently verified financial
+      fact.
+  depreciation0:
+    value: 1228
+    source: source.xlsx:NewFCFF2Stage!D23
+    rationale: Supplied model input; source workbook assumption, not independently verified financial
+      fact.
+  ebit0:
+    value: 5186
+    source: source.xlsx:NewFCFF2Stage!D20
+    rationale: Supplied model input; source workbook assumption, not independently verified financial
+      fact.
+  high_years:
+    value: 5
+    source: source.xlsx:NewFCFF2Stage!E43
+    rationale: Supplied model input; source workbook assumption, not independently verified financial
+      fact.
+  options:
+    value: 1500
+    source: source.xlsx:NewFCFF2Stage!D29
+    rationale: Supplied model input; source workbook assumption, not independently verified financial
+      fact.
+  prior_book_debt:
+    value: 1315
+    source: source.xlsx:NewFCFF2Stage!E30
+    rationale: Supplied model input; source workbook assumption, not independently verified financial
+      fact.
+  prior_book_equity:
+    value: 12156
+    source: source.xlsx:NewFCFF2Stage!E31
+    rationale: Supplied model input; source workbook assumption, not independently verified financial
+      fact.
+  revenue0:
+    value: 16701
+    source: source.xlsx:NewFCFF2Stage!D25
+    rationale: Supplied model input; source workbook assumption, not independently verified financial
+      fact.
+  risk_premium:
+    value: 0.055
+    source: source.xlsx:NewFCFF2Stage!D54
+    rationale: Supplied model input; source workbook assumption, not independently verified financial
+      fact.
+  riskfree:
+    value: 0.053
+    source: source.xlsx:NewFCFF2Stage!D53
+    rationale: Supplied model input; source workbook assumption, not independently verified financial
+      fact.
+  share_price:
+    value: 125.5
+    source: source.xlsx:NewFCFF2Stage!F36
+    rationale: Supplied model input; source workbook assumption, not independently verified financial
+      fact.
+  shares:
+    value: 993.57
+    source: source.xlsx:NewFCFF2Stage!F37
+    rationale: Supplied model input; source workbook assumption, not independently verified financial
+      fact.
+  stable_growth:
+    value: 0.06
+    source: source.xlsx:NewFCFF2Stage!E79
+    rationale: Supplied model input; source workbook assumption, not independently verified financial
+      fact.
+  stable_roc:
+    value: 0.12
+    source: source.xlsx:NewFCFF2Stage!F101
+    rationale: Supplied model input; source workbook assumption, not independently verified financial
+      fact.
+  tax_rate:
+    value: 0.2849
+    source: source.xlsx:NewFCFF2Stage!D24
+    rationale: Supplied model input; source workbook assumption, not independently verified financial
+      fact.
+  working_capital0:
+    value: 3755
+    source: source.xlsx:NewFCFF2Stage!D26
+    rationale: Supplied model input; source workbook assumption, not independently verified financial
+      fact.
+  working_capital_change0:
+    value: 499
+    source: source.xlsx:NewFCFF2Stage!D27
+    rationale: Supplied model input; source workbook assumption, not independently verified financial
+      fact.
+  high_phase:
+    value:
+    - 1
+    - 1
+    - 1
+    - 1
+    - 1
+    - 0
+    source: Source workbook E43 and N133
+    rationale: Five explicit high-growth years plus the first stable year.
+valuation:
+  fcf: fcff
+  wacc:
+    ref: wacc
+    source: 'Burr model line: wacc'
+    rationale: Resolve from the current scenario; never copy a computed valuation assumption.
+  terminal_growth:
+    ref: stable_growth
+    source: 'Burr model binding: stable_growth'
+    rationale: Resolve from the current scenario; never copy a computed valuation assumption.
+  shares:
+    ref: shares
+    source: 'Burr model binding: shares'
+    rationale: Resolve from the current scenario; never copy a computed valuation assumption.
+  net_cash:
+    ref: net_cash_after_options
+    source: 'Burr model line: net_cash_after_options'
+    rationale: Resolve from the current scenario; never copy a computed valuation assumption.

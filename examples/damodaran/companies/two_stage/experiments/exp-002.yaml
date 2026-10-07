@@ -1,0 +1,27 @@
+id: exp-002
+at: '2026-10-07T11:53:58+00:00'
+question: Does the runnable Burr model reproduce the source workbook under a higher discount rate?
+scenario: base
+patch:
+  bindings:
+    riskfree:
+      value: 0.063
+      source: fcff2st.xls!NewFCFF2Stage!D53
+      rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+results:
+  ok: true
+  base_per_share: 66.78256422156089
+  trial_per_share: 52.25928484500839
+  gap: -14.523279376552502
+  attribution:
+  - key: riskfree
+    section: bindings
+    delta: -14.523279376552502
+    metadata:
+      source: fcff2st.xls!NewFCFF2Stage!D53
+      rationale: Historical workbook illustration, not current company guidance. Direct source assumption.
+  interactions: 0.0
+finding: With WACC linked to model formulas, increasing risk-free rate lowers per-share value from 66.7825642216
+  to 52.2592848450. Existing numerical source comparisons remain unchanged.
+tags: []
+fingerprint: b27a8f4f67a169d72840e6850cf8cb868ca8f5214ac0eacf228f6c2d0f27d32b

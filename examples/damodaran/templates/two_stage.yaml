@@ -1,0 +1,56 @@
+template: two_stage
+doc: Independent Burr reconstruction of fcff2st.xls.
+parameters:
+- name: ebit0
+  unit: currency
+- name: capex0
+  unit: currency
+- name: depreciation0
+  unit: currency
+- name: revenue0
+  unit: currency
+- name: working_capital0
+  unit: currency
+- name: tax_rate
+  unit: ratio
+- name: stable_growth
+  unit: ratio
+- name: stable_roc
+  unit: ratio
+- name: riskfree
+  unit: ratio
+- name: risk_premium
+  unit: ratio
+- name: beta
+  unit: ratio
+- name: debt_cost
+  unit: ratio
+- name: high_growth
+  unit: ratio
+- name: debt_weight
+  unit: ratio
+- name: growth_profile
+  unit: ratio
+- name: stable_weight
+  unit: ratio
+lines:
+  revenue: grow(revenue0, growth_profile)
+  ebit: grow(ebit0, growth_profile)
+  nopat: ebit * (1 - tax_rate)
+  working_capital_ratio: maximum(working_capital0 / revenue0, 0)
+  working_capital_change: delta(revenue, revenue0) * working_capital_ratio
+  depreciation: grow(depreciation0, growth_profile)
+  high_capex: grow(capex0, growth_profile)
+  net_capex: (1 - stable_weight) * (high_capex - depreciation) + stable_weight * (nopat * stable_growth
+    / stable_roc - working_capital_change)
+  fcff: nopat - net_capex - working_capital_change
+  growth_assumption: high_growth
+  cost_of_equity: riskfree + beta * risk_premium
+  after_tax_debt_cost: debt_cost * (1 - tax_rate)
+  debt_ratio: debt_weight
+  wacc: cost_of_equity * (1 - debt_weight) + after_tax_debt_cost * debt_weight
+  discount_factor: grow(1, wacc)
+  pv_fcff: fcff / discount_factor
+checks:
+- wacc > stable_growth
+- fcff >= 0

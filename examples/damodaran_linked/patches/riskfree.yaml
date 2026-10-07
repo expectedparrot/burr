@@ -1,0 +1,5 @@
+bindings:
+  riskfree:
+    value: 0.0707
+    source: 'Saved Damodaran pilot holdout: risk-free assumption 7.07%'
+    rationale: Verify that native DCF follows a primitive input change without adapter regeneration.

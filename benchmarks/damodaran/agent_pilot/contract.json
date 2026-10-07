@@ -1,0 +1,162 @@
+{
+  "fixed_source_switches": {
+    "E49": "No",
+    "E75": 0,
+    "E76": 0,
+    "E82": "No",
+    "E85": "No",
+    "F100": "Yes",
+    "F34": "Yes",
+    "F45": "No",
+    "F69": "No",
+    "F89": "Yes",
+    "F95": "Yes",
+    "F99": "No"
+  },
+  "input_fields": {
+    "beta": "D52",
+    "capex0": "D22",
+    "cash": "D28",
+    "debt": "F38",
+    "debt_cost": "E56",
+    "depreciation0": "D23",
+    "ebit0": "D20",
+    "high_years": "E43",
+    "options": "D29",
+    "prior_book_debt": "E30",
+    "prior_book_equity": "E31",
+    "revenue0": "D25",
+    "risk_premium": "D54",
+    "riskfree": "D53",
+    "share_price": "F36",
+    "shares": "F37",
+    "stable_growth": "E79",
+    "stable_roc": "F101",
+    "tax_rate": "D24",
+    "working_capital0": "D26",
+    "working_capital_change0": "D27"
+  },
+  "outputs": {
+    "after_tax_debt_cost": {
+      "length": 1,
+      "source_cells": [
+        "D108"
+      ]
+    },
+    "cost_of_equity": {
+      "length": 1,
+      "source_cells": [
+        "D106"
+      ]
+    },
+    "debt_weight": {
+      "length": 1,
+      "source_cells": [
+        "D109"
+      ]
+    },
+    "equity_before_options": {
+      "length": 1,
+      "source_cells": [
+        "F154"
+      ]
+    },
+    "ev": {
+      "length": 1,
+      "source_cells": [
+        "F151"
+      ]
+    },
+    "fcff": {
+      "length": 6,
+      "source_cells": [
+        "D137",
+        "E137",
+        "F137",
+        "G137",
+        "H137",
+        "N137"
+      ]
+    },
+    "high_growth": {
+      "length": 1,
+      "source_cells": [
+        "D123"
+      ]
+    },
+    "net_capex": {
+      "length": 6,
+      "source_cells": [
+        "D135",
+        "E135",
+        "F135",
+        "G135",
+        "H135",
+        "N135"
+      ]
+    },
+    "nopat": {
+      "length": 6,
+      "source_cells": [
+        "D134",
+        "E134",
+        "F134",
+        "G134",
+        "H134",
+        "N134"
+      ]
+    },
+    "per_share": {
+      "length": 1,
+      "source_cells": [
+        "F156"
+      ]
+    },
+    "pv_fcff": {
+      "length": 5,
+      "source_cells": [
+        "D138",
+        "E138",
+        "F138",
+        "G138",
+        "H138"
+      ]
+    },
+    "pv_terminal": {
+      "length": 1,
+      "source_cells": [
+        "F150"
+      ]
+    },
+    "terminal_value": {
+      "length": 1,
+      "source_cells": [
+        "E147"
+      ]
+    },
+    "wacc": {
+      "length": 1,
+      "source_cells": [
+        "D110"
+      ]
+    },
+    "working_capital_change": {
+      "length": 6,
+      "source_cells": [
+        "D136",
+        "E136",
+        "F136",
+        "G136",
+        "H136",
+        "N136"
+      ]
+    },
+    "working_capital_ratio": {
+      "length": 1,
+      "source_cells": [
+        "E131"
+      ]
+    }
+  },
+  "sheet": "NewFCFF2Stage"
+}

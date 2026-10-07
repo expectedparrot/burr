@@ -9,3 +9,4 @@ artifacts/
 !examples/*/artifacts/
 !examples/*/artifacts/**
 .DS_Store
+benchmarks/damodaran/.cache/

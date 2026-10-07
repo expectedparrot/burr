@@ -43,6 +43,15 @@ The starter is a lemonade stand, with a base and bear scenario. Its dollar
 valuation is intentionally a small teaching example, not an investment forecast.
 `init --template NAME` gives this starter logic the specified template ID.
 
+The [Damodaran benchmark](benchmarks/damodaran/README.md) compares three Burr
+models against independently recalculated source spreadsheets across 23 baseline
+and perturbation cases. [Runnable models and Excel exports](examples/damodaran/README.md)
+are available for inspection:
+
+```sh
+.venv/bin/python -m benchmarks.damodaran run
+```
+
 ## Explore a belief
 
 The included patch raises the price per cup and records why:

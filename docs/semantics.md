@@ -118,6 +118,30 @@ value uses the final WACC and final terminal growth. Terminal WACC must exceed
 growth, WACC must exceed -1, and growth must exceed -1. Shares must be positive.
 `net_cash` defaults to zero; `terminal_growth` defaults to zero.
 
+Each numeric valuation setting also accepts `{ref: NAME}` with optional source,
+rationale, and other value metadata. `NAME` must be a model input, world input,
+or calculated line, not another valuation setting or an inline expression:
+
+```yaml
+valuation:
+  fcf: fcff
+  wacc: {ref: wacc}
+  terminal_growth: {ref: stable_growth}
+  shares: {ref: shares}
+  net_cash: {ref: net_cash_after_options}
+```
+
+Define any needed expression as a template line. References use the current
+scenario and the same Monte Carlo draws as its forecasts; they are not copied
+numeric assumptions. Excel exports retain cell formulas, and dashboard edits
+recalculate references. Edit the source binding in the dashboard; linked
+valuation settings have no independent slider. An explicit numeric scenario
+override intentionally replaces the reference. References cannot combine with
+a numeric value form and are supported only in valuation settings. Known units
+must match: ratios for discount/growth, count for shares, currency for net cash.
+Existing numeric value forms retain their behavior; Burr does not infer links
+between unrelated numeric settings that happen to have equal values.
+
 Net cash and shares refer to the present valuation date: if supplied as a series
 or glide, their **first** values are used. WACC uses every period; terminal growth
 uses the last. `--exit-multiple M` replaces Gordon growth with final-period
